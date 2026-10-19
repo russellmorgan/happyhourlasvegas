@@ -1,0 +1,17 @@
+cat_id,cat_name,cat_slug,cat_posttype,cat_parent,cat_schema,cat_font_icon,cat_color,cat_description,cat_top_description,cat_bottom_description,cat_image,cat_icon
+473,Uncategorized,uncategorized,gd_event,,,,,,,,,https://happyhourvegas.com/wp-content/uploads/2025/12/pin.png
+474,"The Strip",the-strip,gd_event,,Event,,,,,,,
+475,Southwest,southwest,gd_event,,,,,,,,,
+476,"The Bend",the-bend,gd_event,,,,,,,,,
+477,"Off Strip",off-strip,gd_event,,,,,,,,,
+478,Summerlin,summerlin-1,gd_event,,,,,,,,,
+479,Henderson,henderson-1,gd_event,,,,,,,,,
+480,"Downtown Las Vegas",downtown-las-vegas,gd_event,,,,,,,,,
+481,"Arts District",arts-district,gd_event,,,,,,,,,
+482,"The District Green Valley",the-district-green-valley,gd_event,,,,,,,,,
+483,"North Las Vegas",north-las-vegas-1,gd_event,,,,,,,,,
+484,"South Las Vegas",south-las-vegas,gd_event,,,,,,,,,
+485,Centennial,centennial,gd_event,,,,,,,,,
+486,Chinatown,chinatown,gd_event,,,,,,,,,
+487,Uncommons,uncommons,gd_event,,,,,,,,,
+488,"Downtown Summerlin",downtown-summerlin,gd_event,,,,,,,,,
