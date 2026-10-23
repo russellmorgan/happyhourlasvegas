@@ -1,0 +1,12 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "hhv/toc",
+	"title": "On this page",
+	"category": "hhv",
+	"icon": "list-view",
+	"description": "Links to the H2s of the current page. Renders nothing when there are fewer than three.",
+	"usesContext": [ "postId" ],
+	"supports": { "html": false },
+	"render": "file:./render.php"
+}

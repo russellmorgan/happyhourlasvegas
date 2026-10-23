@@ -1,0 +1,70 @@
+/* Happy Hour Vegas — design tokens (extracted from homepage, detail, content and landing pages) */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@500;600&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&display=swap');
+
+:root {
+  /* Base palette */
+  --hhv-teal: #1c363b;        /* primary surface */
+  --hhv-teal-deep: #132529;   /* alternating band */
+  --hhv-teal-ink: #15292d;    /* image wells, device bezel, overlays */
+  --hhv-cream: #efe3c4;       /* primary ink on teal, light band surface */
+  --hhv-cream-soft: #f6efd9;  /* inputs + accordion fill on cream */
+  --hhv-gold: #c9a034;        /* accent, CTA, eyebrows, rules */
+  --hhv-gold-deep: #a27e1f;   /* halftone dots on gold */
+  --hhv-olive: #585b38;       /* band hairlines */
+  --hhv-heart: #d62f3a;       /* footer heart only */
+  --hhv-yt-red: #ff0000;      /* YouTube play button only */
+
+  /* Semantic */
+  --surface-page: var(--hhv-teal);
+  --surface-band: var(--hhv-teal-deep);
+  --surface-tile: var(--hhv-teal);
+  --surface-light: var(--hhv-cream);
+  --surface-field: var(--hhv-cream-soft);
+  --text-on-dark: var(--hhv-cream);
+  --text-on-dark-muted: rgba(239,227,196,.8);
+  --text-on-light: var(--hhv-teal);
+  --text-on-light-muted: rgba(28,54,59,.65);
+  --accent: var(--hhv-gold);
+  --rule-gold: rgba(201,160,52,.35);
+  --rule-band: var(--hhv-olive);
+  --rule-light: rgba(28,54,59,.2);
+
+  /* Type */
+  --font-display: 'Bebas Neue', sans-serif;      /* headlines, venue names, tile labels */
+  --font-label: 'Barlow Condensed', sans-serif;  /* nav, buttons, FAQ questions — 600, uppercase, .05–.08em */
+  --font-body: 'Barlow', sans-serif;             /* body 15px/1.4 */
+  --font-eyebrow: 'Libre Caslon Text', serif;    /* gold place/count lines, 11–12px */
+
+  --type-hero: 64px;     /* line-height .9 */
+  --type-h2: 40px;       /* section heads */
+  --type-h3: 30px;       /* card titles */
+  --type-tile: 20px;
+  --type-body: 15px;
+  --type-small: 13px;
+  --type-eyebrow: 12px;
+
+  /* Shape */
+  --radius-xs: 3px;
+  --radius-sm: 4px;      /* buttons, inputs */
+  --radius-md: 6px;      /* tiles, images */
+  --radius-lg: 10px;     /* accordion, frames */
+  --radius-pill: 999px;
+
+  /* Spacing (as used) */
+  --space-tile-gap: 8px;
+  --space-card-gap: 16px;
+  --space-gutter: 28px;  /* desktop page padding */
+  --space-gutter-m: 12px;/* mobile page padding */
+  --space-band-y: 28px;
+
+  /* Effects */
+  --shadow-display: 0 6px 0 #000;          /* hard drop on hero headline */
+  --shadow-heading: 0 6px 1px #000;        /* band headlines */
+  --shadow-frame: 0 10px 30px rgba(0,0,0,.25);
+  --scrim-bottom: linear-gradient(180deg, rgba(21,41,45,0), rgba(1,1,1,.9));
+  --vignette: radial-gradient(ellipse at center, transparent 55%, rgba(21,41,45,.55) 100%);
+  --halftone: radial-gradient(circle, #a27e1f .8px, transparent 1.1px) 0 0/4px 4px;
+
+  /* Motion */
+  --ease-pop: cubic-bezier(.34,1.56,.64,1); /* olive drop-in, .9s */
+}

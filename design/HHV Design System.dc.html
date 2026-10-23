@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet><meta name="design_doc_mode" content="canvas"><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Barlow:wght@400;500;600&amp;family=Barlow+Condensed:wght@500;600&amp;family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&amp;family=JetBrains+Mono:wght@400;600&amp;display=swap" rel="stylesheet"><style>@keyframes hhvOlive{0%{opacity:0;transform:translateY(-14px) rotate(-35deg) scale(.6)}100%{opacity:1;transform:none}}@keyframes hhvWord{0%{opacity:0}100%{opacity:1}}body{margin:0;background:#e9e4d8;font-family:'Barlow',sans-serif}a{color:#c9a034}a:hover{color:#1c363b}</style></helmet>
+
+<div style="width:1440px;padding:56px 64px 96px;box-sizing:border-box;display:flex;flex-direction:column;gap:72px;color:#1c363b">
+
+<header data-screen-label="Cover" style="background:#1c363b;color:#efe3c4;border-radius:10px;padding:56px 56px 48px;display:flex;justify-content:space-between;align-items:flex-end;gap:40px;box-shadow:0 10px 30px rgba(0,0,0,.25)">
+<div style="display:flex;flex-direction:column;gap:18px">
+<div onClick="{{ replayLogo }}" style="display:flex;align-items:center;gap:14px;cursor:pointer"><img src="design-system/assets/olive-mark.svg" alt="Olive" style="height:44px;display:block;animation:hhvOlive .9s cubic-bezier(.34,1.56,.64,1) .1s both"><span style="font-family:'Bebas Neue',sans-serif;font-size:40px;letter-spacing:.06em;color:#c9a034;display:flex;gap:.2em;line-height:1"><span style="animation:hhvWord .15s ease-out 1s both">HAPPY</span><span style="animation:hhvWord .15s ease-out 1.15s both">HOUR</span><span style="animation:hhvWord .15s ease-out 1.3s both">VEGAS</span></span></div>
+<h1 style="margin:0;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:120px;line-height:.88;letter-spacing:.01em;text-shadow:0 8px 0 #000">Design system</h1>
+<p style="margin:0;max-width:620px;font-size:18px;line-height:1.45;color:rgba(239,227,196,.85);text-wrap:pretty">Foundations, components and format templates for the web, the newsletter, social infographics and video. Tokens live in <span style="font-family:'JetBrains Mono',monospace;font-size:15px;color:#c9a034">design-system/tokens.css</span>.</p>
+</div>
+<nav style="display:grid;grid-template-columns:repeat(2,auto);gap:10px 32px;font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:17px;letter-spacing:.08em;text-transform:uppercase">
+<a href="#brand">01 Brand</a><a href="#components">05 Components</a><a href="#color">02 Color</a><a href="#newsletter">06 Newsletter</a><a href="#type">03 Type</a><a href="#infographic">07 Infographic</a><a href="#shape">04 Shape</a><a href="#video">08 Video</a><span></span><a href="#social">09 Social</a>
+</nav>
+</header>
+
+<section id="brand" data-screen-label="01 Brand" style="display:flex;flex-direction:column;gap:24px">
+<div style="display:flex;align-items:center;gap:16px"><span style="font-family:'Libre Caslon Text',serif;font-size:14px;color:#a27e1f">01</span><h2 style="margin:0;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:56px;line-height:1">Brand</h2><div style="flex:1;height:3px;background:#c9a034"></div></div>
+<div style="display:grid;grid-template-columns:2fr 1fr 1fr;gap:16px">
+<div style="background:#1c363b;border-radius:10px;height:220px;display:flex;align-items:center;justify-content:center"><span style="display:flex;align-items:center;gap:20px"><img src="design-system/assets/olive-mark.svg" alt="Olive" style="height:64px;display:block"><span style="font-family:'Bebas Neue',Impact,sans-serif;font-size:56px;letter-spacing:.06em;color:#c9a034;display:flex;gap:.2em;line-height:1;white-space:nowrap"><span>HAPPY</span><span>HOUR</span><span>VEGAS</span></span></span></div>
+<div style="background:#efe3c4;border:1px solid rgba(28,54,59,.2);border-radius:10px;height:220px;display:flex;align-items:center;justify-content:center"><img src="design-system/assets/olive-mark.svg" alt="Olive mark" style="height:96px"></div>
+<div style="background:#c9a034;border-radius:10px;height:220px;display:flex;align-items:center;justify-content:center"><span style="display:flex;align-items:center;gap:13px"><img src="design-system/assets/olive-mark.svg" alt="Olive" style="height:40px;display:block"><span style="font-family:'Bebas Neue',Impact,sans-serif;font-size:36px;letter-spacing:.06em;color:#1c363b;display:flex;gap:.2em;line-height:1;white-space:nowrap"><span>HAPPY</span><span>HOUR</span><span>VEGAS</span></span></span></div>
+</div>
+<sc-if value="{{ showNotes }}" hint-placeholder-val="{{ true }}"><p style="margin:0;max-width:760px;font-size:15px;line-height:1.5;color:rgba(28,54,59,.75)">Lockup: olive + Bebas Neue wordmark, gold, .06em tracking. Olive pops in on load (.9s, overshoot ease) and the three words fade in 150ms apart; click the cover lockup to replay. Clear space = olive height. On gold, set the wordmark in teal.</p></sc-if>
+</section>
+
+<section id="color" data-screen-label="02 Color" style="display:flex;flex-direction:column;gap:24px">
+<div style="display:flex;align-items:center;gap:16px"><span style="font-family:'Libre Caslon Text',serif;font-size:14px;color:#a27e1f">02</span><h2 style="margin:0;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:56px;line-height:1">Color</h2><div style="flex:1;height:3px;background:#c9a034"></div></div>
+<div style="display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px">
+<sc-for list="{{ core }}" as="c" hint-placeholder-count="5">
+<div style="display:flex;flex-direction:column;border-radius:10px;overflow:hidden;border:1px solid rgba(28,54,59,.2);background:#fff"><div style="height:150px;background:{{ c.hex }}"></div><div style="padding:12px 14px;display:flex;flex-direction:column;gap:2px"><span style="font-family:'Bebas Neue',sans-serif;font-size:24px;line-height:1">{{ c.name }}</span><span style="font-family:'JetBrains Mono',monospace;font-size:12px">{{ c.hex }} · {{ c.token }}</span><span style="font-size:13px;color:rgba(28,54,59,.7);margin-top:4px">{{ c.use }}</span></div></div>
+</sc-for>
+</div>
+<div style="display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px">
+<sc-for list="{{ support }}" as="c" hint-placeholder-count="5">
+<div style="display:flex;gap:12px;align-items:center;padding:10px;border-radius:6px;background:#fff;border:1px solid rgba(28,54,59,.15)"><div style="width:44px;height:44px;border-radius:4px;flex:none;background:{{ c.hex }};border:1px solid rgba(0,0,0,.08)"></div><div style="display:flex;flex-direction:column;min-width:0"><span style="font-weight:600;font-size:14px">{{ c.name }}</span><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(28,54,59,.7)">{{ c.hex }}</span></div></div>
+</sc-for>
+</div>
+<div style="display:flex;border-radius:10px;overflow:hidden;height:56px;font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:14px;letter-spacing:.06em;text-transform:uppercase">
+<div style="flex:5;background:#1c363b;color:#efe3c4;display:flex;align-items:center;padding:0 16px">Teal 50%</div><div style="flex:2;background:#132529;color:#efe3c4;display:flex;align-items:center;padding:0 16px">Deep 20%</div><div style="flex:2;background:#efe3c4;display:flex;align-items:center;padding:0 16px">Cream 20%</div><div style="flex:1;background:#c9a034;display:flex;align-items:center;padding:0 16px">Gold 10%</div>
+</div>
+</section>
+
+<section id="type" data-screen-label="03 Type" style="display:flex;flex-direction:column;gap:24px">
+<div style="display:flex;align-items:center;gap:16px"><span style="font-family:'Libre Caslon Text',serif;font-size:14px;color:#a27e1f">03</span><h2 style="margin:0;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:56px;line-height:1">Type</h2><div style="flex:1;height:3px;background:#c9a034"></div></div>
+<div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px">
+<div style="background:#1c363b;color:#efe3c4;border-radius:10px;padding:22px;display:flex;flex-direction:column;gap:8px"><span style="font-family:'Bebas Neue',sans-serif;font-size:88px;line-height:.9">Aa</span><span style="font-family:'Barlow Condensed',sans-serif;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#c9a034">Bebas Neue · Display</span><span style="font-size:14px;color:rgba(239,227,196,.8)">Headlines, venue names, tiles, big numbers.</span></div>
+<div style="background:#1c363b;color:#efe3c4;border-radius:10px;padding:22px;display:flex;flex-direction:column;gap:8px"><span style="font-family:'Barlow',sans-serif;font-size:88px;line-height:.9">Aa</span><span style="font-family:'Barlow Condensed',sans-serif;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#c9a034">Barlow · Body</span><span style="font-size:14px;color:rgba(239,227,196,.8)">Paragraphs, editor takes, footer links.</span></div>
+<div style="background:#1c363b;color:#efe3c4;border-radius:10px;padding:22px;display:flex;flex-direction:column;gap:8px"><span style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:88px;line-height:.9">AA</span><span style="font-family:'Barlow Condensed',sans-serif;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#c9a034">Barlow Condensed · Label</span><span style="font-size:14px;color:rgba(239,227,196,.8)">Nav, buttons, FAQ questions. 600, uppercase.</span></div>
+<div style="background:#1c363b;color:#efe3c4;border-radius:10px;padding:22px;display:flex;flex-direction:column;gap:8px"><span style="font-family:'Libre Caslon Text',serif;font-size:88px;line-height:.9;color:#c9a034">Aa</span><span style="font-family:'Barlow Condensed',sans-serif;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#c9a034">Libre Caslon · Eyebrow</span><span style="font-size:14px;color:rgba(239,227,196,.8)">Gold place lines and counts, 11–12px.</span></div>
+</div>
+<div style="background:#fff;border-radius:10px;border:1px solid rgba(28,54,59,.15);display:flex;flex-direction:column">
+<sc-for list="{{ scale }}" as="s" hint-placeholder-count="8">
+<div style="display:grid;grid-template-columns:200px minmax(0,1fr);gap:24px;align-items:baseline;padding:16px 24px;border-bottom:1px solid rgba(28,54,59,.12)"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:rgba(28,54,59,.7)">{{ s.label }}</span><span style="font-family:{{ s.font }};font-size:{{ s.size }};line-height:{{ s.lh }};letter-spacing:{{ s.ls }};text-transform:{{ s.tt }};font-weight:{{ s.w }};color:{{ s.color }}">{{ s.sample }}</span></div>
+</sc-for>
+</div>
+</section>
+
+<section id="shape" data-screen-label="04 Shape" style="display:flex;flex-direction:column;gap:24px">
+<div style="display:flex;align-items:center;gap:16px"><span style="font-family:'Libre Caslon Text',serif;font-size:14px;color:#a27e1f">04</span><h2 style="margin:0;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:56px;line-height:1">Shape, texture, depth</h2><div style="flex:1;height:3px;background:#c9a034"></div></div>
+<div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px">
+<div style="background:#fff;border-radius:10px;border:1px solid rgba(28,54,59,.15);padding:20px;display:flex;gap:14px;align-items:flex-end">
+<div style="display:flex;flex-direction:column;gap:6px;align-items:center"><div style="width:52px;height:52px;background:#1c363b;border-radius:4px"></div><span style="font-family:'JetBrains Mono',monospace;font-size:11px">4 · button</span></div>
+<div style="display:flex;flex-direction:column;gap:6px;align-items:center"><div style="width:52px;height:52px;background:#1c363b;border-radius:6px"></div><span style="font-family:'JetBrains Mono',monospace;font-size:11px">6 · tile</span></div>
+<div style="display:flex;flex-direction:column;gap:6px;align-items:center"><div style="width:52px;height:52px;background:#1c363b;border-radius:10px"></div><span style="font-family:'JetBrains Mono',monospace;font-size:11px">10 · frame</span></div>
+<div style="display:flex;flex-direction:column;gap:6px;align-items:center"><div style="width:72px;height:28px;background:#1c363b;border-radius:999px"></div><span style="font-family:'JetBrains Mono',monospace;font-size:11px">pill</span></div>
+</div>
+<div style="position:relative;isolation:isolate;background:#c9a034;border-radius:10px;padding:20px;display:flex;flex-direction:column;justify-content:flex-end;min-height:130px"><div style="position:absolute;inset:0;z-index:-1;border-radius:10px;background-image:radial-gradient(circle,#a27e1f .8px,transparent 1.1px);background-size:4px 4px;opacity:.7;-webkit-mask-image:linear-gradient(to bottom,#000,transparent 70%);mask-image:linear-gradient(to bottom,#000,transparent 70%)"></div><span style="font-family:'Bebas Neue',sans-serif;font-size:26px;line-height:1">Gold halftone</span><span style="font-family:'JetBrains Mono',monospace;font-size:11px">--halftone, masked 70%</span></div>
+<div style="position:relative;border-radius:10px;overflow:hidden;min-height:130px;background:#15292d url(https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=500&amp;q=70&amp;auto=format&amp;fit=crop) center/cover"><div style="position:absolute;inset:0;background:radial-gradient(ellipse at center,transparent 55%,rgba(21,41,45,.55) 100%)"></div><div style="position:absolute;inset:auto 0 0 0;padding:48px 16px 12px;background:linear-gradient(180deg,rgba(21,41,45,0),rgba(1,1,1,.9));color:#efe3c4;display:flex;flex-direction:column"><span style="font-family:'Bebas Neue',sans-serif;font-size:26px;line-height:1">Vignette + scrim</span><span style="font-family:'JetBrains Mono',monospace;font-size:11px">photo on #15292d well</span></div></div>
+<div style="background:#1c363b;border-radius:10px;padding:20px;display:flex;flex-direction:column;justify-content:flex-end;gap:4px;min-height:130px;color:#efe3c4"><span style="font-family:'Bebas Neue',sans-serif;font-size:44px;line-height:1;text-shadow:0 6px 0 #000">Hard shadow</span><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#c9a034">0 6px 0 #000 · teal only</span></div>
+</div>
+</section>
+
+<section id="components" data-screen-label="05 Components" style="display:flex;flex-direction:column;gap:24px">
+<div style="display:flex;align-items:center;gap:16px"><span style="font-family:'Libre Caslon Text',serif;font-size:14px;color:#a27e1f">05</span><h2 style="margin:0;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:56px;line-height:1">Components</h2><div style="flex:1;height:3px;background:#c9a034"></div></div>
+<div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px">
+
+<div style="background:#1c363b;color:#efe3c4;border-radius:10px;padding:24px;display:flex;flex-direction:column;gap:16px">
+<span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#c9a034;letter-spacing:.06em">BUTTONS · CHIPS</span>
+<div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+<div style="background:#c9a034;color:#1c363b;border-radius:4px;padding:11px 18px;font-family:'Barlow Condensed',sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.08em">Join the club</div>
+<div style="border:1.5px solid #c9a034;color:#c9a034;border-radius:4px;padding:10px 18px;font-family:'Barlow Condensed',sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.08em">View menu</div>
+<div style="color:#efe3c4;padding:11px 4px;font-family:'Barlow Condensed',sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.08em;border-bottom:2px solid #c9a034">See all</div>
+</div>
+<div style="display:flex;gap:8px;flex-wrap:wrap">
+<span style="background:#c9a034;color:#1c363b;border-radius:999px;padding:5px 14px;font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:14px;letter-spacing:.05em;text-transform:uppercase">Summerlin</span>
+<span style="border:1px solid rgba(201,160,52,.55);color:#efe3c4;border-radius:999px;padding:5px 14px;font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:14px;letter-spacing:.05em;text-transform:uppercase">Rooftop</span>
+<span style="border:1px solid rgba(201,160,52,.55);color:#efe3c4;border-radius:999px;padding:5px 14px;font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:14px;letter-spacing:.05em;text-transform:uppercase">Reverse</span>
+<span style="border:1px solid rgba(201,160,52,.55);color:#efe3c4;border-radius:999px;padding:5px 14px;font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:14px;letter-spacing:.05em;text-transform:uppercase">Oysters</span>
+</div>
+</div>
+
+<div style="background:#efe3c4;border-radius:10px;padding:24px;display:flex;flex-direction:column;gap:12px">
+<span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#a27e1f;letter-spacing:.06em">NEWSLETTER SIGNUP</span>
+<span style="font-family:'Bebas Neue',sans-serif;font-size:30px;line-height:1.05;text-transform:uppercase">This free newsletter is your insider's guide to Las Vegas happy hours.</span>
+<div style="display:flex;gap:8px"><div style="flex:1;border:1.5px solid #1c363b;border-radius:4px;padding:11px 14px;color:rgba(28,54,59,.65);background:#f6efd9">Your email address</div><div style="background:#1c363b;color:#efe3c4;border-radius:4px;padding:11px 18px;font-family:'Barlow Condensed',sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.08em">Join the club</div></div>
+<span style="font-size:13px;color:rgba(28,54,59,.75)">No Spam. No Junk. No Pressure.</span>
+</div>
+
+<div style="background:#1c363b;color:#efe3c4;border-radius:10px;padding:24px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px">
+<div style="display:flex;flex-direction:column;gap:5px;grid-column:1/-1"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#c9a034;letter-spacing:.06em">VENUE CARD · AREA TILE</span></div>
+<div style="display:flex;flex-direction:column;gap:5px;min-width:0"><div style="position:relative;height:150px;border-radius:6px;overflow:hidden;background:#15292d url(https://images.unsplash.com/photo-1543007630-9710e4a00a20?w=500&amp;q=70&amp;auto=format&amp;fit=crop) center/cover"><div style="position:absolute;inset:0;background:radial-gradient(ellipse at center,transparent 55%,rgba(21,41,45,.55) 100%)"></div></div><span style="font-family:'Libre Caslon Text',serif;color:#c9a034;font-size:12px">Cosmopolitan · The Strip</span><span style="font-family:'Bebas Neue',sans-serif;font-size:30px;line-height:1">Lobby Bar</span><span style="font-size:13px;color:rgba(239,227,196,.85)">One-line editor take on why it's worth the trip.</span><b style="color:#c9a034;font-weight:600;font-size:13px">$6 beers · $9 cocktails · ½ off apps</b></div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;align-content:start;background:#132529;padding:10px;border-radius:6px">
+<sc-for list="{{ areas }}" as="a" hint-placeholder-count="6">
+<div style="padding:10px 12px;background:#1c363b;border-radius:6px;display:flex;flex-direction:column;gap:2px"><span style="font-family:'Bebas Neue',sans-serif;font-size:20px;line-height:1">{{ a.name }}</span><span style="font-family:'Libre Caslon Text',serif;font-size:11px;color:#c9a034">{{ a.count }} Happy Hours</span></div>
+</sc-for>
+</div>
+</div>
+
+<div style="background:#efe3c4;border-radius:10px;padding:24px;display:flex;flex-direction:column;gap:14px">
+<span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#a27e1f;letter-spacing:.06em">SECTION HEAD · FAQ</span>
+<div style="display:flex;align-items:center;gap:16px"><span style="font-family:'Bebas Neue',sans-serif;font-size:34px;line-height:1;white-space:nowrap">Las Vegas Happy Hours FAQ</span><div style="flex:1;height:3px;background:#c9a034"></div></div>
+<div style="border:1px solid rgba(28,54,59,.25);border-radius:10px;overflow:hidden;background:#f6efd9">
+<div style="display:flex;gap:14px;align-items:center;padding:14px 18px"><span style="width:22px;text-align:center;font-weight:600;font-size:22px;line-height:1">−</span><span style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:18px;letter-spacing:.05em;text-transform:uppercase">What is Happy Hour Vegas?</span></div>
+<div style="padding:0 18px 16px 54px;font-size:15px;line-height:1.5">A Las Vegas happy hour guide with 473+ verified listings, maintained by locals and updated weekly.</div>
+<div style="display:flex;gap:14px;align-items:center;padding:14px 18px;border-top:1px solid rgba(28,54,59,.2)"><span style="width:22px;text-align:center;font-weight:600;font-size:22px;line-height:1">+</span><span style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:18px;letter-spacing:.05em;text-transform:uppercase">How many happy hours are in Las Vegas?</span></div>
+</div>
+</div>
+
+<div style="background:#1c363b;color:#efe3c4;border-radius:10px;padding:24px;display:flex;flex-direction:column;gap:14px">
+<span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#c9a034;letter-spacing:.06em">STAT BLOCK</span>
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px">
+<sc-for list="{{ stats }}" as="s" hint-placeholder-count="3">
+<div style="position:relative;isolation:isolate;background:#c9a034;color:#1c363b;border-radius:8px;padding:10px 16px 12px;display:flex;flex-direction:column"><div style="position:absolute;inset:0;z-index:-1;border-radius:8px;background-image:radial-gradient(circle,#a27e1f .8px,transparent 1.1px);background-size:4px 4px;opacity:.7;-webkit-mask-image:linear-gradient(to bottom,#000,transparent 70%);mask-image:linear-gradient(to bottom,#000,transparent 70%)"></div><span style="font-family:'Bebas Neue',sans-serif;font-size:56px;line-height:1">{{ s.n }}</span><span style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:14px;letter-spacing:.06em;text-transform:uppercase">{{ s.l }}</span></div>
+</sc-for>
+</div>
+</div>
+
+<div style="background:#efe3c4;border-radius:10px;padding:24px;display:flex;flex-direction:column;gap:14px">
+<span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#a27e1f;letter-spacing:.06em">VIDEO EMBED</span>
+<div style="position:relative;aspect-ratio:16/9;border-radius:6px;overflow:hidden;background:#15292d url(https://images.unsplash.com/photo-1574096079513-d8259312b785?w=800&amp;q=70&amp;auto=format&amp;fit=crop) center/cover"><div style="position:absolute;inset:0;background:linear-gradient(rgba(21,41,45,.85),rgba(21,41,45,.1) 45%,rgba(21,41,45,.1) 60%,rgba(21,41,45,.8))"></div><div style="position:absolute;left:14px;top:12px;display:flex;gap:10px;align-items:center"><div style="width:34px;height:34px;border-radius:50%;background:#1c363b;border:1.5px solid #c9a034;display:flex;align-items:center;justify-content:center"><img src="design-system/assets/olive-mark.svg" alt="" style="height:16px"></div><div style="display:flex;flex-direction:column"><span style="font-weight:600;font-size:15px;color:#efe3c4">Las Vegas Happy Hours this week: new picks</span><span style="font-size:12px;color:rgba(239,227,196,.8)">Happy Hour Vegas</span></div></div><div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:64px;height:44px;background:#f00;border-radius:12px;display:flex;align-items:center;justify-content:center"><div style="width:0;height:0;border-left:16px solid #fff;border-top:10px solid transparent;border-bottom:10px solid transparent;margin-left:4px"></div></div></div>
+</div>
+
+</div>
+</section>
+
+<section id="newsletter" data-screen-label="06 Newsletter" style="display:flex;flex-direction:column;gap:24px">
+<div style="display:flex;align-items:center;gap:16px"><span style="font-family:'Libre Caslon Text',serif;font-size:14px;color:#a27e1f">06</span><h2 style="margin:0;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:56px;line-height:1">Newsletter</h2><div style="flex:1;height:3px;background:#c9a034"></div><span style="font-family:'JetBrains Mono',monospace;font-size:12px">600px · table layout · inline styles</span></div>
+<div style="display:flex;flex-wrap:wrap;gap:48px 40px;align-items:flex-start">
+<sc-for list="{{ emailVariants }}" as="e" hint-placeholder-count="2">
+<div style="display:flex;flex-direction:column;gap:12px;flex:none">
+<div style="display:flex;flex-direction:column;gap:2px"><span style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:16px;letter-spacing:.06em;text-transform:uppercase">{{ e.label }}</span><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:rgba(28,54,59,.7)">{{ e.clients }}</span></div>
+<table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" bgcolor="#efe3c4" style="width:600px;border-collapse:collapse;background:#efe3c4;color:#1c363b;font-family:{{ e.body }};box-shadow:0 10px 30px rgba(0,0,0,.25);filter:{{ e.filter }}"><tbody>
+<tr><td bgcolor="#1c363b" style="background:#1c363b;padding:24px 32px 22px;border-bottom:3px solid #c9a034"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse"><tbody><tr>
+<td valign="middle" style="padding:0"><table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse"><tbody><tr><td valign="middle" style="padding:0 10px 0 0"><img src="design-system/assets/olive-mark-2x.png" width="28" height="24" alt="" style="filter:{{ e.filter }};display:block;border:0"></td><td valign="middle" style="font-family:{{ e.head }};font-weight:{{ e.hw }};font-size:26px;line-height:26px;letter-spacing:.06em;text-transform:uppercase;color:#c9a034;white-space:nowrap">Happy Hour Vegas</td></tr></tbody></table></td>
+<td valign="middle" align="right" style="font-family:{{ e.body }};font-weight:600;font-size:12px;line-height:16px;letter-spacing:.08em;text-transform:uppercase;color:#c9a034;white-space:nowrap">Issue 42<br>Oct 23, 2026</td>
+</tr></tbody></table></td></tr>
+<tr><td bgcolor="#1c363b" style="background:#1c363b;color:#efe3c4;padding:36px 32px 32px"><div style="font-family:{{ e.head }};font-weight:{{ e.hw }};font-size:52px;line-height:50px;text-transform:uppercase;color:#efe3c4;text-shadow:{{ e.shadow }}">Three happy hours for this week</div><div style="font-family:{{ e.body }};font-size:16px;line-height:23px;color:#e3d8bb;padding-top:12px">The picks we'd go to, and why. Plus a new oyster deal off the Strip.</div></td></tr>
+<tr><td style="padding:28px 32px 8px"><sc-for list="{{ picks }}" as="v" hint-placeholder-count="3"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;margin-bottom:22px"><tbody><tr><td width="160" valign="top" style="padding:0"><img src="{{ v.img }}" width="160" height="120" alt="{{ v.name }}" style="filter:{{ e.filter }};display:block;border:0;width:160px;height:120px;object-fit:cover;border-radius:6px"></td><td valign="top" style="padding:0 0 0 18px"><div style="font-family:{{ e.serif }};font-size:12px;line-height:16px;color:#7d6116">{{ v.place }} · {{ v.area }}</div><div style="font-family:{{ e.head }};font-weight:{{ e.hw }};font-size:30px;line-height:32px;text-transform:uppercase;color:#1c363b">{{ v.name }}</div><div style="font-family:{{ e.body }};font-size:14px;line-height:20px;color:#1c363b">{{ v.take }}</div><div style="font-family:{{ e.body }};font-size:13px;line-height:19px;font-weight:bold;color:#1c363b;padding-top:2px">{{ v.deals }}</div></td></tr></tbody></table></sc-for>
+<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;margin-bottom:24px"><tbody><tr><td bgcolor="#c9a034" style="background:#c9a034;border-radius:4px;padding:13px 24px;white-space:nowrap;font-family:{{ e.body }};font-weight:bold;font-size:15px;line-height:18px;letter-spacing:.08em;text-transform:uppercase"><a href="#" style="color:#1c363b;text-decoration:none">See all 473 happy hours</a></td></tr></tbody></table></td></tr>
+<tr><td style="padding:0 32px 28px"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#c9a034" style="border-collapse:collapse;background:#c9a034;border-radius:8px"><tbody><tr><td width="150" valign="middle" style="padding:18px 0 18px 22px;font-family:{{ e.head }};font-weight:{{ e.hw }};font-size:60px;line-height:60px;color:#1c363b;white-space:nowrap">$1.50</td><td valign="middle" style="padding:18px 22px 18px 16px;font-family:{{ e.body }};font-size:15px;line-height:21px;color:#1c363b">Oysters at Palace Station, 3–6pm daily. The cheapest raw bar in town this month.</td></tr></tbody></table></td></tr>
+<tr><td bgcolor="#1c363b" align="center" style="background:#1c363b;padding:22px 32px;font-family:{{ e.body }};font-size:13px;line-height:20px;color:#e3d8bb"><div style="font-weight:bold;letter-spacing:.08em;text-transform:uppercase;color:#c9a034">Instagram · Facebook · YouTube</div><div>Made with <span style="color:#d62f3a">♥</span> in Las Vegas · <a href="#" style="color:#e3d8bb;text-decoration:underline">Unsubscribe</a></div></td></tr>
+</tbody></table></div>
+</sc-for>
+</div>
+<div style="background:#fff;border:1px solid rgba(28,54,59,.15);border-radius:10px;display:flex;flex-direction:column">
+<div style="display:grid;grid-template-columns:240px 110px minmax(0,1fr);gap:20px;padding:14px 24px;border-bottom:1px solid rgba(28,54,59,.15);font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:14px;letter-spacing:.06em;text-transform:uppercase"><span>Client compatibility check</span><span>Status</span><span>What changed</span></div>
+<sc-for list="{{ emailChecks }}" as="c" hint-placeholder-count="10">
+<div style="display:grid;grid-template-columns:240px 110px minmax(0,1fr);gap:20px;padding:12px 24px;border-bottom:1px solid rgba(28,54,59,.1);font-size:14px;line-height:1.45;align-items:baseline"><span style="font-weight:600">{{ c.item }}</span><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:{{ c.color }}">{{ c.status }}</span><span>{{ c.note }}</span></div>
+</sc-for>
+<p style="margin:0;padding:14px 24px;font-size:13px;color:rgba(28,54,59,.7)">Checked against published client CSS support, not live inbox renders. Run a Litmus or Email on Acid pass before the first send.</p>
+</div>
+</section>
+
+<section id="infographic" data-screen-label="07 Infographic" style="display:flex;flex-direction:column;gap:24px">
+<div style="display:flex;align-items:center;gap:16px"><span style="font-family:'Libre Caslon Text',serif;font-size:14px;color:#a27e1f">07</span><h2 style="margin:0;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:56px;line-height:1">Infographic</h2><div style="flex:1;height:3px;background:#c9a034"></div><span style="font-family:'JetBrains Mono',monospace;font-size:12px">1080×1350 · shown at 50%</span></div>
+<div style="display:flex;gap:32px;align-items:flex-start">
+<div style="width:540px;height:675px;flex:none;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.25)"><div style="width:1080px;height:1350px;transform:scale(.5);transform-origin:0 0;background:#1c363b;color:#efe3c4;padding:84px 80px 64px;box-sizing:border-box;display:flex;flex-direction:column;gap:40px">
+<div style="display:flex;flex-direction:column;gap:12px"><span style="font-family:'Libre Caslon Text',serif;font-size:30px;color:#c9a034">The Las Vegas happy hour report · Fall 2026</span><span style="font-family:'Bebas Neue',sans-serif;font-size:150px;line-height:.86;text-shadow:0 10px 0 #000">Where the deals are</span></div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+<sc-for list="{{ stats }}" as="s" hint-placeholder-count="3">
+<div style="position:relative;isolation:isolate;background:#c9a034;color:#1c363b;border-radius:16px;padding:24px 32px 28px;display:flex;flex-direction:column"><div style="position:absolute;inset:0;z-index:-1;border-radius:16px;background-image:radial-gradient(circle,#a27e1f 1.6px,transparent 2.2px);background-size:8px 8px;opacity:.7;-webkit-mask-image:linear-gradient(to bottom,#000,transparent 70%);mask-image:linear-gradient(to bottom,#000,transparent 70%)"></div><span style="font-family:'Bebas Neue',sans-serif;font-size:150px;line-height:.95">{{ s.n }}</span><span style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:32px;letter-spacing:.06em;text-transform:uppercase">{{ s.l }}</span></div>
+</sc-for>
+<div style="background:#132529;border:2px solid #585b38;border-radius:16px;padding:28px 32px;display:flex;flex-direction:column;gap:14px">
+<sc-for list="{{ bars }}" as="b" hint-placeholder-count="4">
+<div style="display:flex;flex-direction:column;gap:6px"><div style="display:flex;justify-content:space-between;font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:26px;letter-spacing:.05em;text-transform:uppercase"><span>{{ b.name }}</span><span style="color:#c9a034">{{ b.n }}</span></div><div style="height:14px;background:rgba(239,227,196,.12);border-radius:3px"><div style="height:100%;width:{{ b.pct }};background:#c9a034;border-radius:3px"></div></div></div>
+</sc-for>
+</div>
+</div>
+<div style="margin-top:auto;display:flex;justify-content:space-between;align-items:center;border-top:2px solid rgba(201,160,52,.35);padding-top:28px"><span style="display:flex;align-items:center;gap:15px"><img src="design-system/assets/olive-mark.svg" alt="Olive" style="height:48px;display:block"><span style="font-family:'Bebas Neue',Impact,sans-serif;font-size:44px;letter-spacing:.06em;color:#c9a034;display:flex;gap:.2em;line-height:1;white-space:nowrap"><span>HAPPY</span><span>HOUR</span><span>VEGAS</span></span></span><span style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:28px;letter-spacing:.08em;text-transform:uppercase;color:#c9a034">happyhourvegas.com</span></div>
+</div></div>
+<sc-if value="{{ showNotes }}" hint-placeholder-val="{{ true }}"><div style="display:flex;flex-direction:column;gap:14px;max-width:420px;font-size:15px;line-height:1.5">
+<span style="font-family:'Bebas Neue',sans-serif;font-size:28px;line-height:1">Infographic rules</span>
+<span>Feed 1080×1350, story 1080×1920. 80px side margins, 64px safe bottom.</span>
+<span>Lead with one oversized Bebas headline with the hard shadow. Numbers go on gold halftone blocks; scale the dot grid 2× at this size.</span>
+<span>Comparisons use gold bars on a deep-teal panel with an olive outline. Max one chart per graphic.</span>
+<span>Always close with the lockup and URL on a gold hairline.</span>
+</div></sc-if>
+</div>
+</section>
+
+<section id="video" data-screen-label="08 Video" style="display:flex;flex-direction:column;gap:24px">
+<div style="display:flex;align-items:center;gap:16px"><span style="font-family:'Libre Caslon Text',serif;font-size:14px;color:#a27e1f">08</span><h2 style="margin:0;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:56px;line-height:1">Video</h2><div style="flex:1;height:3px;background:#c9a034"></div><span style="font-family:'JetBrains Mono',monospace;font-size:12px">1920×1080 · shown at 22%</span></div>
+<div style="display:grid;grid-template-columns:repeat(3,422.4px);gap:20px">
+
+<div style="display:flex;flex-direction:column;gap:8px"><div style="width:422.4px;height:237.6px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.25)"><div style="position:relative;width:1920px;height:1080px;transform:scale(.22);transform-origin:0 0;background:#1c363b;color:#efe3c4;overflow:hidden">
+<div style="position:absolute;inset:0;background:#15292d url(https://images.unsplash.com/photo-1566417713940-fe7c737a9ef2?w=1600&amp;q=70&amp;auto=format&amp;fit=crop) center/cover"></div><div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(28,54,59,.97) 30%,rgba(28,54,59,.4) 70%,rgba(28,54,59,.2))"></div>
+<div style="position:absolute;left:120px;top:120px;bottom:120px;width:1100px;display:flex;flex-direction:column;justify-content:center;gap:28px"><img src="design-system/assets/olive-mark.svg" alt="" style="height:110px;align-self:flex-start"><span style="font-family:'Libre Caslon Text',serif;font-size:44px;color:#c9a034">This week in Las Vegas</span><span style="font-family:'Bebas Neue',sans-serif;font-size:220px;line-height:.86;text-shadow:0 14px 0 #000">Three happy hours worth the trip</span></div>
+<sc-if value="{{ safeArea }}" hint-placeholder-val="{{ false }}"><div style="position:absolute;inset:96px;border:3px dashed #ff4fa3"></div></sc-if>
+</div></div><span style="font-family:'Barlow Condensed',sans-serif;font-weight:600;letter-spacing:.06em;text-transform:uppercase">Title card</span></div>
+
+<div style="display:flex;flex-direction:column;gap:8px"><div style="width:422.4px;height:237.6px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.25)"><div style="position:relative;width:1920px;height:1080px;transform:scale(.22);transform-origin:0 0;overflow:hidden">
+<div style="position:absolute;inset:0;background:#15292d url(https://images.unsplash.com/photo-1536935338788-846bb9981813?w=1600&amp;q=70&amp;auto=format&amp;fit=crop) center/cover"></div>
+<div style="position:absolute;left:96px;bottom:120px;display:flex;align-items:stretch"><div style="width:20px;background:#c9a034"></div><div style="background:#1c363b;color:#efe3c4;padding:26px 48px 30px 36px;display:flex;flex-direction:column;gap:6px"><span style="font-family:'Bebas Neue',sans-serif;font-size:96px;line-height:.95">Lobby Bar</span><span style="font-family:'Libre Caslon Text',serif;font-size:36px;color:#c9a034">Cosmopolitan · The Strip · 4–7pm</span></div></div>
+<div style="position:absolute;right:96px;top:96px;background:#1c363b;border-radius:12px;padding:18px 22px;display:flex;align-items:center"><img src="design-system/assets/olive-mark.svg" alt="" style="height:56px"></div>
+<sc-if value="{{ safeArea }}" hint-placeholder-val="{{ false }}"><div style="position:absolute;inset:96px;border:3px dashed #ff4fa3"></div></sc-if>
+</div></div><span style="font-family:'Barlow Condensed',sans-serif;font-weight:600;letter-spacing:.06em;text-transform:uppercase">Lower third + bug</span></div>
+
+<div style="display:flex;flex-direction:column;gap:8px"><div style="width:422.4px;height:237.6px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.25)"><div style="position:relative;width:1920px;height:1080px;transform:scale(.22);transform-origin:0 0;background:#1c363b;color:#efe3c4;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;gap:72px;padding:140px;box-sizing:border-box;align-items:center">
+<div style="display:flex;flex-direction:column;gap:36px"><div style="align-self:flex-start"><span style="display:flex;align-items:center;gap:25px"><img src="design-system/assets/olive-mark.svg" alt="Olive" style="height:80px;display:block"><span style="font-family:'Bebas Neue',Impact,sans-serif;font-size:72px;letter-spacing:.06em;color:#c9a034;display:flex;gap:.2em;line-height:1;white-space:nowrap"><span>HAPPY</span><span>HOUR</span><span>VEGAS</span></span></span></div><span style="font-family:'Bebas Neue',sans-serif;font-size:120px;line-height:.92;text-transform:uppercase;text-shadow:0 10px 0 #000">Get the picks every Thursday</span><div style="align-self:flex-start;background:#c9a034;color:#1c363b;border-radius:10px;padding:26px 48px;font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:48px;letter-spacing:.08em;text-transform:uppercase">Join the club</div></div>
+<div style="display:flex;flex-direction:column;gap:28px"><div style="position:relative;aspect-ratio:16/9;border-radius:16px;overflow:hidden;border:4px solid #c9a034;background:#15292d url(https://images.unsplash.com/photo-1497644083578-611b798c60f3?w=900&amp;q=70&amp;auto=format&amp;fit=crop) center/cover"></div><span style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:40px;letter-spacing:.06em;text-transform:uppercase;color:#c9a034">Up next: Downtown's best reverse happy hours</span></div>
+<sc-if value="{{ safeArea }}" hint-placeholder-val="{{ false }}"><div style="position:absolute;inset:96px;border:3px dashed #ff4fa3"></div></sc-if>
+</div></div><span style="font-family:'Barlow Condensed',sans-serif;font-weight:600;letter-spacing:.06em;text-transform:uppercase">End card</span></div>
+
+</div>
+<sc-if value="{{ showNotes }}" hint-placeholder-val="{{ true }}"><p style="margin:0;max-width:900px;font-size:15px;line-height:1.5">96px title/action safe area (toggle in Tweaks). Title cards keep text in the left 60% over a teal-to-clear gradient so footage reads on the right. Lower thirds: 20px gold bar, teal plate, Bebas name, Caslon gold details; slide in from left in 300ms. The olive bug sits top-right on a teal tile. End cards pair one gold CTA with an up-next frame in a 4px gold border. YouTube thumbnails (1280×720) reuse the title card at full scale.</p></sc-if>
+</section>
+<section id="social" data-screen-label="09 Social" style="display:flex;flex-direction:column;gap:32px">
+<div style="display:flex;align-items:center;gap:16px"><span style="font-family:'Libre Caslon Text',serif;font-size:14px;color:#a27e1f">09</span><h2 style="margin:0;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:56px;line-height:1">Social · Instagram + TikTok</h2><div style="flex:1;height:3px;background:#c9a034"></div><span style="font-family:'JetBrains Mono',monospace;font-size:12px">1080×1920 · 9:16</span></div>
+<div style="display:flex;flex-direction:column;gap:16px">
+<div style="display:flex;align-items:baseline;gap:12px"><span style="font-family:'Bebas Neue',sans-serif;font-size:32px;line-height:1">Graphic over video</span><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:rgba(28,54,59,.7)">Reels · Stories · TikTok · shown at 30%</span></div>
+<div style="display:flex;gap:40px;align-items:flex-start">
+<div style="width:324px;height:576px;flex:none;overflow:hidden;border-radius:30px;box-shadow:0 10px 30px rgba(0,0,0,.25)"><div style="position:relative;width:1080px;height:1920px;transform:scale(0.3);transform-origin:0 0;background:#15292d;color:#efe3c4;overflow:hidden"><div style="position:absolute;inset:0;background:#15292d url(https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=900&amp;q=70&amp;auto=format&amp;fit=crop) center/cover"></div><div style="position:absolute;inset:0;background:linear-gradient(rgba(21,41,45,.75),rgba(21,41,45,0) 35%,rgba(21,41,45,0) 55%,rgba(21,41,45,.85))"></div>
+<div style="position:absolute;left:64px;top:110px;background:#1c363b;border-radius:16px;padding:14px 18px"><img src="design-system/assets/olive-mark.svg" alt="" style="height:56px;display:block"></div>
+<div style="position:absolute;left:64px;right:140px;top:240px;display:flex;flex-direction:column;gap:18px;align-items:flex-start"><span style="background:#c9a034;color:#1c363b;border-radius:999px;padding:10px 28px;font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:40px;letter-spacing:.08em;text-transform:uppercase">Deal of the week</span><span style="font-family:'Bebas Neue',sans-serif;font-size:190px;line-height:.86;text-shadow:0 12px 0 #000">$1.50 oysters off the Strip</span></div>
+<div style="position:absolute;left:64px;right:140px;bottom:440px;display:flex;align-items:stretch"><div style="width:18px;background:#c9a034;flex:none"></div><div style="flex:1;background:#1c363b;padding:26px 32px 30px;display:flex;flex-direction:column;gap:6px"><span style="font-family:'Libre Caslon Text',serif;font-size:34px;color:#c9a034">Palace Station · Off Strip</span><span style="font-family:'Bebas Neue',sans-serif;font-size:96px;line-height:.95">Oyster Bar</span><span style="font-family:'Barlow',sans-serif;font-weight:600;font-size:36px;color:#c9a034">3–6pm daily · $5 wells</span></div></div><sc-if value="{{ safeArea }}" hint-placeholder-val="{{ false }}"><div style="position:absolute;left:64px;right:140px;top:220px;bottom:420px;border:4px dashed #ff4fa3"></div><div style="position:absolute;right:0;top:700px;width:140px;height:800px;background:rgba(255,79,163,.18)"></div><div style="position:absolute;left:0;right:0;bottom:0;height:420px;background:rgba(255,79,163,.18)"></div></sc-if></div></div>
+<sc-if value="{{ showNotes }}" hint-placeholder-val="{{ true }}"><div style="display:flex;flex-direction:column;gap:14px;max-width:440px;font-size:15px;line-height:1.5">
+<span style="font-family:'Bebas Neue',sans-serif;font-size:28px;line-height:1">Overlay rules</span>
+<span>Footage stays full-bleed. A teal top-and-bottom scrim keeps type legible over any shot.</span>
+<span>Hook (gold pill + Bebas headline with hard shadow) sits in the first 3 seconds, top of the safe zone.</span>
+<span>Venue plate reuses the video lower third: 18px gold bar, teal plate, Caslon place line, Bebas name, gold deal line.</span>
+<span>Olive bug on a teal tile, top-left (the right side is covered by platform buttons).</span>
+<span>Safe zone: 220px top, 420px bottom, 140px right, 64px left. Toggle "safeArea" in Tweaks to see the platform UI zones.</span>
+</div></sc-if>
+</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:16px">
+<div style="display:flex;align-items:baseline;gap:12px"><span style="font-family:'Bebas Neue',sans-serif;font-size:32px;line-height:1">Motion infographic</span><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:rgba(28,54,59,.7)">storyboard · 9s loop · shown at 24%</span></div>
+<div style="display:flex;gap:24px;align-items:flex-start">
+<div style="display:flex;flex-direction:column;gap:10px;width:259.2px"><div style="width:259.2px;height:460.79999999999995px;flex:none;overflow:hidden;border-radius:24px;box-shadow:0 10px 30px rgba(0,0,0,.25)"><div style="position:relative;width:1080px;height:1920px;transform:scale(0.24);transform-origin:0 0;background:#1c363b;color:#efe3c4;overflow:hidden"><div style="position:absolute;left:80px;right:140px;top:420px;display:flex;flex-direction:column;gap:32px"><span style="font-family:'Libre Caslon Text',serif;font-size:52px;color:#c9a034">Las Vegas happy hours</span><span style="font-family:'Bebas Neue',sans-serif;font-size:230px;line-height:.86;text-shadow:0 14px 0 #000">Where's the cheapest cocktail?</span></div><sc-if value="{{ safeArea }}" hint-placeholder-val="{{ false }}"><div style="position:absolute;left:64px;right:140px;top:220px;bottom:420px;border:4px dashed #ff4fa3"></div><div style="position:absolute;right:0;top:700px;width:140px;height:800px;background:rgba(255,79,163,.18)"></div><div style="position:absolute;left:0;right:0;bottom:0;height:420px;background:rgba(255,79,163,.18)"></div></sc-if></div></div><div style="display:flex;flex-direction:column;gap:2px"><div style="display:flex;justify-content:space-between;font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:16px;letter-spacing:.06em;text-transform:uppercase"><span>Hook</span><span style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:400;color:#a27e1f">0.0–1.5s</span></div><span style="font-size:13px;line-height:1.4;color:rgba(28,54,59,.75)">Headline slams up from below, 400ms pop ease</span></div></div>
+<div style="display:flex;flex-direction:column;gap:10px;width:259.2px"><div style="width:259.2px;height:460.79999999999995px;flex:none;overflow:hidden;border-radius:24px;box-shadow:0 10px 30px rgba(0,0,0,.25)"><div style="position:relative;width:1080px;height:1920px;transform:scale(0.24);transform-origin:0 0;background:#1c363b;color:#efe3c4;overflow:hidden"><div style="position:absolute;left:80px;right:140px;top:440px;isolation:isolate;background:#c9a034;color:#1c363b;border-radius:32px;padding:40px 56px 56px;display:flex;flex-direction:column"><div style="position:absolute;inset:0;z-index:-1;border-radius:32px;background-image:radial-gradient(circle,#a27e1f 2px,transparent 2.8px);background-size:10px 10px;opacity:.7;-webkit-mask-image:linear-gradient(to bottom,#000,transparent 70%);mask-image:linear-gradient(to bottom,#000,transparent 70%)"></div><span style="font-family:'Bebas Neue',sans-serif;font-size:520px;line-height:.9">$6</span><span style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:64px;letter-spacing:.06em;text-transform:uppercase">Median happy hour cocktail</span></div><sc-if value="{{ safeArea }}" hint-placeholder-val="{{ false }}"><div style="position:absolute;left:64px;right:140px;top:220px;bottom:420px;border:4px dashed #ff4fa3"></div><div style="position:absolute;right:0;top:700px;width:140px;height:800px;background:rgba(255,79,163,.18)"></div><div style="position:absolute;left:0;right:0;bottom:0;height:420px;background:rgba(255,79,163,.18)"></div></sc-if></div></div><div style="display:flex;flex-direction:column;gap:2px"><div style="display:flex;justify-content:space-between;font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:16px;letter-spacing:.06em;text-transform:uppercase"><span>Stat</span><span style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:400;color:#a27e1f">1.5–4.0s</span></div><span style="font-size:13px;line-height:1.4;color:rgba(28,54,59,.75)">Gold block wipes in, number counts up 0 → 6</span></div></div>
+<div style="display:flex;flex-direction:column;gap:10px;width:259.2px"><div style="width:259.2px;height:460.79999999999995px;flex:none;overflow:hidden;border-radius:24px;box-shadow:0 10px 30px rgba(0,0,0,.25)"><div style="position:relative;width:1080px;height:1920px;transform:scale(0.24);transform-origin:0 0;background:#1c363b;color:#efe3c4;overflow:hidden"><div style="position:absolute;left:80px;right:140px;top:360px;display:flex;flex-direction:column;gap:44px"><span style="font-family:'Bebas Neue',sans-serif;font-size:130px;line-height:.9;text-shadow:0 10px 0 #000">Most deals by area</span><div style="background:#132529;border:4px solid #585b38;border-radius:32px;padding:48px 44px;display:flex;flex-direction:column;gap:36px"><div style="display:flex;flex-direction:column;gap:12px"><div style="display:flex;justify-content:space-between;font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:52px;text-transform:uppercase"><span>The Strip</span><span style="color:#c9a034">31</span></div><div style="height:28px;background:rgba(239,227,196,.12);border-radius:6px"><div style="height:100%;width:100%;background:#c9a034;border-radius:6px"></div></div></div><div style="display:flex;flex-direction:column;gap:12px"><div style="display:flex;justify-content:space-between;font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:52px;text-transform:uppercase"><span>Off Strip</span><span style="color:#c9a034">18</span></div><div style="height:28px;background:rgba(239,227,196,.12);border-radius:6px"><div style="height:100%;width:58%;background:#c9a034;border-radius:6px"></div></div></div><div style="display:flex;flex-direction:column;gap:12px"><div style="display:flex;justify-content:space-between;font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:52px;text-transform:uppercase"><span>Downtown</span><span style="color:#c9a034">14</span></div><div style="height:28px;background:rgba(239,227,196,.12);border-radius:6px"><div style="height:100%;width:45%;background:#c9a034;border-radius:6px"></div></div></div></div></div><sc-if value="{{ safeArea }}" hint-placeholder-val="{{ false }}"><div style="position:absolute;left:64px;right:140px;top:220px;bottom:420px;border:4px dashed #ff4fa3"></div><div style="position:absolute;right:0;top:700px;width:140px;height:800px;background:rgba(255,79,163,.18)"></div><div style="position:absolute;left:0;right:0;bottom:0;height:420px;background:rgba(255,79,163,.18)"></div></sc-if></div></div><div style="display:flex;flex-direction:column;gap:2px"><div style="display:flex;justify-content:space-between;font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:16px;letter-spacing:.06em;text-transform:uppercase"><span>Chart</span><span style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:400;color:#a27e1f">4.0–7.0s</span></div><span style="font-size:13px;line-height:1.4;color:rgba(28,54,59,.75)">Bars grow left to right, 120ms stagger</span></div></div>
+<div style="display:flex;flex-direction:column;gap:10px;width:259.2px"><div style="width:259.2px;height:460.79999999999995px;flex:none;overflow:hidden;border-radius:24px;box-shadow:0 10px 30px rgba(0,0,0,.25)"><div style="position:relative;width:1080px;height:1920px;transform:scale(0.24);transform-origin:0 0;background:#1c363b;color:#efe3c4;overflow:hidden"><div style="position:absolute;left:80px;right:140px;top:560px;display:flex;flex-direction:column;gap:48px;align-items:flex-start"><div style="display:flex;align-items:center;gap:36px"><img src="design-system/assets/olive-mark.svg" alt="" style="height:120px;display:block"><span style="font-family:'Bebas Neue',sans-serif;font-size:104px;letter-spacing:.06em;color:#c9a034;display:flex;gap:.2em;line-height:1;white-space:nowrap"><span>HAPPY</span><span>HOUR</span><span>VEGAS</span></span></div><span style="font-family:'Bebas Neue',sans-serif;font-size:150px;line-height:.9;text-shadow:0 10px 0 #000">Follow for weekly picks</span><span style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:56px;letter-spacing:.08em;text-transform:uppercase;color:#c9a034">@happyhourvegas</span></div><sc-if value="{{ safeArea }}" hint-placeholder-val="{{ false }}"><div style="position:absolute;left:64px;right:140px;top:220px;bottom:420px;border:4px dashed #ff4fa3"></div><div style="position:absolute;right:0;top:700px;width:140px;height:800px;background:rgba(255,79,163,.18)"></div><div style="position:absolute;left:0;right:0;bottom:0;height:420px;background:rgba(255,79,163,.18)"></div></sc-if></div></div><div style="display:flex;flex-direction:column;gap:2px"><div style="display:flex;justify-content:space-between;font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:16px;letter-spacing:.06em;text-transform:uppercase"><span>End card</span><span style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:400;color:#a27e1f">7.0–9.0s</span></div><span style="font-size:13px;line-height:1.4;color:rgba(28,54,59,.75)">Olive drops in, words fade 150ms apart</span></div></div>
+</div>
+<div style="display:flex;flex-direction:column;gap:16px;margin-top:16px">
+<div style="display:flex;align-items:baseline;gap:12px"><span style="font-family:'Bebas Neue',sans-serif;font-size:32px;line-height:1">Sample animation</span><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:rgba(28,54,59,.7)">live · 9s loop · shown at 30%</span></div>
+<div style="display:flex;gap:40px;align-items:flex-start">
+{{ socialPlayer }}
+<sc-if value="{{ showNotes }}" hint-placeholder-val="{{ true }}"><div style="display:flex;flex-direction:column;gap:14px;max-width:440px;font-size:15px;line-height:1.5">
+<span style="font-family:'Bebas Neue',sans-serif;font-size:28px;line-height:1">Motion spec</span>
+<span>Hook: eyebrow fades up 300ms; headline rises 220px with the pop ease over 400ms.</span>
+<span>Stat: gold block wipes left to right in 400ms; the number counts 0 → 6 over 1s; label fades in after.</span>
+<span>Chart: title pops, then bars grow 700ms each with a 120ms stagger while counts tick up.</span>
+<span>End card: olive drops in (900ms, overshoot), words fade 150ms apart, CTA and handle follow.</span>
+<span>All beats exit with a 200ms fade. Click the track to scrub.</span>
+</div></sc-if>
+</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:16px;margin-top:16px">
+<div style="display:flex;align-items:baseline;gap:12px"><span style="font-family:'Bebas Neue',sans-serif;font-size:32px;line-height:1">Venue spotlight · Lexie's Bistro</span><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:rgba(28,54,59,.7)">live · 12s loop · data from happyhourvegas.com listing</span></div>
+<div style="display:flex;gap:40px;align-items:flex-start">
+{{ lexiePlayer }}
+<sc-if value="{{ showNotes }}" hint-placeholder-val="{{ true }}"><div style="display:flex;flex-direction:column;gap:14px;max-width:460px;font-size:15px;line-height:1.5">
+<span style="font-family:'Bebas Neue',sans-serif;font-size:28px;line-height:1">Venue template · 12 seconds</span>
+<span>Short-form venue spots perform best at roughly 7–15 seconds with the hook in the first second, so this runs five beats in 12s and loops cleanly.</span>
+<span><b>0–1.8s Hook:</b> the strongest deal as the headline ($28 pizza + a bottle of wine). Lead with price, not the venue name.</span>
+<span><b>1.8–4.2s Venue:</b> listing photo with a slow push-in, lower-third plate (area, name, address) and the menu/vibe/price chips.</span>
+<span><b>4.2–6.8s Hero deal:</b> gold halftone block, number counts to 28, pizza options underneath.</span>
+<span><b>6.8–9.2s $5 menu:</b> the three $5 drinks only, staggered in.</span>
+<span><b>9.2–12s When + end:</b> week strip with Mon–Fri lit, 4–6pm at the bar, then the lockup and "Full menu · link in bio".</span>
+<span><b>Left out:</b> the six food items, phone number and the long editorial blurb. They're too much to read at this length; the link in bio covers them. Swap the hero deal per venue; everything else maps to listing fields.</span>
+</div></sc-if>
+</div>
+</div>
+<sc-if value="{{ showNotes }}" hint-placeholder-val="{{ true }}"><p style="margin:0;max-width:900px;font-size:15px;line-height:1.5">Four beats, one idea each, teal ground throughout. Entrances use the brand pop ease (cubic-bezier(.34,1.56,.64,1)); exits are 200ms fades. Numbers count up, bars grow from the left, and the end card replays the logo animation. Keep each beat readable as a still, since Instagram picks a cover frame from it.</p></sc-if>
+</div>
+</section>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;showNotes&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Display&quot;},&quot;safeArea&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Video&quot;}}">
+class Component extends DCLogic {
+  getPlayer() {
+    if (this._Player) return this._Player;
+    const h = React.createElement, D = 9, KEY = 'hhv-social-anim-t';
+    const cl = x => Math.max(0, Math.min(1, x)), seg = (t, a, b) => cl((t - a) / (b - a));
+    const out = x => 1 - Math.pow(1 - x, 3), back = x => { const c1 = 1.70158, c3 = c1 + 1; return 1 + c3 * Math.pow(x - 1, 3) + c1 * Math.pow(x - 1, 2); };
+    const bebas = "'Bebas Neue',sans-serif", cond = "'Barlow Condensed',sans-serif", cas = "'Libre Caslon Text',serif";
+    const abs = (s) => Object.assign({ position: 'absolute', left: 80, right: 140 }, s);
+    const halftone = h('div', { style: { position: 'absolute', inset: 0, zIndex: -1, borderRadius: 32, backgroundImage: 'radial-gradient(circle,#a27e1f 2px,transparent 2.8px)', backgroundSize: '10px 10px', opacity: .7, WebkitMaskImage: 'linear-gradient(to bottom,#000,transparent 70%)', maskImage: 'linear-gradient(to bottom,#000,transparent 70%)' } });
+    const Player = function (props) {
+      const [t, setT] = React.useState(() => { const v = parseFloat(localStorage.getItem(KEY)); return isNaN(v) ? 0 : v % D; });
+      const [playing, setPlaying] = React.useState(true);
+      React.useEffect(() => { if (!playing) return; let raf, last = performance.now(); const tick = now => { const dt = Math.min(.1, (now - last) / 1000); last = now; setT(x => (x + dt) % D); raf = requestAnimationFrame(tick); }; raf = requestAnimationFrame(tick); return () => cancelAnimationFrame(raf); }, [playing]);
+      const q = Math.floor(t * 2); React.useEffect(() => { try { localStorage.setItem(KEY, String(t)); } catch (e) {} }, [q]);
+      const kids = [];
+      if (t < 1.5) {
+        const p = seg(t, .15, .55);
+        kids.push(h('div', { key: 'hook', style: abs({ top: 420, display: 'flex', flexDirection: 'column', gap: 32, opacity: 1 - seg(t, 1.3, 1.5) }) },
+          h('span', { style: { fontFamily: cas, fontSize: 52, color: '#c9a034', opacity: seg(t, 0, .3), transform: `translateY(${(1 - out(seg(t, 0, .3))) * 30}px)` } }, 'Las Vegas happy hours'),
+          h('span', { style: { fontFamily: bebas, fontSize: 230, lineHeight: .86, textShadow: '0 14px 0 #000', opacity: Math.min(1, p * 3), transform: `translateY(${(1 - back(p)) * 220}px)` } }, "Where's the cheapest cocktail?")));
+      } else if (t < 4) {
+        const w = out(seg(t, 1.5, 1.9));
+        kids.push(h('div', { key: 'stat', style: abs({ top: 440, isolation: 'isolate', background: '#c9a034', color: '#1c363b', borderRadius: 32, padding: '40px 56px 56px', display: 'flex', flexDirection: 'column', clipPath: `inset(0 ${(1 - w) * 100}% 0 0 round 32px)`, opacity: 1 - seg(t, 3.8, 4) }) }, halftone,
+          h('span', { style: { fontFamily: bebas, fontSize: 520, lineHeight: .9 } }, '$' + Math.round(6 * out(seg(t, 1.8, 2.8)))),
+          h('span', { style: { fontFamily: cond, fontWeight: 600, fontSize: 64, letterSpacing: '.06em', textTransform: 'uppercase', opacity: seg(t, 2.4, 2.7) } }, 'Median happy hour cocktail')));
+      } else if (t < 7) {
+        const tp = seg(t, 4, 4.4);
+        const bars = [['The Strip', 31, 100], ['Off Strip', 18, 58], ['Downtown', 14, 45]].map(([name, n, pct], i) => { const p = out(seg(t, 4.4 + i * .12, 5.1 + i * .12)); return h('div', { key: name, style: { display: 'flex', flexDirection: 'column', gap: 12 } },
+          h('div', { style: { display: 'flex', justifyContent: 'space-between', fontFamily: cond, fontWeight: 600, fontSize: 52, textTransform: 'uppercase' } }, h('span', null, name), h('span', { style: { color: '#c9a034' } }, Math.round(n * p))),
+          h('div', { style: { height: 28, background: 'rgba(239,227,196,.12)', borderRadius: 6 } }, h('div', { style: { height: '100%', width: pct * p + '%', background: '#c9a034', borderRadius: 6 } }))); });
+        kids.push(h('div', { key: 'chart', style: abs({ top: 360, display: 'flex', flexDirection: 'column', gap: 44, opacity: 1 - seg(t, 6.8, 7) }) },
+          h('span', { style: { fontFamily: bebas, fontSize: 130, lineHeight: .9, textShadow: '0 10px 0 #000', opacity: Math.min(1, tp * 3), transform: `translateY(${(1 - back(tp)) * 120}px)` } }, 'Most deals by area'),
+          h('div', { style: { background: '#132529', border: '4px solid #585b38', borderRadius: 32, padding: '48px 44px', display: 'flex', flexDirection: 'column', gap: 36, opacity: seg(t, 4.2, 4.5) } }, bars)));
+      } else {
+        const op = seg(t, 7, 7.9), e = back(op);
+        kids.push(h('div', { key: 'end', style: abs({ top: 560, display: 'flex', flexDirection: 'column', gap: 48, alignItems: 'flex-start', opacity: 1 - seg(t, 8.85, 9) }) },
+          h('div', { style: { display: 'flex', alignItems: 'center', gap: 36 } },
+            h('img', { src: 'design-system/assets/olive-mark.svg', alt: '', style: { height: 120, display: 'block', opacity: Math.min(1, op * 2), transform: `translateY(${(1 - e) * -60}px) rotate(${(1 - e) * -35}deg) scale(${.6 + .4 * e})` } }),
+            h('span', { style: { fontFamily: bebas, fontSize: 104, letterSpacing: '.06em', color: '#c9a034', display: 'flex', gap: '.2em', lineHeight: 1, whiteSpace: 'nowrap' } }, ['HAPPY', 'HOUR', 'VEGAS'].map((w, i) => h('span', { key: w, style: { opacity: seg(t, 7.9 + i * .15, 8.05 + i * .15) } }, w)))),
+          h('span', { style: { fontFamily: bebas, fontSize: 150, lineHeight: .9, textShadow: '0 10px 0 #000', opacity: seg(t, 8.3, 8.55), transform: `translateY(${(1 - out(seg(t, 8.3, 8.55))) * 40}px)` } }, 'Follow for weekly picks'),
+          h('span', { style: { fontFamily: cond, fontWeight: 600, fontSize: 56, letterSpacing: '.08em', textTransform: 'uppercase', color: '#c9a034', opacity: seg(t, 8.5, 8.75) } }, '@happyhourvegas')));
+      }
+      if (props.safe) kids.push(h('div', { key: 'sz', style: { position: 'absolute', left: 64, right: 140, top: 220, bottom: 420, border: '4px dashed #ff4fa3' } }), h('div', { key: 'sb', style: { position: 'absolute', left: 0, right: 0, bottom: 0, height: 420, background: 'rgba(255,79,163,.18)' } }), h('div', { key: 'sr', style: { position: 'absolute', right: 0, top: 700, width: 140, height: 800, background: 'rgba(255,79,163,.18)' } }));
+      const beat = t < 1.5 ? 'Hook' : t < 4 ? 'Stat' : t < 7 ? 'Chart' : 'End card';
+      const scrub = ev => { const r = ev.currentTarget.getBoundingClientRect(); setT(cl((ev.clientX - r.left) / r.width) * D * .9999); };
+      return h('div', { style: { display: 'flex', flexDirection: 'column', gap: 12, width: 324 } },
+        h('div', { style: { width: 324, height: 576, overflow: 'hidden', borderRadius: 30, boxShadow: '0 10px 30px rgba(0,0,0,.25)' } },
+          h('div', { style: { position: 'relative', width: 1080, height: 1920, transform: 'scale(.3)', transformOrigin: '0 0', background: '#1c363b', color: '#efe3c4', overflow: 'hidden' } }, kids)),
+        h('div', { style: { display: 'flex', alignItems: 'center', gap: 10 } },
+          h('button', { onClick: () => setPlaying(p => !p), style: { flex: 'none', border: 0, cursor: 'pointer', background: '#1c363b', color: '#efe3c4', borderRadius: 4, padding: '8px 14px', fontFamily: cond, fontWeight: 600, fontSize: 14, letterSpacing: '.08em', textTransform: 'uppercase' } }, playing ? 'Pause' : 'Play'),
+          h('div', { onClick: scrub, style: { flex: 1, height: 20, display: 'flex', alignItems: 'center', cursor: 'pointer' } },
+            h('div', { style: { position: 'relative', flex: 1, height: 6, background: 'rgba(28,54,59,.2)', borderRadius: 3 } },
+              [1.5, 4, 7].map(m => h('div', { key: m, style: { position: 'absolute', left: (m / D * 100) + '%', top: -3, width: 2, height: 12, background: 'rgba(28,54,59,.45)' } })),
+              h('div', { style: { position: 'absolute', left: 0, top: 0, bottom: 0, width: (t / D * 100) + '%', background: '#c9a034', borderRadius: 3 } }))),
+          h('span', { style: { flex: 'none', width: 74, textAlign: 'right', fontFamily: "'JetBrains Mono',monospace", fontSize: 12 } }, t.toFixed(1) + 's / 9s')),
+        h('span', { style: { fontFamily: cond, fontWeight: 600, fontSize: 14, letterSpacing: '.06em', textTransform: 'uppercase', color: '#a27e1f' } }, 'Now: ' + beat));
+    };
+    this._Player = Player;
+    return Player;
+  }
+  getLexie() {
+    if (this._Lexie) return this._Lexie;
+    const h = React.createElement, D = 12, KEY = 'hhv-lexie-anim-t';
+    const cl = x => Math.max(0, Math.min(1, x)), seg = (t, a, b) => cl((t - a) / (b - a));
+    const out = x => 1 - Math.pow(1 - x, 3), back = x => { const c1 = 1.70158, c3 = c1 + 1; return 1 + c3 * Math.pow(x - 1, 3) + c1 * Math.pow(x - 1, 2); };
+    const bebas = "'Bebas Neue',sans-serif", cond = "'Barlow Condensed',sans-serif", cas = "'Libre Caslon Text',serif";
+    const abs = s => Object.assign({ position: 'absolute', left: 80, right: 140 }, s);
+    const pop = (t, a, b, dist) => { const p = seg(t, a, b); return { opacity: Math.min(1, p * 3), transform: `translateY(${(1 - back(p)) * dist}px)` }; };
+    const halftone = h('div', { style: { position: 'absolute', inset: 0, zIndex: -1, borderRadius: 32, backgroundImage: 'radial-gradient(circle,#a27e1f 2px,transparent 2.8px)', backgroundSize: '10px 10px', opacity: .7, WebkitMaskImage: 'linear-gradient(to bottom,#000,transparent 70%)', maskImage: 'linear-gradient(to bottom,#000,transparent 70%)' } });
+    const photo = 'https://happyhourvegas.com/wp-content/uploads/2025/10/Lexies-Bistro-Social-Hour.webp';
+    const marks = [1.8, 4.2, 6.8, 9.2];
+    const label = t => t < 1.8 ? 'Hook' : t < 4.2 ? 'Venue' : t < 6.8 ? 'Hero deal' : t < 9.2 ? '$5 menu' : 'When + end card';
+    const Player = function (props) {
+      const [t, setT] = React.useState(() => { const v = parseFloat(localStorage.getItem(KEY)); return isNaN(v) ? 0 : v % D; });
+      const [playing, setPlaying] = React.useState(true);
+      React.useEffect(() => { if (!playing) return; let raf, last = performance.now(); const tick = now => { const dt = Math.min(.1, (now - last) / 1000); last = now; setT(x => (x + dt) % D); raf = requestAnimationFrame(tick); }; raf = requestAnimationFrame(tick); return () => cancelAnimationFrame(raf); }, [playing]);
+      const q = Math.floor(t * 2); React.useEffect(() => { try { localStorage.setItem(KEY, String(t)); } catch (e) {} }, [q]);
+      const k = [];
+      if (t < 1.8) {
+        k.push(h('div', { key: 'hook', style: abs({ top: 400, display: 'flex', flexDirection: 'column', gap: 30, opacity: 1 - seg(t, 1.6, 1.8) }) },
+          h('span', { style: { fontFamily: cas, fontSize: 52, color: '#c9a034', opacity: seg(t, 0, .3) } }, 'Henderson · Social Hour'),
+          h('span', { style: Object.assign({ fontFamily: bebas, fontSize: 250, lineHeight: .84, textShadow: '0 14px 0 #000' }, pop(t, .1, .5, 220)) }, '$28 pizza'),
+          h('span', { style: Object.assign({ fontFamily: bebas, fontSize: 170, lineHeight: .86, color: '#c9a034', textShadow: '0 12px 0 #000' }, pop(t, .35, .75, 180)) }, '+ a bottle of wine')));
+      } else if (t < 4.2) {
+        const pl = seg(t, 2.0, 2.45), e = back(pl);
+        k.push(h('div', { key: 'venue', style: { position: 'absolute', inset: 0, opacity: Math.min(seg(t, 1.8, 2.1), 1 - seg(t, 4.0, 4.2)) } },
+          h('div', { style: { position: 'absolute', inset: 0, background: `#15292d url(${photo}) center/cover`, transform: `scale(${1.08 - .08 * seg(t, 1.8, 4.2)})` } }),
+          h('div', { style: { position: 'absolute', inset: 0, background: 'linear-gradient(rgba(21,41,45,.6),rgba(21,41,45,0) 30%,rgba(21,41,45,.2) 50%,rgba(21,41,45,.92) 85%)' } }),
+          h('div', { style: abs({ bottom: 440, display: 'flex', flexDirection: 'column', gap: 24, opacity: Math.min(1, pl * 3), transform: `translateX(${(1 - e) * -200}px)` }) },
+            h('div', { style: { display: 'flex', alignItems: 'stretch' } }, h('div', { style: { width: 18, background: '#c9a034', flex: 'none' } }),
+              h('div', { style: { flex: 1, background: '#1c363b', padding: '26px 32px 30px', display: 'flex', flexDirection: 'column', gap: 6 } },
+                h('span', { style: { fontFamily: cas, fontSize: 34, color: '#c9a034' } }, 'Seven Hills · Henderson'),
+                h('span', { style: { fontFamily: bebas, fontSize: 120, lineHeight: .92 } }, "Lexie's Bistro"),
+                h('span', { style: { fontFamily: "'Barlow',sans-serif", fontWeight: 600, fontSize: 34, color: '#c9a034' } }, '3610 Sunridge Hts Pkwy'))),
+            h('div', { style: { display: 'flex', gap: 14 } }, ['American', 'Bistro', '$$'].map((c, i) => h('span', { key: c, style: { background: i === 0 ? '#c9a034' : '#1c363b', color: i === 0 ? '#1c363b' : '#efe3c4', border: '3px solid #c9a034', borderRadius: 999, padding: '10px 30px', fontFamily: cond, fontWeight: 600, fontSize: 40, letterSpacing: '.06em', textTransform: 'uppercase', opacity: seg(t, 2.5 + i * .1, 2.7 + i * .1), transform: `translateY(${(1 - out(seg(t, 2.5 + i * .1, 2.7 + i * .1))) * 30}px)` } }, c))))));
+      } else if (t < 6.8) {
+        const w = out(seg(t, 4.2, 4.6));
+        k.push(h('div', { key: 'deal', style: abs({ top: 400, display: 'flex', flexDirection: 'column', gap: 36, opacity: 1 - seg(t, 6.6, 6.8) }) },
+          h('div', { style: { position: 'relative', isolation: 'isolate', background: '#c9a034', color: '#1c363b', borderRadius: 32, padding: '40px 56px 52px', display: 'flex', flexDirection: 'column', clipPath: `inset(0 ${(1 - w) * 100}% 0 0 round 32px)` } }, halftone,
+            h('span', { style: { fontFamily: bebas, fontSize: 480, lineHeight: .9 } }, '$' + Math.round(28 * out(seg(t, 4.5, 5.5)))),
+            h('span', { style: { fontFamily: cond, fontWeight: 600, fontSize: 60, letterSpacing: '.06em', textTransform: 'uppercase', opacity: seg(t, 5.2, 5.5) } }, 'Pizza + bottle of house wine')),
+          h('span', { style: { fontFamily: "'Barlow',sans-serif", fontSize: 44, lineHeight: 1.35, color: '#efe3c4', opacity: seg(t, 5.5, 5.85) } }, 'Cheese, pepperoni, margherita or spinach artichoke. Red or white.')));
+      } else if (t < 9.2) {
+        const rows = [['Cocktails', 'Daily rotations'], ['House wine', 'Red or white'], ['Draft beer', 'Local + national']];
+        k.push(h('div', { key: 'menu', style: abs({ top: 380, display: 'flex', flexDirection: 'column', gap: 44, opacity: 1 - seg(t, 9.0, 9.2) }) },
+          h('span', { style: Object.assign({ fontFamily: bebas, fontSize: 170, lineHeight: .86, textShadow: '0 12px 0 #000' }, pop(t, 6.8, 7.2, 140)) }, 'Plus $5 drinks'),
+          h('div', { style: { background: '#132529', border: '4px solid #585b38', borderRadius: 32, padding: '16px 44px', display: 'flex', flexDirection: 'column', opacity: seg(t, 7.1, 7.35) } },
+            rows.map(([n, d], i) => { const p = seg(t, 7.35 + i * .15, 7.75 + i * .15); return h('div', { key: n, style: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '30px 0', borderTop: i ? '2px solid rgba(201,160,52,.35)' : 'none', opacity: p, transform: `translateX(${(1 - out(p)) * 80}px)` } },
+              h('div', { style: { display: 'flex', flexDirection: 'column', gap: 4 } }, h('span', { style: { fontFamily: bebas, fontSize: 90, lineHeight: 1 } }, n), h('span', { style: { fontFamily: cas, fontSize: 32, color: '#c9a034' } }, d)),
+              h('span', { style: { fontFamily: bebas, fontSize: 130, lineHeight: 1, color: '#c9a034' } }, '$5')); }))));
+      } else {
+        const days = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
+        const op = seg(t, 10.5, 11.3), e = back(op);
+        k.push(h('div', { key: 'end', style: abs({ top: 380, display: 'flex', flexDirection: 'column', gap: 40, opacity: 1 - seg(t, 11.85, 12) }) },
+          h('span', { style: Object.assign({ fontFamily: bebas, fontSize: 150, lineHeight: .86, textShadow: '0 12px 0 #000' }, pop(t, 9.2, 9.6, 120)) }, 'Weekdays 4–6pm'),
+          h('div', { style: { display: 'grid', gridTemplateColumns: 'repeat(7,1fr)', gap: 12 } }, days.map((d, i) => { const on = i > 0 && i < 6, p = seg(t, 9.5 + i * .08, 9.7 + i * .08); return h('div', { key: i, style: { height: 150, borderRadius: 16, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: bebas, fontSize: 84, background: on ? '#c9a034' : 'transparent', color: on ? '#1c363b' : 'rgba(239,227,196,.35)', border: on ? 'none' : '3px solid rgba(239,227,196,.2)', opacity: p, transform: `scale(${.7 + .3 * back(p)})` } }, d); })),
+          h('span', { style: { fontFamily: cond, fontWeight: 600, fontSize: 52, letterSpacing: '.08em', textTransform: 'uppercase', color: '#c9a034', opacity: seg(t, 10.0, 10.3) } }, 'At the bar · Mon–Fri'),
+          h('div', { style: { marginTop: 70, display: 'flex', flexDirection: 'column', gap: 26 } },
+            h('div', { style: { display: 'flex', alignItems: 'center', gap: 32 } },
+              h('img', { src: 'design-system/assets/olive-mark.svg', alt: '', style: { height: 104, display: 'block', opacity: Math.min(1, op * 2), transform: `translateY(${(1 - e) * -60}px) rotate(${(1 - e) * -35}deg) scale(${.6 + .4 * e})` } }),
+              h('span', { style: { fontFamily: bebas, fontSize: 92, letterSpacing: '.06em', color: '#c9a034', display: 'flex', gap: '.2em', lineHeight: 1, whiteSpace: 'nowrap' } }, ['HAPPY', 'HOUR', 'VEGAS'].map((w, i) => h('span', { key: w, style: { opacity: seg(t, 11.0 + i * .12, 11.15 + i * .12) } }, w)))),
+            h('span', { style: { fontFamily: cond, fontWeight: 600, fontSize: 48, letterSpacing: '.08em', textTransform: 'uppercase', color: '#efe3c4', opacity: seg(t, 11.35, 11.6) } }, 'Full menu · link in bio'))));
+      }
+      if (props.safe) k.push(h('div', { key: 'sz', style: { position: 'absolute', left: 64, right: 140, top: 220, bottom: 420, border: '4px dashed #ff4fa3' } }), h('div', { key: 'sb', style: { position: 'absolute', left: 0, right: 0, bottom: 0, height: 420, background: 'rgba(255,79,163,.18)' } }), h('div', { key: 'sr', style: { position: 'absolute', right: 0, top: 700, width: 140, height: 800, background: 'rgba(255,79,163,.18)' } }));
+      const scrub = ev => { const r = ev.currentTarget.getBoundingClientRect(); setT(cl((ev.clientX - r.left) / r.width) * D * .9999); };
+      return h('div', { style: { display: 'flex', flexDirection: 'column', gap: 12, width: 324 } },
+        h('div', { style: { width: 324, height: 576, overflow: 'hidden', borderRadius: 30, boxShadow: '0 10px 30px rgba(0,0,0,.25)' } },
+          h('div', { style: { position: 'relative', width: 1080, height: 1920, transform: 'scale(.3)', transformOrigin: '0 0', background: '#1c363b', color: '#efe3c4', overflow: 'hidden' } }, k)),
+        h('div', { style: { display: 'flex', alignItems: 'center', gap: 10 } },
+          h('button', { onClick: () => setPlaying(p => !p), style: { flex: 'none', border: 0, cursor: 'pointer', background: '#1c363b', color: '#efe3c4', borderRadius: 4, padding: '8px 14px', fontFamily: cond, fontWeight: 600, fontSize: 14, letterSpacing: '.08em', textTransform: 'uppercase' } }, playing ? 'Pause' : 'Play'),
+          h('div', { onClick: scrub, style: { flex: 1, height: 20, display: 'flex', alignItems: 'center', cursor: 'pointer' } },
+            h('div', { style: { position: 'relative', flex: 1, height: 6, background: 'rgba(28,54,59,.2)', borderRadius: 3 } },
+              marks.map(m => h('div', { key: m, style: { position: 'absolute', left: (m / D * 100) + '%', top: -3, width: 2, height: 12, background: 'rgba(28,54,59,.45)' } })),
+              h('div', { style: { position: 'absolute', left: 0, top: 0, bottom: 0, width: (t / D * 100) + '%', background: '#c9a034', borderRadius: 3 } }))),
+          h('span', { style: { flex: 'none', width: 80, textAlign: 'right', fontFamily: "'JetBrains Mono',monospace", fontSize: 12 } }, t.toFixed(1) + 's / 12s')),
+        h('span', { style: { fontFamily: cond, fontWeight: 600, fontSize: 14, letterSpacing: '.06em', textTransform: 'uppercase', color: '#a27e1f' } }, 'Now: ' + label(t)));
+    };
+    this._Lexie = Player;
+    return Player;
+  }
+  renderVals() {
+    const img = id => `https://images.unsplash.com/photo-${id}?w=500&q=70&auto=format&fit=crop`;
+    return {
+      socialPlayer: React.createElement(this.getPlayer(), { safe: this.props.safeArea ?? false }),
+      lexiePlayer: React.createElement(this.getLexie(), { safe: this.props.safeArea ?? false }),
+      showNotes: this.props.showNotes ?? true,
+      safeArea: this.props.safeArea ?? false,
+      replayLogo: e => e.currentTarget.querySelectorAll('img,span span').forEach(el => { const a = el.style.animation; if (!a) return; el.style.animation = 'none'; void el.offsetWidth; el.style.animation = a; }),
+      core: [
+        { name: 'Teal', hex: '#1c363b', token: '--hhv-teal', use: 'Primary surface, ink on cream' },
+        { name: 'Deep teal', hex: '#132529', token: '--hhv-teal-deep', use: 'Alternating bands, chart panels' },
+        { name: 'Cream', hex: '#efe3c4', token: '--hhv-cream', use: 'Ink on teal, light bands' },
+        { name: 'Gold', hex: '#c9a034', token: '--hhv-gold', use: 'CTAs, eyebrows, rules, active' },
+        { name: 'Teal ink', hex: '#15292d', token: '--hhv-teal-ink', use: 'Photo wells, scrims, bezels' }
+      ],
+      support: [
+        { name: 'Cream soft', hex: '#f6efd9' },
+        { name: 'Gold deep', hex: '#a27e1f' },
+        { name: 'Olive hairline', hex: '#585b38' },
+        { name: 'Heart', hex: '#d62f3a' },
+        { name: 'YouTube red', hex: '#ff0000' }
+      ],
+      scale: [
+        { label: 'Hero · Bebas 64/.9', font: "'Bebas Neue',sans-serif", size: '64px', lh: '.9', ls: '.02em', tt: 'none', w: 400, color: '#1c363b', sample: 'Our recommendations' },
+        { label: 'H2 · Bebas 40/1', font: "'Bebas Neue',sans-serif", size: '40px', lh: '1', ls: '0', tt: 'none', w: 400, color: '#1c363b', sample: 'Browse by area' },
+        { label: 'H3 · Bebas 30/1', font: "'Bebas Neue',sans-serif", size: '30px', lh: '1', ls: '0', tt: 'none', w: 400, color: '#1c363b', sample: 'Lobby Bar' },
+        { label: 'Tile · Bebas 20/1', font: "'Bebas Neue',sans-serif", size: '20px', lh: '1', ls: '0', tt: 'none', w: 400, color: '#1c363b', sample: 'Downtown Vegas' },
+        { label: 'Label · Condensed 600 15', font: "'Barlow Condensed',sans-serif", size: '15px', lh: '1.2', ls: '.08em', tt: 'uppercase', w: 600, color: '#1c363b', sample: 'Areas · Vibe · Menu' },
+        { label: 'Body · Barlow 15/1.4', font: "'Barlow',sans-serif", size: '15px', lh: '1.4', ls: '0', tt: 'none', w: 400, color: '#1c363b', sample: 'Happy Hour Vegas tracks current happy hour times, menus, and deals at bars and restaurants across the valley.' },
+        { label: 'Deal · Barlow 600 13', font: "'Barlow',sans-serif", size: '13px', lh: '1.3', ls: '0', tt: 'none', w: 600, color: '#a27e1f', sample: '$6 beers · $9 cocktails · ½ off apps' },
+        { label: 'Eyebrow · Caslon 12', font: "'Libre Caslon Text',serif", size: '12px', lh: '1.3', ls: '.02em', tt: 'none', w: 400, color: '#a27e1f', sample: 'Cosmopolitan · The Strip' }
+      ],
+      areas: [['The Strip', 31], ['Off Strip', 18], ['Downtown', 14], ['Summerlin', 11], ['Henderson', 9], ['Arts District', 5]].map(([name, count]) => ({ name, count })),
+      stats: [{ n: '473', l: 'Verified happy hours' }, { n: '$6', l: 'Median cocktail' }, { n: '4–7', l: 'Most common window' }],
+      bars: [{ name: 'The Strip', n: 31, pct: '100%' }, { name: 'Off Strip', n: 18, pct: '58%' }, { name: 'Downtown', n: 14, pct: '45%' }, { name: 'Summerlin', n: 11, pct: '35%' }],
+      emailVariants: [
+        { label: 'Web fonts', clients: 'Apple Mail · iOS Mail · Outlook for Mac · Samsung Mail', head: "'Bebas Neue','Arial Narrow','Roboto Condensed','sans-serif-condensed',Arial,sans-serif", hw: 400, body: "'Barlow',Arial,Helvetica,sans-serif", serif: "'Libre Caslon Text',Georgia,serif", shadow: '0 5px 0 #000', filter: 'none' },
+        { label: 'Fallback fonts', clients: 'Gmail · Outlook Windows · Outlook.com · Yahoo', head: "'Arial Narrow','Roboto Condensed','sans-serif-condensed',Arial,sans-serif", hw: 700, body: 'Arial,Helvetica,sans-serif', serif: 'Georgia,serif', shadow: 'none', filter: 'none' },
+        { label: 'Dark mode · forced invert', clients: 'Gmail iOS · Outlook iOS/Android · Outlook.com (approximation)', head: "'Arial Narrow','Roboto Condensed','sans-serif-condensed',Arial,sans-serif", hw: 700, body: 'Arial,Helvetica,sans-serif', serif: 'Georgia,serif', shadow: 'none', filter: 'invert(1) hue-rotate(180deg)' }
+      ],
+      emailChecks: [
+        ['Layout', 'Fixed', 'Rebuilt as nested 600px tables. Flex and grid are dropped by Outlook Windows and parts of Gmail.', 1],
+        ['Logo + mark', 'Fixed', 'SVG replaced with a 2× PNG (Gmail and Outlook do not render SVG). Wordmark is live text so it still reads with images off.', 1],
+        ['Photos', 'Fixed', 'CSS background images replaced with <img> tags with width, height and alt. Outlook Windows ignores CSS backgrounds.', 1],
+        ['Web fonts', 'Degrades', 'Only Apple Mail, iOS, Outlook Mac and Samsung load Google Fonts. Others fall back to Arial Narrow Bold (Roboto Condensed on Android), Arial, Georgia (right column).', 0],
+        ['Headline casing', 'Fixed', 'Added text-transform: uppercase. Bebas is caps-only; without it the fallback would render the sentence-case copy in lowercase.', 1],
+        ['Halftone texture', 'Removed', 'mask-image and radial-gradient are unsupported in most clients. Deal block is solid gold.', 0],
+        ['Headline shadow', 'Degrades', 'text-shadow renders in Apple Mail only. Headline holds up without it.', 0],
+        ['Rounded corners', 'Degrades', 'Outlook Windows squares buttons and images. Acceptable.', 0],
+        ['Muted text', 'Fixed', 'rgba() cream and gold swapped for solid hex (#e3d8bb, #7d6116). Outlook drops rgba; the darker gold also passes contrast on cream at 12px.', 1],
+        ['Buttons', 'Fixed', 'CTA is a table-cell button with bgcolor, so it renders in Outlook. The whole cell is the link text.', 1],
+        ['Dark mode', 'Watch', 'Gmail and Outlook apps may invert the cream body. Shown in the third column: cream inverts to near-black, teal bands go pale, gold shifts toward blue. Photos and the PNG olive are not inverted. Consider a transparent-background olive with a cream outline so it survives both modes; test before sending.', 2]
+      ].map(([item, status, note, k]) => ({ item, status, note, color: ['#2f7a3e', '#a27e1f', '#b3261e'][k === 1 ? 0 : k === 0 ? 1 : 2] })),
+      picks: [
+        { name: 'Lobby Bar', place: 'Cosmopolitan', area: 'The Strip', deals: '$6 beers · $9 cocktails · ½ off apps', take: 'The best people-watching in town for under ten dollars.', img: img('1543007630-9710e4a00a20') },
+        { name: 'Oyster Bar', place: 'Palace Station', area: 'Off Strip', deals: '$1.50 oysters · $5 wells', take: 'Get there before 4 or wait for a stool.', img: img('1574096079513-d8259312b785') },
+        { name: 'Rooftop Lounge', place: 'Fremont Street', area: 'Downtown', deals: '$8 cocktails · $10 flatbreads', take: 'Sunset over the canopy, then walk to dinner.', img: img('1566417713940-fe7c737a9ef2') }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>
+

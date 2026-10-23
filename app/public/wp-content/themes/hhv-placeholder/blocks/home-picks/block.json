@@ -1,0 +1,16 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "hhv/home-picks",
+	"title": "Homepage recommendations",
+	"category": "hhv",
+	"icon": "star-filled",
+	"description": "Hero band with the three venues picked in the front page's Homepage fields.",
+	"usesContext": [ "postId" ],
+	"attributes": {
+		"title": { "type": "string", "default": "Our recommendations" },
+		"dek": { "type": "string", "default": "Three happy hours we'd go to this week, and why." }
+	},
+	"supports": { "html": false },
+	"render": "file:./render.php"
+}

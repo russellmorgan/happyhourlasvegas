@@ -2,6 +2,75 @@
 	"$schema": "https://schemas.wp.org/wp/6.8/theme.json",
 	"version": 3,
 	"settings": {
-		"layout": { "contentSize": "1100px", "wideSize": "1340px" }
-	}
+		"appearanceTools": true,
+		"layout": { "contentSize": "1140px", "wideSize": "1240px" },
+		"color": {
+			"defaultPalette": false,
+			"defaultGradients": false,
+			"palette": [
+				{ "slug": "teal", "name": "Teal", "color": "#1c363b" },
+				{ "slug": "teal-deep", "name": "Deep teal", "color": "#132529" },
+				{ "slug": "teal-ink", "name": "Teal ink", "color": "#15292d" },
+				{ "slug": "cream", "name": "Cream", "color": "#efe3c4" },
+				{ "slug": "cream-soft", "name": "Soft cream", "color": "#f6efd9" },
+				{ "slug": "gold", "name": "Gold", "color": "#c9a034" },
+				{ "slug": "olive", "name": "Olive", "color": "#585b38" }
+			]
+		},
+		"typography": {
+			"defaultFontSizes": false,
+			"fluid": true,
+			"fontFamilies": [
+				{ "slug": "display", "name": "Bebas Neue", "fontFamily": "'Bebas Neue', 'Arial Narrow', sans-serif" },
+				{ "slug": "label", "name": "Barlow Condensed", "fontFamily": "'Barlow Condensed', 'Arial Narrow', sans-serif" },
+				{ "slug": "body", "name": "Barlow", "fontFamily": "Barlow, Arial, sans-serif" },
+				{ "slug": "eyebrow", "name": "Libre Caslon Text", "fontFamily": "'Libre Caslon Text', Georgia, serif" }
+			],
+			"fontSizes": [
+				{ "slug": "small", "name": "Small", "size": "13px", "fluid": false },
+				{ "slug": "medium", "name": "Body", "size": "15px", "fluid": false },
+				{ "slug": "large", "name": "Tile", "size": "20px", "fluid": false },
+				{ "slug": "x-large", "name": "Card title", "size": "30px", "fluid": { "min": "24px", "max": "30px" } },
+				{ "slug": "xx-large", "name": "Section head", "size": "40px", "fluid": { "min": "28px", "max": "40px" } },
+				{ "slug": "huge", "name": "Hero", "size": "64px", "fluid": { "min": "40px", "max": "72px" } }
+			]
+		},
+		"spacing": {
+			"defaultSpacingSizes": false,
+			"spacingSizes": [
+				{ "slug": "20", "name": "XS", "size": "8px" },
+				{ "slug": "30", "name": "S", "size": "16px" },
+				{ "slug": "40", "name": "M", "size": "28px" },
+				{ "slug": "50", "name": "L", "size": "clamp(12px, 3vw, 28px)" },
+				{ "slug": "60", "name": "XL", "size": "48px" }
+			]
+		}
+	},
+	"styles": {
+		"color": { "background": "var(--wp--preset--color--teal)", "text": "var(--wp--preset--color--cream)" },
+		"typography": { "fontFamily": "var(--wp--preset--font-family--body)", "fontSize": "var(--wp--preset--font-size--medium)", "lineHeight": "1.4" },
+		"spacing": { "blockGap": "16px", "padding": { "left": "var(--wp--preset--spacing--50)", "right": "var(--wp--preset--spacing--50)" } },
+		"elements": {
+			"link": {
+				"color": { "text": "var(--wp--preset--color--gold)" },
+				":hover": { "color": { "text": "var(--wp--preset--color--cream)" } }
+			},
+			"heading": {
+				"typography": { "fontFamily": "var(--wp--preset--font-family--display)", "fontWeight": "400", "lineHeight": "1", "letterSpacing": ".01em" }
+			},
+			"h1": { "typography": { "fontSize": "var(--wp--preset--font-size--huge)", "lineHeight": ".9" } },
+			"h2": { "typography": { "fontSize": "var(--wp--preset--font-size--xx-large)" } },
+			"h3": { "typography": { "fontSize": "var(--wp--preset--font-size--x-large)" } },
+			"h4": { "typography": { "fontSize": "var(--wp--preset--font-size--large)" } },
+			"button": {
+				"color": { "background": "var(--wp--preset--color--gold)", "text": "var(--wp--preset--color--teal)" },
+				"border": { "radius": "4px" },
+				"typography": { "fontFamily": "var(--wp--preset--font-family--label)", "fontWeight": "600", "textTransform": "uppercase", "letterSpacing": ".08em", "fontSize": "15px" },
+				":hover": { "color": { "background": "var(--wp--preset--color--cream)", "text": "var(--wp--preset--color--teal)" } }
+			}
+		}
+	},
+	"customTemplates": [
+		{ "name": "page-landing", "title": "Landing (venue listings)", "postTypes": [ "page" ] }
+	]
 }

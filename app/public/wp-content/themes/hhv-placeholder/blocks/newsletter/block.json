@@ -1,0 +1,15 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "hhv/newsletter",
+	"title": "Newsletter signup",
+	"category": "hhv",
+	"icon": "email",
+	"attributes": {
+		"title": { "type": "string", "default": "This free newsletter is your insider's guide to Las Vegas happy hours." },
+		"note": { "type": "string", "default": "No Spam. No Junk. No Pressure." },
+		"button": { "type": "string", "default": "Join the club" }
+	},
+	"supports": { "html": false },
+	"render": "file:./render.php"
+}

@@ -1,0 +1,12 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "hhv/venue-about",
+	"title": "Venue about",
+	"description": "About text, happy hour menu card and map for the current venue.",
+	"category": "hhv",
+	"icon": "store",
+	"usesContext": [ "postId" ],
+	"supports": { "html": false, "multiple": false },
+	"render": "file:./render.php"
+}

@@ -1,0 +1,12 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "hhv/venue-hero",
+	"title": "Venue hero",
+	"description": "Breadcrumbs, name, status, meta row and photo gallery for the current venue.",
+	"category": "hhv",
+	"icon": "store",
+	"usesContext": [ "postId" ],
+	"supports": { "html": false, "multiple": false },
+	"render": "file:./render.php"
+}

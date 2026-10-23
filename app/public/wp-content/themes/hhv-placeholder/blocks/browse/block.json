@@ -1,0 +1,15 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "hhv/browse",
+	"title": "Browse tiles",
+	"category": "hhv",
+	"icon": "screenoptions",
+	"description": "Tiles linking the main location, menu or vibe landings, with venue counts.",
+	"attributes": {
+		"type": { "type": "string", "default": "location" },
+		"title": { "type": "string", "default": "" }
+	},
+	"supports": { "html": false },
+	"render": "file:./render.php"
+}

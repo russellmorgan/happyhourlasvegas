@@ -1,0 +1,13 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "hhv/venue-grid",
+	"title": "Venue grid",
+	"category": "hhv",
+	"icon": "location-alt",
+	"description": "12 venues per page for the current landing or GeoDirectory archive, with area/vibe/menu filters and pagination.",
+	"usesContext": [ "postId" ],
+	
+	"supports": { "html": false },
+	"render": "file:./render.php"
+}

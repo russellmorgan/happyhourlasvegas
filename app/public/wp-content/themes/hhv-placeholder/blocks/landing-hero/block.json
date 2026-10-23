@@ -1,0 +1,13 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "hhv/landing-hero",
+	"title": "Landing hero",
+	"category": "hhv",
+	"icon": "location-alt",
+	"description": "Eyebrow, title and stats (location) or intro and featured venue (vibe/menu) for a landing page or GeoDirectory archive.",
+	"usesContext": [ "postId" ],
+	
+	"supports": { "html": false },
+	"render": "file:./render.php"
+}

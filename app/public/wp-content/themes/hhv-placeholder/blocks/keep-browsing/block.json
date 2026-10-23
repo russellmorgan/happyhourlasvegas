@@ -1,0 +1,13 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "hhv/keep-browsing",
+	"title": "Keep browsing",
+	"category": "hhv",
+	"icon": "location-alt",
+	"description": "Chip groups linking every location, vibe and menu landing.",
+	"usesContext": [ "postId" ],
+	"attributes": { "types": { "type": "string", "default": "" } },
+	"supports": { "html": false },
+	"render": "file:./render.php"
+}

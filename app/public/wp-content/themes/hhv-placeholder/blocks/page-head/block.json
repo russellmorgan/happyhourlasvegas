@@ -1,0 +1,12 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "hhv/page-head",
+	"title": "Title band",
+	"category": "hhv",
+	"icon": "heading",
+	"description": "Breadcrumbs, big title, optional dek (the excerpt) and a meta line for the current page, post, archive, search or 404.",
+	"usesContext": [ "postId" ],
+	"supports": { "html": false },
+	"render": "file:./render.php"
+}

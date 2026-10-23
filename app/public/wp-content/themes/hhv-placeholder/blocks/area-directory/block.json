@@ -1,0 +1,13 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "hhv/area-directory",
+	"title": "Area directory",
+	"category": "hhv",
+	"icon": "location-alt",
+	"description": "Vibe/menu landings: the landing's venues by area (tabs on desktop, accordion on mobile).",
+	"usesContext": [ "postId" ],
+	
+	"supports": { "html": false },
+	"render": "file:./render.php"
+}

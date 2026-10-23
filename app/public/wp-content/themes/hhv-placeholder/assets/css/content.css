@@ -1,0 +1,211 @@
+/* Content / utility pages (page, single, index, archive, search, 404) + the design's content blocks.
+   Tokens come from style.css. Block styles are registered in inc/content.php. */
+
+/* ---- Title band (blocks/page-head) ---- */
+.hhv-pagehead { background: var(--hhv-teal); border-bottom: 1px solid var(--rule-gold); padding-bottom: 34px; }
+.hhv-pagehead .hhv-wrap { display: flex; flex-direction: column; gap: 10px; align-items: flex-start; }
+.hhv-pagehead__eyebrow { margin: 14px 0 -4px; letter-spacing: .02em; }
+.hhv-pagehead__title { margin: 14px 0 0; text-wrap: balance; overflow-wrap: anywhere; }
+.hhv-pagehead__eyebrow + .hhv-pagehead__title { margin-top: 0; }
+.hhv-pagehead__dek { margin: 0; max-width: 640px; font-family: var(--font-eyebrow); font-size: 16px; letter-spacing: .02em; color: var(--hhv-gold); }
+.hhv-pagehead__meta { margin: 0; display: flex; gap: 10px; font-size: 13px; color: rgba(239, 227, 196, .7); }
+.hhv-pagehead__dot { color: var(--hhv-gold); }
+
+/* ---- Body: rail + prose ---- */
+.hhv-content { padding-block: 36px 56px; display: grid; grid-template-columns: minmax(0, 1fr); gap: 24px; }
+.hhv-content--list, .hhv-content:not(:has(> .hhv-toc)) { justify-content: center; }
+.hhv-content:not(:has(> .hhv-toc)) { grid-template-columns: minmax(0, 680px); }
+.hhv-content--list { grid-template-columns: minmax(0, 680px); }
+@media (min-width: 900px) {
+	.hhv-content:has(> .hhv-toc) { grid-template-columns: 180px minmax(0, 700px); gap: 48px; justify-content: center; align-items: start; }
+}
+
+/* On this page */
+.hhv-toc__title { font-family: var(--font-eyebrow); font-size: 13px; letter-spacing: .02em; color: var(--hhv-gold); list-style: none; cursor: pointer; }
+.hhv-toc summary::-webkit-details-marker { display: none; }
+.hhv-toc__list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px; }
+.hhv-toc__list a { display: block; padding: 7px 0 7px 12px; border-left: 2px solid rgba(201, 160, 52, .25); font-family: var(--font-label); font-weight: 600; font-size: 13px; line-height: 1.25; letter-spacing: .08em; text-transform: uppercase; text-decoration: none; color: rgba(239, 227, 196, .8); }
+.hhv-toc__list a:hover { color: var(--hhv-cream); }
+.hhv-toc__list a.is-active { color: var(--hhv-gold); border-left-color: var(--hhv-gold); }
+@media (min-width: 900px) {
+	.hhv-toc { position: sticky; top: 20px; }
+	.hhv-toc__title { margin-bottom: 8px; cursor: default; pointer-events: none; }
+}
+@media (max-width: 899px) {
+	.hhv-toc details { border: 1px solid rgba(201, 160, 52, .45); border-radius: var(--radius-lg); overflow: hidden; }
+	.hhv-toc__title { display: flex; justify-content: space-between; align-items: center; min-height: 44px; padding: 0 14px; font-family: var(--font-label); font-weight: 600; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; }
+	.hhv-toc__title::after { content: "+"; font-family: var(--font-body); font-size: 20px; line-height: 1; }
+	.hhv-toc details[open] .hhv-toc__title::after { content: "\2212"; }
+	.hhv-toc__list { gap: 0; border-top: 1px solid var(--rule-gold); background: var(--hhv-teal-ink); }
+	.hhv-toc__list a { display: flex; align-items: center; min-height: 40px; padding: 0 14px; border: 0; font-size: 14px; color: var(--hhv-cream); }
+}
+
+/* ---- Prose ---- */
+.hhv-prose { min-width: 0; font-size: 16px; line-height: 1.6; color: rgba(239, 227, 196, .88); text-wrap: pretty; }
+.hhv-prose.hhv-prose > * { margin-block: 0; }
+.hhv-prose.hhv-prose > * + * { margin-block-start: 14px; }
+.hhv-prose strong, .hhv-prose b { color: var(--hhv-cream); font-weight: 600; }
+.hhv-prose a { color: var(--hhv-gold); text-underline-offset: 3px; }
+.hhv-prose a:hover { color: var(--hhv-cream); }
+.hhv-prose p.has-text-align-center { text-align: inherit; }
+.hhv-prose.hhv-prose > h2 { display: flex; align-items: center; gap: 14px; margin-block-start: 44px; font-size: clamp(26px, 4vw, 34px); color: var(--hhv-cream); scroll-margin-top: 20px; }
+.hhv-prose.hhv-prose > h2::after { content: ""; flex: 1; min-width: 24px; height: 3px; background: var(--hhv-gold); }
+.hhv-prose.hhv-prose > h2:first-child { margin-block-start: 0; }
+.hhv-prose h3 { font-size: 26px; margin-block-start: 28px; color: var(--hhv-cream); }
+.hhv-prose h4 { font-family: var(--font-label); font-size: 15px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; margin-block-start: 22px; color: var(--hhv-gold); }
+.hhv-prose h2, .hhv-prose h3, .hhv-prose h4 { overflow-wrap: anywhere; }
+.hhv-prose.hhv-prose > h2 + *, .hhv-prose.hhv-prose > h3 + * { margin-block-start: 14px; }
+.hhv-prose > .wp-block-heading + .wp-block-heading { margin-block-start: 14px; }
+.hhv-prose img { border-radius: var(--radius-md); max-width: 100%; height: auto; }
+.hhv-prose figure { margin-inline: 0; }
+.hhv-prose figcaption { font-size: 13px; color: var(--text-on-dark-muted); margin-top: 8px; text-align: left; }
+.hhv-prose hr, .hhv-prose .wp-block-separator { border: 0; border-top: 1px solid var(--rule-gold); background: none; opacity: 1; margin-block: 28px; width: 100%; }
+
+/* Plain lists */
+.hhv-prose ul:not([class*="is-style-hhv"]), .hhv-prose ol:not([class*="is-style-hhv"]) { padding-left: 1.3em; }
+.hhv-prose ul:not([class*="is-style-hhv"]) li::marker, .hhv-prose ol:not([class*="is-style-hhv"]) li::marker { color: var(--hhv-gold); }
+.hhv-prose li + li { margin-top: 6px; }
+
+/* Quote */
+.hhv-prose .wp-block-quote { margin-inline: 0; padding: 4px 0 4px 20px; border: 0; border-left: 3px solid var(--hhv-gold); font-family: var(--font-eyebrow); font-size: 18px; line-height: 1.5; color: var(--hhv-cream); }
+.hhv-prose .wp-block-quote cite { display: block; margin-top: 8px; font-family: var(--font-label); font-style: normal; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--hhv-gold); }
+/* Pull quote: olive mark, big Bebas line, gold caslon cite */
+.hhv-prose .wp-block-pullquote { margin-inline: 0; padding: 18px 8px 4px; border: 0; text-align: center; }
+.hhv-prose .wp-block-pullquote::before { content: ""; display: block; width: 33px; height: 28px; margin: 0 auto 10px; background: url(../olive.svg) center/contain no-repeat; }
+.hhv-prose .wp-block-pullquote blockquote { margin: 0; padding: 0; }
+.hhv-prose .wp-block-pullquote p { max-width: 460px; margin: 0 auto; font-family: var(--font-display); font-size: clamp(26px, 4vw, 32px); line-height: 1.05; text-transform: uppercase; color: var(--hhv-cream); text-wrap: balance; }
+.hhv-prose .wp-block-pullquote cite { display: block; margin-top: 10px; font-family: var(--font-eyebrow); font-style: normal; font-size: 15px; letter-spacing: .02em; text-transform: none; color: var(--hhv-gold); }
+
+/* Table */
+.hhv-prose .wp-block-table { overflow-x: auto; }
+.hhv-prose table { border-collapse: collapse; width: 100%; font-size: 15px; }
+.hhv-prose th { font-family: var(--font-label); font-weight: 600; letter-spacing: .08em; text-transform: uppercase; font-size: 13px; color: var(--hhv-gold); text-align: left; }
+.hhv-prose th, .hhv-prose td { padding: 10px 12px 10px 0; border: 0; border-bottom: 1px solid var(--rule-gold); vertical-align: top; }
+.hhv-prose thead { border-bottom: 0; }
+
+/* Buttons */
+.hhv-prose .wp-block-button__link { color: var(--hhv-teal); font-family: var(--font-label); font-weight: 600; font-size: 15px; letter-spacing: .08em; text-transform: uppercase; padding: 11px 18px; border-radius: var(--radius-sm); text-decoration: none; }
+.hhv-prose .wp-block-button__link:hover { background: var(--hhv-cream); color: var(--hhv-teal); }
+.hhv-prose .wp-block-button.is-style-hhv-outline .wp-block-button__link { background: transparent; color: var(--hhv-cream); border: 1.5px solid rgba(239, 227, 196, .55); }
+.hhv-prose .wp-block-button.is-style-hhv-outline .wp-block-button__link:hover { border-color: var(--hhv-gold); background: var(--hhv-gold); color: var(--hhv-teal); }
+
+/* Code, search, columns */
+.hhv-prose code, .hhv-prose pre { font-size: 14px; background: var(--hhv-teal-ink); border-radius: var(--radius-sm); }
+.hhv-prose code { padding: 1px 5px; }
+.hhv-prose pre { padding: 14px; overflow-x: auto; }
+.hhv-prose .wp-block-search__inside-wrapper { gap: 8px; }
+.hhv-prose .wp-block-search__input { background: transparent; color: inherit; border: 1.5px solid rgba(239, 227, 196, .55); border-radius: var(--radius-sm); padding: 11px 14px; font: inherit; }
+.hhv-prose .wp-block-search__button { background: var(--hhv-gold); color: var(--hhv-teal); border: 0; border-radius: var(--radius-sm); padding: 11px 18px; margin: 0; font-family: var(--font-label); font-weight: 600; font-size: 15px; letter-spacing: .08em; text-transform: uppercase; }
+.hhv-lede { font-family: var(--font-eyebrow); font-size: 17px; line-height: 1.55; color: var(--hhv-gold); }
+.hhv-lede p { margin: 0; text-align: left; }
+.hhv-lede > * + * { margin-top: 12px; }
+
+/* FAQ accordions inside content */
+.hhv-prose .wp-block-details p { text-align: left; }
+.hhv-prose .wp-block-details a { color: var(--hhv-teal); text-decoration-color: var(--hhv-gold); text-decoration-thickness: 2px; }
+.hhv-prose .wp-block-details strong { color: inherit; }
+.hhv-prose .wp-block-details { margin-block-start: 0; }
+.hhv-prose .wp-block-details + .wp-block-details { margin-block-start: 0; }
+
+/* Placeholder contact form (until a form plugin is chosen) */
+.hhv-prose .hhv-placeholder-form { display: flex; flex-direction: column; gap: 12px; }
+.hhv-prose .hhv-placeholder-form p { margin: 0; }
+.hhv-prose .hhv-placeholder-form label { display: flex; flex-direction: column; gap: 4px; font-family: var(--font-label); font-weight: 600; letter-spacing: .08em; text-transform: uppercase; font-size: 13px; }
+.hhv-prose .hhv-placeholder-form input, .hhv-prose .hhv-placeholder-form textarea { width: 100%; box-sizing: border-box; background: transparent; color: inherit; border: 1.5px solid rgba(239, 227, 196, .55); border-radius: var(--radius-sm); padding: 11px 14px; font: inherit; text-transform: none; letter-spacing: 0; opacity: .6; }
+.hhv-prose .hhv-placeholder-form button { background: var(--hhv-gold); color: var(--hhv-teal); border: 0; border-radius: var(--radius-sm); padding: 11px 18px; font-family: var(--font-label); font-weight: 600; font-size: 15px; letter-spacing: .08em; text-transform: uppercase; opacity: .5; }
+.hhv-prose .hhv-placeholder-form em { font-size: 13px; color: var(--text-on-dark-muted); }
+
+/* ---- Design blocks ---- */
+
+/* Pull line (paragraph style) */
+.hhv-prose.hhv-prose > p.is-style-hhv-pull { margin-block: 18px; font-family: var(--font-display); font-size: 40px; line-height: 1; color: var(--hhv-gold); text-shadow: 0 4px 0 #000; text-transform: uppercase; }
+.hhv-prose p.is-style-hhv-dek { font-family: var(--font-eyebrow); font-size: 17px; color: var(--hhv-gold); }
+
+/* Callout (group style): cream card, label + text */
+.hhv-prose .wp-block-group.is-style-hhv-callout { background: var(--hhv-cream); color: var(--hhv-teal); border-radius: 8px; padding: 20px 22px; }
+.hhv-prose .is-style-hhv-callout > * { margin-block: 0; }
+.hhv-prose .is-style-hhv-callout > * + * { margin-block-start: 6px; }
+.hhv-prose .is-style-hhv-callout strong, .hhv-prose .is-style-hhv-callout a { color: var(--hhv-teal); }
+.hhv-prose .is-style-hhv-callout .hhv-label, .hhv-prose .is-style-hhv-standard .hhv-label { font-size: 15px; }
+
+/* Standard (group style): double gold rule, centered Bebas statement */
+.hhv-prose .wp-block-group.is-style-hhv-standard { border: 4px double var(--hhv-gold); border-radius: 4px; background: var(--hhv-teal-ink); padding: 18px 22px; text-align: center; }
+.hhv-prose .is-style-hhv-standard > * { margin-block: 0; }
+.hhv-prose .is-style-hhv-standard > * + * { margin-block-start: 6px; }
+.hhv-prose .is-style-hhv-standard .hhv-label { font-size: 13px; color: var(--hhv-gold); }
+.hhv-prose .is-style-hhv-standard p:not(.hhv-label) { font-family: var(--font-display); font-size: 26px; line-height: 1.1; text-transform: uppercase; color: var(--hhv-cream); text-wrap: balance; }
+
+/* Shared reset for the four list styles: <li><strong>Head</strong> text</li> */
+.hhv-prose :where(ul, ol)[class*="is-style-hhv-"] { list-style: none; margin-inline: 0; padding: 0; }
+.hhv-prose [class*="is-style-hhv-"] > li { margin: 0; }
+.hhv-prose [class*="is-style-hhv-"] > li > strong { font-weight: 400; }
+
+/* Steps (list style): numbered cards, 3-up -> stacked rows on mobile */
+.hhv-prose .is-style-hhv-steps { counter-reset: hhv-step; display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; }
+.hhv-prose .is-style-hhv-steps > li { counter-increment: hhv-step; background: var(--hhv-teal-ink); border: 1px solid var(--rule-gold); border-radius: 8px; padding: 16px 16px 18px; font-size: 14px; line-height: 1.5; color: rgba(239, 227, 196, .85); }
+.hhv-prose .is-style-hhv-steps > li::before { content: counter(hhv-step); display: block; margin-bottom: 8px; font-family: var(--font-display); font-size: 48px; line-height: 1; color: var(--hhv-gold); }
+.hhv-prose .is-style-hhv-steps > li > strong { display: block; margin-bottom: 4px; font-family: var(--font-label); font-weight: 600; font-size: 15px; letter-spacing: .08em; text-transform: uppercase; color: var(--hhv-cream); }
+@media (max-width: 600px) {
+	.hhv-prose .is-style-hhv-steps { grid-template-columns: 1fr; }
+	.hhv-prose .is-style-hhv-steps > li { display: grid; grid-template-columns: 28px minmax(0, 1fr); column-gap: 12px; padding: 14px; font-size: 13.5px; }
+	.hhv-prose .is-style-hhv-steps > li::before { grid-row: 1 / span 2; font-size: 40px; margin: 0; }
+	.hhv-prose .is-style-hhv-steps > li > strong { font-size: 14px; }
+}
+
+/* Stat band (list style): gold slab, halftone fading downward, Bebas numbers */
+.hhv-prose .is-style-hhv-stats { position: relative; isolation: isolate; background: var(--hhv-gold); color: var(--hhv-teal); border-radius: 8px; padding: 8px 22px; }
+.hhv-prose .is-style-hhv-stats::before { content: ""; position: absolute; inset: 0; z-index: -1; border-radius: 8px; pointer-events: none; background: var(--halftone); opacity: .7; -webkit-mask-image: linear-gradient(to bottom, #000, transparent 70%); mask-image: linear-gradient(to bottom, #000, transparent 70%); }
+.hhv-prose .is-style-hhv-stats > li { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 14px; align-items: baseline; padding: 14px 0; font-size: 15px; line-height: 1.45; color: var(--hhv-teal); }
+.hhv-prose .is-style-hhv-stats > li + li { border-top: 1px solid rgba(28, 54, 59, .25); }
+.hhv-prose .is-style-hhv-stats > li > strong { font-family: var(--font-display); font-size: 44px; line-height: 1; white-space: nowrap; color: var(--hhv-teal); }
+@media (max-width: 600px) {
+	.hhv-prose .is-style-hhv-stats { padding: 4px 16px; }
+	.hhv-prose .is-style-hhv-stats > li { grid-template-columns: 116px minmax(0, 1fr); padding: 12px 0; font-size: 13.5px; }
+	.hhv-prose .is-style-hhv-stats > li > strong { font-size: 32px; }
+}
+
+/* Partner list (list style): gold name, description, hairline rows */
+.hhv-prose .is-style-hhv-partners { border-top: 1px solid var(--rule-gold); }
+.hhv-prose .is-style-hhv-partners > li { display: grid; grid-template-columns: 190px minmax(0, 1fr); gap: 18px; padding: 14px 0; border-bottom: 1px solid var(--rule-gold); font-size: 15px; line-height: 1.5; }
+.hhv-prose .is-style-hhv-partners > li > strong { font-family: var(--font-display); font-size: 22px; line-height: 1; color: var(--hhv-gold); }
+@media (max-width: 600px) {
+	.hhv-prose .is-style-hhv-partners > li { grid-template-columns: 1fr; gap: 4px; font-size: 14px; }
+	.hhv-prose .is-style-hhv-partners > li > strong { font-size: 20px; }
+}
+
+/* Contact card (list style): cream card, label | value rows */
+.hhv-prose .is-style-hhv-contact { background: var(--hhv-cream); color: var(--hhv-teal); border-radius: 8px; overflow: hidden; }
+.hhv-prose .is-style-hhv-contact > li { display: grid; grid-template-columns: 140px minmax(0, 1fr); align-items: baseline; padding: 14px 20px; font-size: 16px; font-weight: 500; }
+.hhv-prose .is-style-hhv-contact > li + li { border-top: 1px solid var(--rule-light); }
+.hhv-prose .is-style-hhv-contact > li > strong { font-family: var(--font-label); font-weight: 600; font-size: 14px; letter-spacing: .08em; text-transform: uppercase; color: var(--hhv-teal); }
+.hhv-prose .is-style-hhv-contact a { color: var(--hhv-teal); text-decoration: underline; text-decoration-color: var(--hhv-gold); text-decoration-thickness: 2px; text-underline-offset: 3px; }
+.hhv-prose .is-style-hhv-contact a:hover { color: var(--hhv-gold-deep); }
+@media (max-width: 600px) {
+	.hhv-prose .is-style-hhv-contact > li { grid-template-columns: 1fr; gap: 2px; padding: 12px 16px; font-size: 14.5px; }
+	.hhv-prose .is-style-hhv-contact > li > strong { font-size: 12px; }
+}
+
+/* ---- Post list (index / archive / search) and single nav ---- */
+.hhv-postlist { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.hhv-postlist > li { border-bottom: 1px solid var(--rule-gold); padding-block: 22px; }
+.hhv-postlist > li:first-child { border-top: 1px solid var(--rule-gold); }
+.hhv-postlist__item > * { margin-block: 0; }
+.hhv-postlist__item > * + * { margin-block-start: 6px; }
+.hhv-postlist .wp-block-post-title { font-size: 30px; }
+.hhv-postlist .wp-block-post-title a { color: var(--hhv-cream); text-decoration: none; }
+.hhv-postlist .wp-block-post-title a:hover { color: var(--hhv-gold); }
+.hhv-prose .wp-block-query-pagination { margin-top: 28px; gap: 6px; font-family: var(--font-label); font-weight: 600; font-size: 13px; letter-spacing: .06em; text-transform: uppercase; }
+.hhv-prose .wp-block-query-pagination a, .hhv-prose .wp-block-query-pagination .page-numbers { padding: 7px 10px; border: 1px solid var(--rule-gold); border-radius: var(--radius-sm); color: var(--hhv-cream); text-decoration: none; }
+.hhv-prose .wp-block-query-pagination .current, .hhv-prose .wp-block-query-pagination a:hover { background: var(--hhv-gold); border-color: var(--hhv-gold); color: var(--hhv-teal); }
+.hhv-post-nav { display: flex; justify-content: space-between; gap: 16px; padding-bottom: 56px; font-family: var(--font-label); font-weight: 600; letter-spacing: .08em; text-transform: uppercase; font-size: 14px; }
+.hhv-post-nav > * { margin: 0; max-width: 48%; }
+
+@media (max-width: 600px) {
+	.hhv-prose { font-size: 14.5px; }
+	.hhv-lede { font-size: 15px; }
+	.hhv-pagehead { padding-bottom: 22px; }
+	.hhv-content { padding-block: 16px 40px; }
+	.hhv-prose.hhv-prose > h2 { margin-block-start: 32px; }
+	.hhv-prose.hhv-prose > p.is-style-hhv-pull { font-size: 32px; }
+	.hhv-prose .wp-block-group.is-style-hhv-callout { padding: 16px; }
+}
