@@ -15,7 +15,7 @@ Leave this as is for now, will adjust them in the wordpress later
 - [ ] **Newsletter Sponsors (7825)** has no content; **Terms (8807)** is placeholder text.
 - [x] **Vibe source**: the Vibe line now lists the vibe landings whose tags the venue carries, linked (`hhv_venue_vibes()` in `inc/venue.php`). 121 of 533 venues have no vibe tags, so they show no Vibe line; tag them to fill it in.
 - [ ] **Vibe menu length**: 23 vibes (design shows 21). Consider dropping Hot spots and Golf from the header submenu.
-- [ ] **"View all menus / vibes" tiles** on the homepage: there is no index page for all menus or vibes. Create one (could be a content page with the keep-browsing block) or point elsewhere.
+- [x] **"View all menus / vibes" tiles**: link to index pages /happy-hour-vibes/ (8810) and /happy-hour-menus/ (8811), made by `tools/home-setup.php`; each is an `hhv/browse` block with `all` set (every tile, no big tile). The header Vibe and Menu items link there too.
 - [x] **Homepage video** (resolved in another session): set by hand to the latest upload (eBJz2wLU-qE, Oct 16 2026). It does not auto-update; change it on the front page (ACF "Featured YouTube video URL") or add a WP-CLI cron that reads the channel RSS (channel UC2fTNxNP5CeobfizOqPqM5Q). Note the header/footer YouTube link uses @happyhourvegas.
 - [x] **Homepage picks**: tick "Featured on homepage" on a venue; the three most recently updated featured venues show (`hhv_home_picks()` in `inc/home.php`). Cote, Tacos & Beer and Glitter Gulch Tiki are flagged. The old front-page "Our recommendations" field is gone.
 - [ ] **Blog**: posts are hidden for now; single/archive templates use the content-page look as a stub. Index/archive/search list all post types including venues.

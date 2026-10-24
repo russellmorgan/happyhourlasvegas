@@ -2,6 +2,7 @@
 /**
  * Sets up the homepage (page 142, template front-page): makes it the front page, reduces its content to the FAQ
  * (core/details blocks in a .hhv-faq group, plus the JSON-LD block) and seeds home_video and flags the starter picks as featured venues (hhv_featured).
+ * Also creates the "View all" index pages for the homepage vibe / menu tiles (HHVH_INDEXES, an hhv/browse block in "all" mode).
  *
  * wp eval-file tools/home-setup.php           dry run: prints what would change
  * wp eval-file tools/home-setup.php write     saves
@@ -13,6 +14,10 @@
 const HHVH_PAGE  = 142;
 const HHVH_PICKS = array( 8658, 8493, 8282 ); // Cote (The Strip), Tacos & Beer (Off-Strip), Glitter Gulch Tiki (Downtown).
 const HHVH_VIDEO = 'https://www.youtube.com/watch?v=eBJz2wLU-qE';
+const HHVH_INDEXES = array( // slug => array( type, title, excerpt ). The slug is what hhv/browse links "View all" to.
+	'happy-hour-vibes' => array( 'vibe', 'Happy hour by vibe', 'Rooftops, dives, patios, date nights: every Las Vegas happy hour vibe we track.' ),
+	'happy-hour-menus' => array( 'menu', 'Happy hour by menu', 'Oysters, tacos, sushi, pizza: every Las Vegas happy hour menu we track.' ),
+);
 
 $write = in_array( 'write', $args, true );
 if ( ! current_user_can( 'unfiltered_html' ) ) { // Keep JSON-LD <script> blocks: save as an administrator so kses leaves them alone.
@@ -66,4 +71,16 @@ foreach ( HHVH_PICKS as $id ) {
 }
 update_post_meta( HHVH_PAGE, 'home_video', HHVH_VIDEO );
 update_post_meta( HHVH_PAGE, '_home_video', 'field_hhv_home_video' );
+foreach ( HHVH_INDEXES as $slug => list( $type, $title, $dek ) ) {
+	$page = array(
+		'ID'           => get_page_by_path( $slug )->ID ?? 0,
+		'post_type'    => 'page',
+		'post_status'  => 'publish',
+		'post_name'    => $slug,
+		'post_title'   => $title,
+		'post_excerpt' => $dek,
+		'post_content' => '<!-- wp:hhv/browse {"type":"' . $type . '","all":true} /-->',
+	);
+	printf( "index page %s: %d\n", $slug, wp_insert_post( wp_slash( $page ) ) );
+}
 echo "Saved.\n";
