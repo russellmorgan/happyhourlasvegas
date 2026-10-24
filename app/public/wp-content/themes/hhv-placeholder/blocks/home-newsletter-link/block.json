@@ -1,0 +1,12 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "hhv/home-newsletter-link",
+	"title": "Homepage latest newsletter link",
+	"category": "hhv",
+	"icon": "email",
+	"description": "Link to the front page's Latest newsletter URL.",
+	"usesContext": [ "postId" ],
+	"supports": { "html": false },
+	"render": "file:./render.php"
+}

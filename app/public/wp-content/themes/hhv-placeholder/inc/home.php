@@ -1,6 +1,6 @@
 <?php
 /**
- * Homepage (templates/front-page.html): blocks hhv/home-picks, hhv/browse, hhv/home-video. Data: tools/home-setup.php.
+ * Homepage (templates/front-page.html): blocks hhv/home-picks, hhv/browse, hhv/home-video, hhv/home-newsletter-link. Data: tools/home-setup.php.
  */
 
 /** The front page's ID (the block's post context, else the page set in Settings > Reading). */

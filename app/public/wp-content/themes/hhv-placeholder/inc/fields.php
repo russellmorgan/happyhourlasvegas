@@ -119,6 +119,13 @@ add_action( 'acf/include_fields', function () {
 				'label'         => 'Featured YouTube video URL',
 				'type'          => 'url',
 			),
+			array(
+				'key'           => 'field_hhv_home_newsletter',
+				'name'          => 'home_newsletter',
+				'label'         => 'Latest newsletter URL',
+				'type'          => 'url',
+				'instructions'  => 'Update weekly. Links the "Read the latest happy hour newsletter" text next to the signup form.',
+			),
 		),
 	) );
 } );
