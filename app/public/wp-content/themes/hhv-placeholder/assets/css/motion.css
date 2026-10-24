@@ -86,5 +86,5 @@ details[open]::details-content { block-size: auto; }
 	opacity: 1;
 	transform: none;
 	will-change: auto;
-	transition: opacity 700ms var(--motion-ease), transform 700ms var(--motion-ease);
+	transition: opacity 1400ms var(--motion-ease), transform 1400ms var(--motion-ease);
 }
