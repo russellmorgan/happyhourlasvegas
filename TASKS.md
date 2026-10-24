@@ -28,13 +28,13 @@ Leave this as is for now, will adjust them in the wordpress later
 - [x] Newsletter "Read a sample" link and hero/keep-browsing chips are 44px; GD badges in posts 13px; page titles 50px on mobile.
 
 ## Data quality (content editing)
-- [ ] Menu items have no drink/food flag; a keyword guess sorts them (`hhv_menu_item_type()` in `inc/venue.php`). Some food lands under Drinks (e.g. Herbs & Rye mussels). If it matters, add a per-item type field in GeoDirectory's custom fields and read it there.
-- [ ] Reverse happy hour = any time range starting 8pm or later (heuristic in `hhv_parse_hours()`).
-- [ ] Hours typos like `21:00-12:00` are treated as ending at midnight.
-- [ ] 8 venues have an `<h1>` in their content; some venue text has emoji (style guide says none).
-- [ ] Deal lines are auto-built from menu prices unless "Deal line" is set on the venue. Fill them in for featured venues (Places list shows a Deal line column, "(auto)" when generated).
-- [ ] Privacy page uses bold paragraphs as headings, so no "On this page" rail. Convert to H2s.
-- [ ] "Last updated" on pages uses the modified date (2026 for imported pages).
+- [x] Menu food/drink: the guess now reads the item name first and food words win a tie ("Shrimp Cocktail" is food, "Mai Tai Monday" a drink). Still a guess; a per-item GD field is the real fix if editors need overrides.
+- [x] Reverse happy hour = a range starting 8pm or later, or late night before 6am.
+- [x] Hours typos (spans over 12h) are guessed at render time: early starts become pm ("03:00-17:00" = 3–5pm), early-morning ends become pm ("16:00-06:00" = 4–6pm), late starts close at midnight; 10am–noon all-day deals are kept. The GD data is unchanged; ~45 venues have such typos, worth fixing at the source. Checks: `tools/check-heuristics.php`.
+- [x] Venue text: 10 `<h1>` → `<h2>` and 240 emoji removed across 201 venues (`tools/venue-text-cleanup.php`; originals in `_hhv_pre_cleanup_content`; DB backup `backups/pre-cleanup-20261024.sql.gz`).
+- [x] Deal lines written for the three featured venues. Others still auto-build; set "Deal line" when featuring a venue.
+- [x] Privacy page (2399): 6 bold-paragraph headings converted to H2s; "On this page" rail shows. Original in `_hhv_pre_heading_content`.
+- [x] "Last updated" ignores edits made during the migration (before 2026-10-25) and shows the original date until a real edit (`blocks/page-head/render.php`).
 
 ## Technical follow-ups
 - [ ] "On now" badges and the timeline "now" marker are server-rendered; with a page cache on the live host they go stale. Either exclude venue pages from cache or move the status into a small JS update.
@@ -48,5 +48,7 @@ Leave this as is for now, will adjust them in the wordpress later
 - `tools/landings-setup.php [write] [nav] [ids=1,2]`: landing meta, content cleanup, header nav.
 - `tools/home-setup.php [write]`: front page, FAQ content, picks, video.
 - `tools/reskin-about.php`: About page content.
+- `tools/venue-text-cleanup.php [write]`: venue `<h1>` → `<h2>`, emoji removed.
+- `tools/check-heuristics.php`: asserts for the menu food/drink and hours-typo guesses (run with `php -d zend.assertions=1`).
 - `tools/strip-spacers.php [write]`: removes empty `<p>&nbsp;</p>` spacer paragraphs from posts and pages.
 Original content of every changed page is in postmeta `_hhv_pre_reskin_content`; DB backup `backups/pre-reskin-20261023.sql.gz`.

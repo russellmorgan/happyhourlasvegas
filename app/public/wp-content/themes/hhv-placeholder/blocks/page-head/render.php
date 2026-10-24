@@ -22,7 +22,9 @@ if ( $post ) {
 		$eyebrow = get_the_title( $post->post_parent );
 	}
 	$bits = array();
-	$bits[] = 'post' === $post->post_type ? get_the_date( 'F j, Y', $post ) : 'Last updated ' . get_the_modified_date( 'F Y', $post );
+	// ponytail: edits made during the Gutenberg migration (to 2026-10-25) don't count as updates; show the original date until a real edit.
+	$updated = $post->post_modified > '2026-10-25' ? get_the_modified_date( 'F Y', $post ) : get_the_date( 'F Y', $post );
+	$bits[]  = 'post' === $post->post_type ? get_the_date( 'F j, Y', $post ) : 'Last updated ' . $updated;
 	$mins   = hhv_content_read_minutes( $post->ID );
 	if ( $mins >= 3 ) {
 		$bits[] = $mins . ' min read';

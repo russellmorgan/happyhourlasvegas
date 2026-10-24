@@ -42,7 +42,7 @@ function hhv_venue( $post = null ) {
 				'name'  => $f( "name_$i" ),
 				'desc'  => $f( "description_$i" ),
 				'price' => $f( "price_$i" ),
-				'type'  => hhv_menu_item_type( $f( "name_$i" ) . ' ' . $f( "description_$i" ) ),
+				'type'  => hhv_menu_item_type( $f( "name_$i" ), $f( "description_$i" ) ),
 			);
 		}
 	}
@@ -102,10 +102,23 @@ function hhv_venue_place( $v ) {
 }
 
 /**
- * ponytail: keyword heuristic, since GD menu slots have no drink/food flag. Add a per-item type field if editors need to override it.
+ * ponytail: keyword heuristic, since GD menu slots have no drink/food flag. The item name decides first (so
+ * "Shrimp Cocktail" is food and "Mai Tai Monday" a drink), the description only when the name says neither.
+ * Food words win when both match.
+ * Add a per-item type field if editors need to override it.
  */
-function hhv_menu_item_type( $text ) {
-	return preg_match( '/\b(beers?|drafts?|wines?|cocktails?|margaritas?|martinis?|mules?|spritz|sangria|mimosas?|sake|soju|shots?|wells?|spirits?|liquor|bourbon|whiske?y|tequila|mezcal|vodka|gin|rum|ipa|lager|ale|seltzers?|prosecco|champagne|bubbles|pints?|pitchers?|drinks?|sips?|highballs?|old fashioned|negroni|paloma|bloody mary|elixir)\b/i', $text ) ? 'drink' : 'food';
+function hhv_menu_item_type( $name, $desc = '' ) {
+	$food  = '/\b(shrimp|prawns?|oysters?|crab|lobster|seafood|gamberi|ceviche|poke|sushi|rolls?|sashimi|wings?|tacos?|nachos|fries|burgers?|sliders?|pizzas?|flatbreads?|bites?|poppers|bacon|chicken|pork|beef|steak|ribs|nuggets|toast|dumplings?|bao|gnocchi|pasta|salad|wraps?|apps?|appetizers?|plates?|bowls?|dips?|hummus|cheese|quesadillas?|empanadas?|calamari|mussels|clams|skewers?|meatballs|bruschetta|pretzels?|tots|chips|guac(amole)?|edamame|tempura|fried|grilled|dessert)\b/i';
+	$drink = '/\b(beers?|drafts?|wines?|cocktails?|margaritas?|martinis?|mules?|spritz|sangria|mimosas?|bellinis?|sake|soju|shots?|wells?|spirits?|liquor|bourbon|whiske?y|tequila|mezcal|vodka|gin|rum|ipa|lager|ale|seltzers?|prosecco|champagne|bubbles|pints?|pitchers?|drinks?|sips?|highballs?|old fashioned|negroni|paloma|bloody mary|elixir|mai tai|tiki|mojitos?|daiquiris?|sours?|lemonade|coladas?|bombs?|buckets?)\b/i';
+	foreach ( array( $name, $desc ) as $text ) {
+		if ( preg_match( $food, $text ) ) {
+			return 'food'; // Food words win a tie: "Shrimp Cocktail", "Beer & Wings".
+		}
+		if ( preg_match( $drink, $text ) ) {
+			return 'drink';
+		}
+	}
+	return 'food';
 }
 
 /** Fallback deal line from the first three priced menu items: "$2 oysters · $9 oyster elixir". */
@@ -122,7 +135,7 @@ function hhv_deal_from_menu( $items ) {
 
 /**
  * GD business_hours -> array( 'Mo' => array( array( start, end, reverse ), ... ), ... ) in minutes from midnight.
- * Ends past midnight become > 1440. A range starting 8pm or later counts as a reverse happy hour.
+ * Ends past midnight become > 1440. A range starting 8pm or later, or before 6am, counts as a reverse happy hour.
  */
 function hhv_parse_hours( $raw ) {
 	$out = array_fill_keys( array_keys( HHV_DAYS ), array() );
@@ -139,10 +152,17 @@ function hhv_parse_hours( $raw ) {
 			if ( $e <= $s ) {
 				$e += 1440;
 			}
-			if ( $e - $s > 12 * 60 ) { // Typos like "21:00-12:00": treat as closing at midnight.
-				$e = 1440;
+			// ponytail: guesses for AM/PM typos in spans over 12h. Real all-day deals start 10am-noon and are kept.
+			if ( $e - $s > 12 * 60 ) {
+				if ( $s < 10 * 60 ) {
+					$s += 720; // "03:00-17:00" -> 3pm-5pm.
+				} elseif ( $s >= 12 * 60 && $e - 1440 <= 7 * 60 ) {
+					$e -= 720; // "16:00-06:00" -> 4pm-6pm.
+				} elseif ( $s >= 12 * 60 ) {
+					$e = 1440; // "21:00-12:00", "21:00-19:00": close at midnight.
+				}
 			}
-			$out[ $day[1] ][] = array( $s, $e, $s >= 20 * 60 );
+			$out[ $day[1] ][] = array( $s, $e, $s >= 20 * 60 || $s < 6 * 60 ); // Reverse: starts 8pm or later, or late night before 6am.
 		}
 	}
 	return $out;
