@@ -29,3 +29,13 @@ Outside Local's site shell, plain `wp`/`mysql` can't reach the DB. Use Local's b
 **Gotcha:** any outbound HTTP request made inside a PHP-FPM web request crashes the worker on this Mac (SIGABRT, objc fork-safety error in `logs/php/php-fpm.log`), so the site returns 502. WP-CLI requests are unaffected. Setting `env[OBJC_DISABLE_INITIALIZE_FORK_SAFETY]` in the pool config does not help (it's applied after the fork). `mu-plugins/local-no-fa-version-check.php` stops GeoDirectory's Font Awesome GitHub check. If 502s return after adding a plugin, look for its remote calls (log them with a `pre_http_request` filter).
 
 Database: name `local`, user/password `root`/`root`, table prefix `wp_` (see `app/public/wp-config.php`). `WP_DEBUG` is off by default.
+
+## Remote server (GreenGeeks)
+
+Live site and staging are on GreenGeeks (host `chi207`, account `happyho7`). Staging is `/home/happyho7/public_html/staging` with its own DB (`happyho7_oyz66`); live is `/home/happyho7/public_html` (DB `happyho7_qtpson`). Never change live without being asked. Connect with `ssh greengeeks` (alias in `~/.ssh/config`: port 22 on the IP, key `~/.ssh/id_rsa_green`; the key's passphrase is not stored here, ask the user). WP-CLI is installed there (`wp`).
+
+**Gotcha:** the server firewall blocks the client IP on port 22 after a burst of SSH logins (a 15-second `ssh` polling loop did it once; web ports kept working and cPanel's IP Blocker showed nothing). To avoid it:
+- The alias multiplexes connections (`ControlMaster`/`ControlPersist 10m`). Always use `ssh greengeeks`, `scp` or `rsync` against that alias, never raw host/IP forms that skip it.
+- Never poll over SSH in a loop or Monitor. Start long jobs (tar, imports, big copies) in the background on the server (`nohup ... > log 2>&1 &`), then check the log occasionally, minutes apart.
+- Batch steps into one `ssh greengeeks '...'` call. Give `tar` `--warning=no-file-changed` so a changing cache file doesn't abort a `set -e` script.
+- If port 22 times out, stop and tell the user. Don't try other ports or hosts; the fix is GreenGeeks support whitelisting the IP in CSF.
