@@ -3,20 +3,29 @@
 First pass of the teal + gold reskin (design source in `design/`, theme `app/public/wp-content/themes/hhv-placeholder`). Items below need a decision, data, or a second pass.
 
 ## Needs an owner decision or data
-- [ ] **Newsletter provider**: every signup form (`blocks/newsletter`) posts to `#`. Hook the provider with the `hhv_newsletter_action` filter (or replace the form markup) once chosen. "Read a sample happy hour newsletter" link is a stub.
-- [ ] **Contact form**: Ninja Forms is not installed (CLAUDE.md says it is). Contact page shows a disabled placeholder form. Pick a form plugin or a mailto.
-- [ ] **Facebook URL**: header/footer use `https://www.facebook.com/happyhourvegas` (guessed). Instagram and YouTube URLs came from site content.
-- [ ] **Korean landing (7568)**: no Korean tag exists, so it lists nothing. Create the tag and tag Cote (8658), or unpublish the page.
+- [x] **Newsletter** (resolved in another session): signup forms post to BigMailer (same form as the live site). "Read a sample happy hour newsletter" link is still a stub.
+- [x] **Contact form** (resolved in another session): Ninja Forms is not installed (CLAUDE.md says it is). Contact page shows a disabled placeholder form. Pick a form plugin or a mailto.
+- [x] **Korean landing (7568)** (resolved in another session): no Korean tag exists, so it lists nothing. Create the tag and tag Cote (8658), or unpublish the page.
+Keep what you have, unpublish the page
 - [ ] **Casino pages that list a whole area** (their old shortcodes did): California, Binion's, The D, Golden Gate, Main Street Station show all of Downtown; Cadence Crossing shows all of Henderson. Assign venues to those casino categories, then set the landing's Areas to the casino term.
+Leave this as is for now, will adjust them in the wordpress later
+
 - [ ] **Misfiled categories**: Boulder Station, Cannery, Durango, Sam's Town are top-level GD categories; move them under the right area.
 - [ ] **Untouched pages**: author page 18, Marketing 2395, Featured Happy Hours 2396, the seven day-of-week pages (4072, 4088, 4678–4701), Listing Slider 5756, PF Chang's 7899. Decide: make them landings, content pages, or retire them.
 - [ ] **Newsletter Sponsors (7825)** has no content; **Terms (8807)** is placeholder text.
 - [ ] **Vibe source**: the detail page subtitle and the "Vibe" meta both come from the GD Features field, so the vibe often repeats. Option: take Vibe from the vibe tags instead.
 - [ ] **Vibe menu length**: 23 vibes (design shows 21). Consider dropping Hot spots and Golf from the header submenu.
 - [ ] **"View all menus / vibes" tiles** on the homepage: there is no index page for all menus or vibes. Create one (could be a content page with the keep-browsing block) or point elsewhere.
-- [ ] **Homepage video**: `home_video` is eEzD-Y97ges, whose thumbnail reads "PLACEHOLDER VIDEO"; set the real video on the front page. The page's old JSON-LD still describes a different video (eBJz2wLU-qE).
+- [x] **Homepage video** (resolved in another session): set by hand to the latest upload (eBJz2wLU-qE, Oct 16 2026). It does not auto-update; change it on the front page (ACF "Featured YouTube video URL") or add a WP-CLI cron that reads the channel RSS (channel UC2fTNxNP5CeobfizOqPqM5Q). Note the header/footer YouTube link uses @happyhourvegas.
 - [ ] **Homepage picks**: seeded with Cote Korean BBQ, Tacos & Beer, Glitter Gulch Tiki; edit on the front page (ACF "Our recommendations").
 - [ ] **Blog**: posts are hidden for now; single/archive templates use the content-page look as a stub. Index/archive/search list all post types including venues.
+
+## Mobile pass (2026-10-24, 375px)
+- [x] Done on all templates: no horizontal overflow; tap targets raised to 44px (header logo/toggle, footer, chips, selects, pagers, breadcrumbs, post lists, venue meta/map links); inputs 16px (no iOS zoom); header nav alignment, mobile menu alignment, homepage pick-card gap, stacked video-band newsletter form, content-page gutters 16px.
+- [x] Mobile menu overlay: submenus collapsed, tap Areas/Vibe/Menu to open one (`assets/js/menu.js` + overlay rules in `style.css`).
+- [x] TOC on content pages closes after tapping a link on mobile (`assets/js/content.js`).
+- [ ] Imported posts (e.g. 8485) have `<p>&nbsp;</p>` spacer paragraphs; needs a content migration.
+- [ ] Minor: newsletter "Read a sample" link and hero/keep-browsing chips (40px) are under 44px; GD `.gd-badge` in post bodies is small; page title is 44px vs design's 50px on mobile.
 
 ## Data quality (content editing)
 - [ ] Menu items have no drink/food flag; a keyword guess sorts them (`hhv_menu_item_type()` in `inc/venue.php`). Some food lands under Drinks (e.g. Herbs & Rye mussels). If it matters, add a per-item type field in GeoDirectory's custom fields and read it there.

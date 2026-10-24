@@ -179,4 +179,35 @@ main.hhv-main { margin: 0; }
 	.hhv-header .hhv-social { display: none; }
 	.hhv-footer__cols { gap: 28px; }
 	.hhv-tiles { grid-template-columns: 1fr 1fr; }
+	.hhv-header__nav { margin: 0; }
+	.hhv-wordmark a { padding-block: 11px; margin-block: -11px; } /* 44px tap target, layout unchanged */
+	.hhv-header .wp-block-navigation__responsive-container-open, .hhv-header .wp-block-navigation__responsive-container-close { box-sizing: content-box; padding: 10px; margin: -10px -10px -10px 0; }
+	.hhv-header .is-menu-open .wp-block-navigation__submenu-container a { padding: 12px 1em !important; }
+	.hhv-header .is-menu-open :is(.wp-block-navigation__responsive-container-content, .wp-block-navigation__container, .wp-block-navigation__submenu-container, .wp-block-navigation-item) { align-items: flex-start !important; }
+	/* Overlay: submenus collapsed; the (normally hidden) toggle stretches over the parent row so a tap anywhere opens it. */
+	.hhv-header .is-menu-open .has-child { position: relative; }
+	.hhv-header .is-menu-open .has-child > .wp-block-navigation-item__content { padding: 10px 28px 10px 0; }
+	.hhv-header .is-menu-open .wp-block-navigation-submenu__toggle { display: flex !important; position: absolute; top: 0; left: 0; right: 0; height: 44px; width: auto; justify-content: flex-end; align-items: center; background: none; border: 0; color: inherit; }
+	.hhv-header .is-menu-open .wp-block-navigation-submenu__toggle svg { width: 14px; height: 14px; stroke: currentColor; transition: transform .2s; }
+	.hhv-header .is-menu-open .has-child.is-open > .wp-block-navigation-submenu__toggle svg { transform: rotate(180deg); }
+	.hhv-header .is-menu-open .has-child:not(.is-open) > .wp-block-navigation__submenu-container { display: none !important; }
+	.hhv-header .is-menu-open .has-child { width: 100%; }
+	.hhv-input { font-size: 16px; } /* 16px stops iOS zooming the page on focus */
+	.hhv-footer__cols a { display: inline-block; padding-block: 11px; margin-block: -11px; }
+	.hhv-footer__cols ul { gap: 0; }
+	.hhv-footer .hhv-social .wp-social-link a { padding: 11px; margin: -11px; }
+}
+.hhv-newsletter__done { margin: 0; padding: 11px 0; font-family: var(--font-label); font-weight: 600; font-size: 18px; letter-spacing: .06em; text-transform: uppercase; color: var(--hhv-gold); }
+.hhv-band--cream .hhv-newsletter__done { color: var(--hhv-teal); }
+.hhv-header .wp-block-navigation__submenu-container,
+.hhv-header .wp-block-navigation__submenu-container a { color: var(--hhv-cream) !important; }
+.hhv-header .wp-block-navigation__submenu-container a:hover,
+.hhv-header .wp-block-navigation__submenu-container a:focus { color: var(--hhv-gold) !important; }
+/* Long dropdowns (Vibe, Menu): two columns so every item sits inside the box; scroll as a last resort.
+   Core sets overflow:visible on open submenus, which let items spill out and close the menu on hover. */
+@media (min-width: 600px) {
+	.hhv-header .wp-block-navigation__submenu-container:has(> :nth-child(13)) { display: grid !important; grid-template-columns: repeat(2, minmax(150px, 1fr)); min-width: 340px !important; }
+	.hhv-header .has-child:hover > .wp-block-navigation__submenu-container,
+	.hhv-header .has-child:focus-within > .wp-block-navigation__submenu-container,
+	.hhv-header [aria-expanded="true"] ~ .wp-block-navigation__submenu-container { overflow-y: auto !important; max-height: calc(100vh - 90px); }
 }

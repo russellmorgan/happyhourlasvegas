@@ -113,6 +113,19 @@
 	.hhv-vgrid__filters { display: grid; grid-template-columns: 1fr 1fr; }
 	.hhv-select select { width: 100%; }
 	.hhv-vgrid__cards .hhv-img { aspect-ratio: 4 / 3; }
-	.hhv-vgrid__cards .hhv-eyebrow { font-size: 11px; }
-	.hhv-chips--outline .hhv-chip { font-size: 12px; padding: 6px 9px; }
+	.hhv-vgrid__cards .hhv-eyebrow { font-size: 12px; }
+	.hhv-chips--outline .hhv-chip { font-size: 13px; padding: 6px 10px; }
+	/* Tap targets: 44px for the scrolling filter row, selects, Apply button and pager; 40px for wrapped chip walls */
+	.hhv-landing .hhv-chip { display: inline-flex; align-items: center; min-height: 40px; }
+	.hhv-vgrid__chips .hhv-chip { min-height: 44px; }
+	.hhv-vgrid__chips .hhv-chips { gap: 8px; }
+	.hhv-select select, .hhv-vgrid__go { min-height: 44px; }
+	.hhv-landing .hhv-pager .page-numbers { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; min-height: 44px; }
+	.hhv-areadir__item > summary { min-height: 44px; }
+	.hhv-areadir__links a { display: inline-flex; align-items: center; min-height: 40px; }
+	.hhv-areadir__all { display: inline-flex; align-items: center; min-height: 44px; }
+	.hhv-lhero__stats .hhv-label { font-size: 13px; }
+	/* Search results pager (templates/search.html) */
+	.hhv-content--list .hhv-pager a { display: inline-flex; align-items: center; min-height: 44px; }
+	.hhv-content--list .hhv-pager .page-numbers { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; min-height: 44px; }
 }

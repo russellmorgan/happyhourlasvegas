@@ -13,6 +13,14 @@
 	desktop.addEventListener( 'change', sync );
 
 	var links = [].slice.call( toc.querySelectorAll( 'a' ) );
+	// Mobile: close the panel once a section is picked.
+	links.forEach( function ( a ) {
+		a.addEventListener( 'click', function () {
+			if ( ! desktop.matches ) {
+				details.open = false;
+			}
+		} );
+	} );
 	if ( ! ( 'IntersectionObserver' in window ) ) {
 		return;
 	}

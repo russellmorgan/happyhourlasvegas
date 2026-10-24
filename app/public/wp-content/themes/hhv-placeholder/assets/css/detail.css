@@ -116,6 +116,7 @@ body:has(.hhv-gallery__dialog[open]) { overflow: hidden; }
 	.hhv-vhero__meta { order: 5; gap: 4px 14px; margin-top: 4px; }
 	.hhv-vhero__meta dt { font-size: 11px; }
 	.hhv-vhero__meta dd { font-size: 13px; }
+	.hhv-vhero__meta a { display: inline-block; padding-block: 14px; margin-block: -14px; }
 
 	.hhv-gallery__strip { justify-content: flex-start; overflow-x: auto; scroll-snap-type: x mandatory; padding: 0 7% 18px; scroll-padding-inline: 7%; }
 	.hhv-gallery__item, .hhv-gallery__item.is-extra { display: block; flex: none; width: 86%; height: 180px; scroll-snap-align: center; }
@@ -133,6 +134,7 @@ body:has(.hhv-gallery__dialog[open]) { overflow: hidden; }
 	.hhv-menu__head { font-size: 22px; }
 	.hhv-menu__row { font-size: 14px; }
 	.hhv-vmap iframe { height: 130px; }
+	.hhv-vmap__link { align-items: center; min-height: 44px; box-sizing: border-box; }
 
 	.hhv-vwhen .hhv-wrap { gap: 12px; }
 	.hhv-vwhen__head .hhv-h2 { font-size: 26px; }

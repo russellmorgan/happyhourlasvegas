@@ -65,5 +65,6 @@
 	.hhv-browse__big--all { order: 99; min-height: 52px; }
 	.hhv-browse__big--all .hhv-img__label { inset: 0; display: flex; align-items: center; justify-content: center; text-align: center; background: rgba(21, 41, 45, .55); }
 	.hhv-home-video__grid { grid-template-columns: 1fr; gap: 20px; }
-	.hhv-home-video .hhv-newsletter form { flex-wrap: wrap; }
+	.hhv-home-video .hhv-newsletter form { flex-direction: column; flex-wrap: wrap; }
+	.hhv-home-picks .hhv-card .hhv-img img { position: absolute; inset: 0; } /* photo fills the box instead of stretching the card */
 }

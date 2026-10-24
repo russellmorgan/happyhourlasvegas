@@ -12,7 +12,7 @@
 
 const HHVH_PAGE  = 142;
 const HHVH_PICKS = array( 8658, 8493, 8282 ); // Cote (The Strip), Tacos & Beer (Off-Strip), Glitter Gulch Tiki (Downtown).
-const HHVH_VIDEO = 'https://www.youtube.com/watch?v=eEzD-Y97ges';
+const HHVH_VIDEO = 'https://www.youtube.com/watch?v=eBJz2wLU-qE';
 
 $write = in_array( 'write', $args, true );
 if ( ! current_user_can( 'unfiltered_html' ) ) { // Keep JSON-LD <script> blocks: save as an administrator so kses leaves them alone.

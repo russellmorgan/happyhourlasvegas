@@ -204,8 +204,26 @@
 	.hhv-prose { font-size: 14.5px; }
 	.hhv-lede { font-size: 15px; }
 	.hhv-pagehead { padding-bottom: 22px; }
-	.hhv-content { padding-block: 16px 40px; }
+	.hhv-content { padding-block: 24px 32px; }
+	.hhv-content:has(> .hhv-toc) { padding-top: 16px; }
+	.hhv-pagehead .hhv-wrap, .hhv-content.hhv-wrap, .hhv-post-nav.hhv-wrap { padding-inline: 16px; }
+	.hhv-postlist .wp-block-post-title { font-size: 26px; }
 	.hhv-prose.hhv-prose > h2 { margin-block-start: 32px; }
 	.hhv-prose.hhv-prose > p.is-style-hhv-pull { font-size: 32px; }
 	.hhv-prose .wp-block-group.is-style-hhv-callout { padding: 16px; }
+}
+
+/* Mobile tap targets (44px) and 16px form text (stops iOS zooming on focus) */
+@media (max-width: 899px) {
+	.hhv-toc__list a { min-height: 44px; }
+}
+@media (max-width: 600px) {
+	.hhv-crumbs a { padding-block: 13px; margin-block: -13px; }
+	.hhv-postlist a { display: inline-block; padding-block: 10px; margin-block: -10px; }
+	.hhv-prose .hhv-placeholder-form input, .hhv-prose .hhv-placeholder-form textarea, .hhv-prose .wp-block-search__input { font-size: 16px; }
+	.hhv-prose .hhv-placeholder-form button, .hhv-prose .wp-block-search__button, .hhv-prose .wp-block-button__link { min-height: 44px; }
+	.hhv-prose .wp-block-query-pagination a, .hhv-prose .wp-block-query-pagination .page-numbers { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; min-height: 44px; box-sizing: border-box; }
+	.hhv-post-nav a { display: inline-block; padding-block: 12px; }
+	.hhv-prose .wp-block-search__inside-wrapper { flex-wrap: wrap; }
+	.hhv-prose .wp-block-search__input { flex: 1 1 180px; }
 }
