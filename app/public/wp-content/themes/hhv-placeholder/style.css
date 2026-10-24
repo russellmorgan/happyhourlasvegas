@@ -187,12 +187,13 @@ main.hhv-main > * { margin-block: 0; } /* flow-layout block gap would show the t
 	.hhv-header .is-menu-open :is(.wp-block-navigation__responsive-container-content, .wp-block-navigation__container, .wp-block-navigation__submenu-container, .wp-block-navigation-item) { align-items: flex-start !important; }
 	/* Overlay: submenus collapsed; the (normally hidden) toggle stretches over the parent row so a tap anywhere opens it. */
 	.hhv-header .is-menu-open .has-child { position: relative; }
-	.hhv-header .is-menu-open .has-child > .wp-block-navigation-item__content { padding: 10px 28px 10px 0; }
-	.hhv-header .is-menu-open .wp-block-navigation-submenu__toggle { display: flex !important; position: absolute; top: 0; left: 0; right: 0; height: 44px; width: auto; justify-content: flex-end; align-items: center; background: none; border: 0; color: inherit; }
+	.hhv-header .is-menu-open .has-child > .wp-block-navigation-item__content { padding: 10px 40px 10px 14px !important; }
+	.hhv-header .is-menu-open .wp-block-navigation__container { width: 100% !important; }
+	.hhv-header .is-menu-open .wp-block-navigation-submenu__toggle { display: flex !important; position: absolute; z-index: 2; top: 0; left: 0; right: 0; height: 44px; width: auto; justify-content: flex-end; align-items: center; padding-right: 14px !important; background: none; border: 0; color: inherit; outline-offset: -2px; }
 	.hhv-header .is-menu-open .wp-block-navigation-submenu__toggle svg { width: 14px; height: 14px; stroke: currentColor; transition: transform .2s; }
 	.hhv-header .is-menu-open .has-child.is-open > .wp-block-navigation-submenu__toggle svg { transform: rotate(180deg); }
 	.hhv-header .is-menu-open .has-child:not(.is-open) > .wp-block-navigation__submenu-container { display: none !important; }
-	.hhv-header .is-menu-open .has-child { width: 100%; }
+	.hhv-header .is-menu-open .has-child { width: 100% !important; box-sizing: border-box; }
 	.hhv-input { font-size: 16px; } /* 16px stops iOS zooming the page on focus */
 	.hhv-footer__cols a { display: inline-block; padding-block: 11px; margin-block: -11px; }
 	.hhv-footer__cols ul { gap: 0; }
