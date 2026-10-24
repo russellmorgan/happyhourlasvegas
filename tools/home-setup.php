@@ -1,13 +1,13 @@
 <?php
 /**
  * Sets up the homepage (page 142, template front-page): makes it the front page, reduces its content to the FAQ
- * (core/details blocks in a .hhv-faq group, plus the JSON-LD block) and seeds the ACF fields home_picks / home_video.
+ * (core/details blocks in a .hhv-faq group, plus the JSON-LD block) and seeds home_video and flags the starter picks as featured venues (hhv_featured).
  *
  * wp eval-file tools/home-setup.php           dry run: prints what would change
  * wp eval-file tools/home-setup.php write     saves
  *
  * Re-runnable: the FAQ is always rebuilt from postmeta _hhv_pre_reskin_content (the old content, saved on the first write).
- * Re-running resets home_picks / home_video to the values below.
+ * Re-running resets home_video and re-flags the picks below (other featured venues are left alone).
  */
 
 const HHVH_PAGE  = 142;
@@ -60,8 +60,10 @@ if ( ! get_post_meta( HHVH_PAGE, '_hhv_pre_reskin_content', true ) ) {
 wp_update_post( wp_slash( array( 'ID' => HHVH_PAGE, 'post_content' => $content ) ) );
 update_option( 'show_on_front', 'page' );
 update_option( 'page_on_front', HHVH_PAGE );
-update_post_meta( HHVH_PAGE, 'home_picks', array_map( 'strval', HHVH_PICKS ) );
-update_post_meta( HHVH_PAGE, '_home_picks', 'field_hhv_home_picks' );
+foreach ( HHVH_PICKS as $id ) {
+	update_post_meta( $id, 'hhv_featured', '1' );
+	update_post_meta( $id, '_hhv_featured', 'field_hhv_featured' );
+}
 update_post_meta( HHVH_PAGE, 'home_video', HHVH_VIDEO );
 update_post_meta( HHVH_PAGE, '_home_video', 'field_hhv_home_video' );
 echo "Saved.\n";

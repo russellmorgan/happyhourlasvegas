@@ -51,7 +51,7 @@ main.hhv-main { margin: 0; }
 
 /* Type primitives */
 .hhv-display { font-family: var(--font-display); font-weight: 400; line-height: .9; text-transform: uppercase; letter-spacing: .01em; margin: 0; }
-.hhv-hero { font-size: clamp(44px, 7vw, 72px); text-shadow: var(--shadow-display); }
+.hhv-hero { font-size: clamp(50px, 7vw, 72px); text-shadow: var(--shadow-display); }
 .hhv-h2 { font-size: clamp(28px, 4vw, 40px); line-height: 1; }
 .hhv-band:not(.hhv-band--cream) .hhv-h2 { text-shadow: var(--shadow-heading); }
 .hhv-label { font-family: var(--font-label); font-weight: 600; text-transform: uppercase; letter-spacing: .08em; }

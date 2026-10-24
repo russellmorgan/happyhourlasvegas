@@ -16,7 +16,7 @@ $subtitle = implode( ' · ', array_filter( array( implode( ' + ', array_slice( $
 $link     = fn( $url, $text, $ext = false ) => sprintf( '<a href="%s"%s>%s</a>', esc_url( $url ), $ext ? ' target="_blank" rel="noopener"' : '', esc_html( $text ) );
 $meta     = array_filter( array(
 	'Menu'    => esc_html( preg_replace( '/\s*,\s*/', ', ', $v['cuisine'] ) ),
-	'Vibe'    => esc_html( $v['vibe'] ),
+	'Vibe'    => implode( ', ', array_map( fn( $l ) => $link( $l['url'], $l['label'] ), array_slice( $v['vibes'], 0, 3 ) ) ),
 	'Price'   => esc_html( $v['price_range'] ),
 	'Phone'   => $v['phone'] ? $link( 'tel:' . preg_replace( '/[^\d+]/', '', $v['phone'] ), hhv_phone_label( $v['phone'] ) ) : '',
 	'Website' => $v['website'] ? $link( $v['website'], hhv_url_host( $v['website'] ), true ) : '',

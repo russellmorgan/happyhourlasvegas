@@ -21,10 +21,10 @@
 			"defaultFontSizes": false,
 			"fluid": true,
 			"fontFamilies": [
-				{ "slug": "display", "name": "Bebas Neue", "fontFamily": "'Bebas Neue', 'Arial Narrow', sans-serif" },
-				{ "slug": "label", "name": "Barlow Condensed", "fontFamily": "'Barlow Condensed', 'Arial Narrow', sans-serif" },
-				{ "slug": "body", "name": "Barlow", "fontFamily": "Barlow, Arial, sans-serif" },
-				{ "slug": "eyebrow", "name": "Libre Caslon Text", "fontFamily": "'Libre Caslon Text', Georgia, serif" }
+				{ "slug": "display", "name": "Bebas Neue", "fontFamily": "'Bebas Neue', 'Arial Narrow', sans-serif", "fontFace": [{"fontFamily": "Bebas Neue", "fontStyle": "normal", "fontWeight": "400", "fontDisplay": "swap", "src": ["file:./assets/fonts/bebas-neue-400.woff2"]}] },
+				{ "slug": "label", "name": "Barlow Condensed", "fontFamily": "'Barlow Condensed', 'Arial Narrow', sans-serif", "fontFace": [{"fontFamily": "Barlow Condensed", "fontStyle": "normal", "fontWeight": "500", "fontDisplay": "swap", "src": ["file:./assets/fonts/barlow-condensed-500.woff2"]}, {"fontFamily": "Barlow Condensed", "fontStyle": "normal", "fontWeight": "600", "fontDisplay": "swap", "src": ["file:./assets/fonts/barlow-condensed-600.woff2"]}] },
+				{ "slug": "body", "name": "Barlow", "fontFamily": "Barlow, Arial, sans-serif", "fontFace": [{"fontFamily": "Barlow", "fontStyle": "normal", "fontWeight": "400", "fontDisplay": "swap", "src": ["file:./assets/fonts/barlow-400.woff2"]}, {"fontFamily": "Barlow", "fontStyle": "normal", "fontWeight": "500", "fontDisplay": "swap", "src": ["file:./assets/fonts/barlow-500.woff2"]}, {"fontFamily": "Barlow", "fontStyle": "normal", "fontWeight": "600", "fontDisplay": "swap", "src": ["file:./assets/fonts/barlow-600.woff2"]}] },
+				{ "slug": "eyebrow", "name": "Libre Caslon Text", "fontFamily": "'Libre Caslon Text', Georgia, serif", "fontFace": [{"fontFamily": "Libre Caslon Text", "fontStyle": "italic", "fontWeight": "400", "fontDisplay": "swap", "src": ["file:./assets/fonts/libre-caslon-text-400-italic.woff2"]}, {"fontFamily": "Libre Caslon Text", "fontStyle": "normal", "fontWeight": "400", "fontDisplay": "swap", "src": ["file:./assets/fonts/libre-caslon-text-400.woff2"]}, {"fontFamily": "Libre Caslon Text", "fontStyle": "normal", "fontWeight": "700", "fontDisplay": "swap", "src": ["file:./assets/fonts/libre-caslon-text-700.woff2"]}] }
 			],
 			"fontSizes": [
 				{ "slug": "small", "name": "Small", "size": "13px", "fluid": false },

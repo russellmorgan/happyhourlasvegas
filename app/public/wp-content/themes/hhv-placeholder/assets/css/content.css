@@ -227,3 +227,8 @@
 	.hhv-prose .wp-block-search__inside-wrapper { flex-wrap: wrap; }
 	.hhv-prose .wp-block-search__input { flex: 1 1 180px; }
 }
+@media (max-width: 600px) {
+	/* GeoDirectory badges inside post bodies: readable text, 44px tap target. */
+	.hhv-content .gd-badge { font-size: 13px !important; }
+	.hhv-content a:has(> .gd-badge) { display: inline-block; padding-block: 10px; margin-block: -10px; }
+}

@@ -15,7 +15,6 @@ foreach ( glob( __DIR__ . '/inc/*.php' ) as $hhv_inc ) {
 
 add_action( 'wp_enqueue_scripts', function () {
 	$v = wp_get_theme()->get( 'Version' );
-	wp_enqueue_style( 'hhv-fonts', 'https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@500;600&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&display=swap', array(), null );
 	wp_enqueue_style( 'hhv', get_stylesheet_uri(), array(), $v );
 	foreach ( glob( __DIR__ . '/assets/css/*.css' ) as $file ) {
 		wp_enqueue_style( 'hhv-' . basename( $file, '.css' ), get_theme_file_uri( 'assets/css/' . basename( $file ) ), array( 'hhv' ), filemtime( $file ) );
@@ -27,7 +26,7 @@ add_action( 'wp_enqueue_scripts', function () {
 
 // Same look inside the block editor.
 add_action( 'after_setup_theme', function () {
-	add_editor_style( array( 'https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@500;600&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&display=swap', 'style.css' ) );
+	add_editor_style( 'style.css' ); // Fonts are self-hosted via theme.json fontFace (assets/fonts).
 } );
 
 add_action( 'init', function () {

@@ -15,6 +15,14 @@ add_action( 'acf/include_fields', function () {
 		'location' => array( array( array( 'param' => 'post_type', 'operator' => '==', 'value' => 'gd_place' ) ) ),
 		'fields'   => array(
 			array(
+				'key'          => 'field_hhv_featured',
+				'name'         => 'hhv_featured',
+				'label'        => 'Featured on homepage',
+				'type'         => 'true_false',
+				'ui'           => 1,
+				'instructions' => 'Shows in "Our recommendations" on the homepage (the three most recently updated featured venues).',
+			),
+			array(
 				'key'          => 'field_hhv_deal_summary',
 				'name'         => 'deal_summary',
 				'label'        => 'Deal line',
@@ -105,17 +113,6 @@ add_action( 'acf/include_fields', function () {
 		'title'    => 'Homepage',
 		'location' => array( array( array( 'param' => 'page_type', 'operator' => '==', 'value' => 'front_page' ) ) ),
 		'fields'   => array(
-			array(
-				'key'           => 'field_hhv_home_picks',
-				'name'          => 'home_picks',
-				'label'         => 'Our recommendations',
-				'type'          => 'relationship',
-				'post_type'     => array( 'gd_place' ),
-				'filters'       => array( 'search', 'taxonomy' ),
-				'max'           => 3,
-				'return_format' => 'id',
-				'instructions'  => 'Three happy hours to feature this week. Their "Editor take" and "Deal line" are shown.',
-			),
 			array(
 				'key'           => 'field_hhv_home_video',
 				'name'          => 'home_video',

@@ -30,7 +30,7 @@ add_action( 'wp_dashboard_setup', function () {
 			<li><strong>Areas</strong> are Place Categories (top level = area, child = neighbourhood or casino). <strong>Vibes and menus</strong> are Place Tags.</li>
 			<li><strong>Landing pages</strong> are Pages using the <em>Landing (venue listings)</em> template. The <em>Landing settings</em> box picks the type (location, vibe, menu) and which areas/tags it lists. New landings appear on the homepage automatically; add them to the header menu in Appearance → Editor → Navigation.</li>
 			<li><strong>FAQs</strong> are Details blocks inside the page content.</li>
-			<li><strong>Homepage picks</strong> and the featured video are set on the <a href="<?php echo esc_url( get_edit_post_link( (int) get_option( 'page_on_front' ) ) ?: admin_url( 'edit.php?post_type=page' ) ); ?>">front page</a>.</li>
+			<li><strong>Homepage picks</strong>: tick <em>Featured on homepage</em> on a venue (the three most recently updated featured venues show). The featured video is set on the <a href="<?php echo esc_url( get_edit_post_link( (int) get_option( 'page_on_front' ) ) ?: admin_url( 'edit.php?post_type=page' ) ); ?>">front page</a>.</li>
 		</ul>
 		<?php
 	} );

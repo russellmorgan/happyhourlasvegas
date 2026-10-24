@@ -68,3 +68,6 @@
 	.hhv-home-video .hhv-newsletter form { flex-direction: column; flex-wrap: wrap; }
 	.hhv-home-picks .hhv-card .hhv-img img { position: absolute; inset: 0; } /* photo fills the box instead of stretching the card */
 }
+@media (max-width: 600px) {
+	.hhv-home-video__news p a { display: inline-block; padding-block: 13px; margin-block: -13px; } /* 44px tap target */
+}

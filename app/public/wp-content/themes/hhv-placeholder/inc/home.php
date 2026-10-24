@@ -8,10 +8,17 @@ function hhv_home_id( $block = null ) {
 	return (int) ( $block->context['postId'] ?? 0 ) ?: (int) get_option( 'page_on_front' );
 }
 
-/** Published venue IDs picked for "Our recommendations" (ACF home_picks), in order. */
-function hhv_home_picks( $page_id ) {
-	$ids = array_map( 'intval', (array) get_post_meta( $page_id, 'home_picks', true ) );
-	return array_values( array_filter( $ids, fn( $id ) => 'publish' === get_post_status( $id ) ) );
+/** "Our recommendations": the three most recently updated venues flagged "Featured on homepage". */
+function hhv_home_picks() {
+	return get_posts( array(
+		'post_type'      => 'gd_place',
+		'post_status'    => 'publish',
+		'posts_per_page' => 3,
+		'meta_key'       => 'hhv_featured',
+		'meta_value'     => '1',
+		'orderby'        => 'modified',
+		'fields'         => 'ids',
+	) );
 }
 
 /** YouTube video ID from a watch / youtu.be / embed URL, else ''. */

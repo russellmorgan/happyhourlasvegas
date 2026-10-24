@@ -70,7 +70,7 @@ function hhv_venue( $post = null ) {
 		'price_range'  => $f( 'price_range' ),
 		'cuisine'      => $f( 'menu_items' ),
 		'features'     => $features,
-		'vibe'         => $features[0] ?? '',
+		'vibes'        => hhv_venue_vibes( $post->ID ),
 		'menu_text'    => $f( 'happy_hour_menu_with_prices' ),
 		'menu'         => $items,
 		'area'         => $area,
@@ -80,6 +80,15 @@ function hhv_venue( $post = null ) {
 		'take'         => trim( (string) get_post_meta( $post->ID, 'editor_take', true ) ) ?: $f( 'slogan' ),
 	);
 	return $cache[ $post->ID ] = $v;
+}
+
+/** Vibe landings whose tags this venue carries (so the Vibe line doesn't repeat the Features subtitle). */
+function hhv_venue_vibes( $post_id ) {
+	static $vibes = null;
+	$vibes ??= hhv_landings( 'vibe' );
+	$tags = wp_get_post_terms( $post_id, 'gd_place_tags', array( 'fields' => 'ids' ) );
+	$tags = is_wp_error( $tags ) ? array() : $tags;
+	return array_values( array_filter( $vibes, fn( $l ) => array_intersect( $l['tags'], $tags ) ) );
 }
 
 /** "Spy Ninjas HQ Happy Hour" -> "Spy Ninjas HQ"; "PF Chang's Happy Hour Summerlin" -> "PF Chang's" (the place line shows the location). */

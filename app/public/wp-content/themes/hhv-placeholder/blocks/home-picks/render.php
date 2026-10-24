@@ -1,6 +1,6 @@
 <?php
 /** "Our recommendations": hero heading + the three picked venues as large cards. */
-$ids = hhv_home_picks( hhv_home_id( $block ) );
+$ids = hhv_home_picks();
 ?>
 <section <?php echo get_block_wrapper_attributes( array( 'class' => 'hhv-band hhv-home-picks' ) ); ?>>
 	<div class="hhv-wrap">

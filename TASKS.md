@@ -13,19 +13,19 @@ Leave this as is for now, will adjust them in the wordpress later
 - [ ] **Misfiled categories**: Boulder Station, Cannery, Durango, Sam's Town are top-level GD categories; move them under the right area.
 - [ ] **Untouched pages**: author page 18, Marketing 2395, Featured Happy Hours 2396, the seven day-of-week pages (4072, 4088, 4678–4701), Listing Slider 5756, PF Chang's 7899. Decide: make them landings, content pages, or retire them.
 - [ ] **Newsletter Sponsors (7825)** has no content; **Terms (8807)** is placeholder text.
-- [ ] **Vibe source**: the detail page subtitle and the "Vibe" meta both come from the GD Features field, so the vibe often repeats. Option: take Vibe from the vibe tags instead.
+- [x] **Vibe source**: the Vibe line now lists the vibe landings whose tags the venue carries, linked (`hhv_venue_vibes()` in `inc/venue.php`). 121 of 533 venues have no vibe tags, so they show no Vibe line; tag them to fill it in.
 - [ ] **Vibe menu length**: 23 vibes (design shows 21). Consider dropping Hot spots and Golf from the header submenu.
 - [ ] **"View all menus / vibes" tiles** on the homepage: there is no index page for all menus or vibes. Create one (could be a content page with the keep-browsing block) or point elsewhere.
 - [x] **Homepage video** (resolved in another session): set by hand to the latest upload (eBJz2wLU-qE, Oct 16 2026). It does not auto-update; change it on the front page (ACF "Featured YouTube video URL") or add a WP-CLI cron that reads the channel RSS (channel UC2fTNxNP5CeobfizOqPqM5Q). Note the header/footer YouTube link uses @happyhourvegas.
-- [ ] **Homepage picks**: seeded with Cote Korean BBQ, Tacos & Beer, Glitter Gulch Tiki; edit on the front page (ACF "Our recommendations").
+- [x] **Homepage picks**: tick "Featured on homepage" on a venue; the three most recently updated featured venues show (`hhv_home_picks()` in `inc/home.php`). Cote, Tacos & Beer and Glitter Gulch Tiki are flagged. The old front-page "Our recommendations" field is gone.
 - [ ] **Blog**: posts are hidden for now; single/archive templates use the content-page look as a stub. Index/archive/search list all post types including venues.
 
 ## Mobile pass (2026-10-24, 375px)
 - [x] Done on all templates: no horizontal overflow; tap targets raised to 44px (header logo/toggle, footer, chips, selects, pagers, breadcrumbs, post lists, venue meta/map links); inputs 16px (no iOS zoom); header nav alignment, mobile menu alignment, homepage pick-card gap, stacked video-band newsletter form, content-page gutters 16px.
 - [x] Mobile menu overlay: submenus collapsed, tap Areas/Vibe/Menu to open one (`assets/js/menu.js` + overlay rules in `style.css`).
 - [x] TOC on content pages closes after tapping a link on mobile (`assets/js/content.js`).
-- [ ] Imported posts (e.g. 8485) have `<p>&nbsp;</p>` spacer paragraphs; needs a content migration.
-- [ ] Minor: newsletter "Read a sample" link and hero/keep-browsing chips (40px) are under 44px; GD `.gd-badge` in post bodies is small; page title is 44px vs design's 50px on mobile.
+- [x] Spacer paragraphs removed: 59 from 7 posts/pages (`tools/strip-spacers.php`; originals in `_hhv_pre_spacer_content`).
+- [x] Newsletter "Read a sample" link and hero/keep-browsing chips are 44px; GD badges in posts 13px; page titles 50px on mobile.
 
 ## Data quality (content editing)
 - [ ] Menu items have no drink/food flag; a keyword guess sorts them (`hhv_menu_item_type()` in `inc/venue.php`). Some food lands under Drinks (e.g. Herbs & Rye mussels). If it matters, add a per-item type field in GeoDirectory's custom fields and read it there.
@@ -41,12 +41,12 @@ Leave this as is for now, will adjust them in the wordpress later
 - [ ] Map is an OpenStreetMap iframe (no API key). Swap for Google Maps or GD's map if preferred. GD's `[gd_map]` pages (e.g. Las Vegas Happy Hour Map 2355) were not reskinned.
 - [ ] GD search paginates 10 per page (GD setting), other grids 12.
 - [ ] Shopping vibe filter on location pages filters by tag only, not mall areas.
-- [ ] Google Fonts load from Google's CDN; self-host them if privacy/perf requires (WP Font Library can do it).
+- [x] Fonts self-hosted in `assets/fonts` (latin subset) via theme.json `fontFace`; no Google requests.
 - [ ] Design formats not built: newsletter email template (600px), infographic and video templates (design system sections 06–09).
-- [ ] No git commit has been made for this work yet.
 
 ## Re-runnable scripts (from repo root, via WP-CLI `eval-file`; dry run unless `write`)
 - `tools/landings-setup.php [write] [nav] [ids=1,2]`: landing meta, content cleanup, header nav.
 - `tools/home-setup.php [write]`: front page, FAQ content, picks, video.
 - `tools/reskin-about.php`: About page content.
+- `tools/strip-spacers.php [write]`: removes empty `<p>&nbsp;</p>` spacer paragraphs from posts and pages.
 Original content of every changed page is in postmeta `_hhv_pre_reskin_content`; DB backup `backups/pre-reskin-20261023.sql.gz`.
