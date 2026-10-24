@@ -18,7 +18,8 @@
 .hhv-browse__big .hhv-img { position: absolute; inset: 0; height: 100%; aspect-ratio: auto; }
 .hhv-browse__big .hhv-img__label { display: flex; flex-direction: column; gap: 2px; }
 .hhv-browse__big:hover .hhv-img__label { color: var(--hhv-gold); }
-/* "View all" index pages (hhv/browse all mode inside page content): tiles span the content width */
+/* "View all" index pages (hhv/browse all mode inside page content): tiles span the full wrap, like the header and footer */
+.hhv-content:has(.hhv-browse) { grid-template-columns: minmax(0, 1fr); }
 .hhv-prose > .hhv-browse { max-width: none; padding: 0; }
 .hhv-prose > .hhv-browse > .hhv-wrap { padding: 0; }
 .hhv-browse__big .hhv-tile__count { font-size: 12px; text-transform: none; }
