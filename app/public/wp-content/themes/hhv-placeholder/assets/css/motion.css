@@ -74,3 +74,17 @@ details[open]::details-content { block-size: auto; }
 		transition-duration: 1ms !important;
 	}
 }
+
+/* Homepage scroll reveal: home.js tags sections below the fold with .hhv-reveal, then adds .is-in as they enter.
+   Only opacity + transform animate (compositor-only); the band colour stays put, the content rises. */
+.hhv-reveal > .hhv-wrap {
+	opacity: 0;
+	transform: translate3d(0, 24px, 0);
+	will-change: opacity, transform;
+}
+.hhv-reveal.is-in > .hhv-wrap {
+	opacity: 1;
+	transform: none;
+	will-change: auto;
+	transition: opacity 700ms var(--motion-ease), transform 700ms var(--motion-ease);
+}
