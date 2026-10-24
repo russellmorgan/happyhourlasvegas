@@ -55,7 +55,7 @@ body:has(.hhv-gallery__dialog[open]) { overflow: hidden; }
 .hhv-vabout__text li :is(b, strong) { color: var(--hhv-gold); }
 .hhv-vabout__text img { max-width: 100%; height: auto; border-radius: var(--radius-md); }
 .hhv-vabout__more { display: none; align-self: flex-start; min-height: 44px; padding: 0; border: 0; background: none; color: var(--hhv-gold); font-size: 13px; cursor: pointer; }
-.hhv-vabout__aside { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.hhv-vabout__aside { display: flex; flex-direction: column; gap: 28px; min-width: 0; }
 
 .hhv-menu { display: flex; flex-direction: column; gap: 7px; padding: 18px 22px 16px; border: 4px double var(--hhv-gold); border-radius: var(--radius-sm); background: var(--hhv-teal-ink); }
 .hhv-menu__head { margin: 0; font-family: var(--font-display); font-weight: 400; font-size: 26px; line-height: 1; text-align: center; text-transform: uppercase; color: var(--hhv-cream); }
@@ -100,6 +100,7 @@ body:has(.hhv-gallery__dialog[open]) { overflow: hidden; }
 /* ---------- Tablet: stack about ---------- */
 @media (max-width: 820px) {
 	.hhv-vabout__grid { grid-template-columns: minmax(0, 1fr); }
+	.hhv-vabout__aside { gap: 14px; }
 }
 
 /* ---------- Mobile ---------- */
