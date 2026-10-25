@@ -23,6 +23,18 @@ add_action( 'acf/include_fields', function () {
 				'instructions' => 'Shows in "Our recommendations" on the homepage (the three most recently updated featured venues).',
 			),
 			array(
+				'key'           => 'field_hhv_picks',
+				'name'          => 'hhv_picks',
+				'label'         => 'Featured on landing pages',
+				'type'          => 'post_object',
+				'post_type'     => array( 'page' ),
+				'multiple'      => 1,
+				'return_format' => 'id',
+				'allow_null'    => 1,
+				'ui'            => 1,
+				'instructions'  => 'Shows in "Our picks" on each chosen area / vibe / menu page (up to three per page, most recently updated first).',
+			),
+			array(
 				'key'          => 'field_hhv_deal_summary',
 				'name'         => 'deal_summary',
 				'label'        => 'Deal line',
@@ -128,4 +140,10 @@ add_action( 'acf/include_fields', function () {
 			),
 		),
 	) );
+} );
+
+// "Featured on landing pages" only offers landing pages.
+add_filter( 'acf/fields/post_object/query/key=field_hhv_picks', function ( $args ) {
+	$args['meta_query'] = array( array( 'key' => 'landing_type', 'compare' => 'EXISTS' ) );
+	return $args;
 } );

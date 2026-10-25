@@ -1,0 +1,15 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "hhv/landing-picks",
+	"title": "Landing picks",
+	"category": "hhv",
+	"icon": "star-filled",
+	"description": "Up to three venues featured on this landing page (set per venue in \"Featured on landing pages\").",
+	"usesContext": [ "postId" ],
+	"attributes": {
+		"title": { "type": "string", "default": "Our picks" }
+	},
+	"supports": { "html": false },
+	"render": "file:./render.php"
+}

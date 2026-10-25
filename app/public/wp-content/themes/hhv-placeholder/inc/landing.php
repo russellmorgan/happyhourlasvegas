@@ -229,6 +229,21 @@ function hhv_landing_featured( $l ) {
 	return 0;
 }
 
+/** "Our picks" on a landing: the three most recently updated venues with this page in "Featured on landing pages". */
+function hhv_landing_picks( $l ) {
+	if ( 'page' !== $l['mode'] ) {
+		return array();
+	}
+	return get_posts( array(
+		'post_type'      => 'gd_place',
+		'post_status'    => 'publish',
+		'posts_per_page' => 3,
+		'meta_query'     => array( array( 'key' => 'hhv_picks', 'value' => '"' . $l['id'] . '"', 'compare' => 'LIKE' ) ), // ACF stores a serialized array of string IDs.
+		'orderby'        => 'modified',
+		'fields'         => 'ids',
+	) );
+}
+
 /** Chip markup. */
 function hhv_chip( $label, $url, $active = false ) {
 	return sprintf( '<li><a class="hhv-chip%s" href="%s"%s>%s</a></li>', $active ? ' is-active' : '', esc_url( $url ), $active ? ' aria-current="page"' : '', esc_html( $label ) );
