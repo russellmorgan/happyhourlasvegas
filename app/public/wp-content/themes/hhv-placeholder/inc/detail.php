@@ -84,6 +84,38 @@ function hhv_osm_embed_url( $v ) {
 	return sprintf( 'https://www.openstreetmap.org/export/embed.html?bbox=%F,%F,%F,%F&layer=mapnik&marker=%F,%F', $lng - .008, $lat - .005, $lng + .008, $lat + .005, $lat, $lng );
 }
 
+/**
+ * Google Static Maps image URL (one small <img>, no JS), or '' without coordinates or HHV_GOOGLE_MAPS_KEY.
+ * The key is referrer-restricted and not allowed on localhost, so locally the OSM embed is used (see hhv_is_local()).
+ */
+function hhv_static_map_url( $v ) {
+	if ( ! defined( 'HHV_GOOGLE_MAPS_KEY' ) || hhv_is_local() || ! is_numeric( $v['lat'] ) || ! is_numeric( $v['lng'] ) ) {
+		return '';
+	}
+	$styles = array( 'feature:all|element:geometry|color:0x15292d', 'feature:all|element:labels.text.fill|color:0xa9bfc2', 'feature:all|element:labels.text.stroke|color:0x15292d', 'feature:road|element:geometry|color:0x2b4a50', 'feature:water|element:geometry|color:0x0d1c1f', 'feature:poi|element:labels|visibility:off' );
+	$url    = add_query_arg(
+		array(
+			'center'   => $v['lat'] . ',' . $v['lng'],
+			'zoom'     => 15,
+			'size'     => '640x260',
+			'scale'    => 2,
+			'format'   => 'jpg',
+			'markers'  => 'color:0xd9a441|' . $v['lat'] . ',' . $v['lng'],
+			'key'      => HHV_GOOGLE_MAPS_KEY,
+		),
+		'https://maps.googleapis.com/maps/api/staticmap'
+	);
+	foreach ( $styles as $s ) {
+		$url .= '&style=' . rawurlencode( $s );
+	}
+	return $url;
+}
+
+/** True on the Local dev host (*.local). */
+function hhv_is_local() {
+	return str_ends_with( (string) wp_parse_url( home_url(), PHP_URL_HOST ), '.local' );
+}
+
 /** Menu card groups: array( 'Drinks' => items, 'Food' => items ), or array( 'Menu' => items ) when all items are one type. */
 function hhv_menu_groups( $v ) {
 	$groups = array( 'Drinks' => array(), 'Food' => array() );

@@ -70,6 +70,8 @@ body:has(.hhv-gallery__dialog[open]) { overflow: hidden; }
 .hhv-vmap { display: flex; flex-direction: column; overflow: hidden; border: 1px solid var(--rule-gold); border-radius: var(--radius-md); background: var(--hhv-teal-ink); }
 /* Light OSM tiles tinted to sit in the teal well. */
 .hhv-vmap iframe { display: block; width: 100%; height: 160px; border: 0; background: repeating-linear-gradient(45deg, #15292d 0 8px, #1a3237 8px 16px); filter: grayscale(1) invert(.88) sepia(.35) hue-rotate(130deg) brightness(.9) contrast(.95); }
+.hhv-vmap__img { display: block; }
+.hhv-vmap__img img { display: block; width: 100%; height: 160px; object-fit: cover; background: #15292d; }
 .hhv-vmap__link { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; padding: 9px 12px; border-top: 1px solid var(--rule-gold); color: var(--hhv-cream); font-size: 13px; text-decoration: none; }
 .hhv-vmap__link .hhv-label { color: var(--hhv-gold); font-size: 12px; }
 .hhv-vmap__link:hover .hhv-label { color: var(--hhv-cream); }
@@ -134,7 +136,7 @@ body:has(.hhv-gallery__dialog[open]) { overflow: hidden; }
 	.hhv-menu { padding: 12px 14px; }
 	.hhv-menu__head { font-size: 22px; }
 	.hhv-menu__row { font-size: 14px; }
-	.hhv-vmap iframe { height: 130px; }
+	.hhv-vmap iframe, .hhv-vmap__img img { height: 130px; }
 	.hhv-vmap__link { align-items: center; min-height: 44px; box-sizing: border-box; }
 
 	.hhv-vwhen .hhv-wrap { gap: 12px; }

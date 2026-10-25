@@ -10,7 +10,8 @@ if ( ! $v ) {
 $content = hhv_venue_content( $v['id'] );
 $groups  = hhv_menu_groups( $v );
 $menu    = $groups ? '' : ( $v['menu_text'] ? hhv_menu_text_html( $v['menu_text'] ) : '' );
-$map     = hhv_osm_embed_url( $v );
+$static  = hhv_static_map_url( $v );
+$map     = $static ? '' : hhv_osm_embed_url( $v );
 $text_id = wp_unique_id( 'hhv-about-' );
 ?>
 <section <?php echo get_block_wrapper_attributes( array( 'class' => 'hhv-vabout' ) ); ?>>
@@ -39,7 +40,11 @@ $text_id = wp_unique_id( 'hhv-about-' );
 			<?php endif; ?>
 			<?php if ( $map || $v['street'] ) : ?>
 				<div class="hhv-vmap">
-					<?php if ( $map ) : ?>
+					<?php if ( $static ) : ?>
+						<a class="hhv-vmap__img" href="<?php echo esc_url( hhv_maps_url( $v ) ); ?>" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+							<img src="<?php echo esc_url( $static ); ?>" alt="" width="640" height="260" loading="lazy" decoding="async">
+						</a>
+					<?php elseif ( $map ) : ?>
 						<iframe src="<?php echo esc_url( $map ); ?>" title="<?php echo esc_attr( 'Map: ' . $v['name'] ); ?>" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 					<?php endif; ?>
 					<a class="hhv-vmap__link" href="<?php echo esc_url( hhv_maps_url( $v ) ); ?>" target="_blank" rel="noopener">
