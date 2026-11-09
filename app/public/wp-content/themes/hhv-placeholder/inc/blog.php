@@ -10,8 +10,10 @@
  *   show_on   term slug(s) for this page, comma separated (default "homepage")
  *   count     cards to show (default 3)
  *   fallback  "latest" (default): fill empty spots with the newest posts. "hide": only ticked posts; no section if none.
- *   title     section heading (default "Fresh From the Blog"; title="" for none)
- *   button    button text under the cards (default "See all posts"; button="" for none)
+ *   title     section heading (default "Top Shelf"; title="" for none), e.g. title="Top Shelf in Summerlin"
+ *   tagline   line under the heading (default "Happy hour news, events and local finds."; tagline="" for none)
+ *   button    button text under the cards (default "See All Top Shelf"; button="" for none)
+ * On the Blog page the heading and tagline come from the page itself (its title and excerpt), styled to match.
  *   list      "all": every post, newest first, 12 per page with page numbers (for the Blog page)
  */
 
@@ -123,8 +125,9 @@ add_shortcode( 'hhv_blog_posts', function ( $atts ) {
 		'show_on'  => 'homepage',
 		'count'    => 3,
 		'fallback' => 'latest',
-		'title'    => 'Fresh From the Blog',
-		'button'   => 'See all posts',
+		'title'    => 'Top Shelf',
+		'tagline'  => 'Happy hour news, events and local finds.',
+		'button'   => 'See All Top Shelf',
 		'list'     => '',
 	), $atts, 'hhv_blog_posts' );
 
@@ -148,7 +151,7 @@ add_shortcode( 'hhv_blog_posts', function ( $atts ) {
 			'prev_text' => 'Newer',
 			'next_text' => 'Older',
 		) );
-		$pager = $links ? '<nav class="hhv-pager" aria-label="Blog pages">' . $links . '</nav>' : '';
+		$pager = $links ? '<nav class="hhv-pager" aria-label="Top Shelf pages">' . $links . '</nav>' : '';
 		$a['button'] = '';
 	} else {
 		$terms = array_filter( array_map( 'sanitize_title', explode( ',', $a['show_on'] ) ) );
@@ -160,8 +163,11 @@ add_shortcode( 'hhv_blog_posts', function ( $atts ) {
 
 	$blog = get_page_by_path( 'blog' );
 	$out  = '<section class="hhv-band hhv-blog' . ( 'all' === $a['list'] ? ' hhv-blog--all' : '' ) . '"><div class="hhv-wrap">';
-	if ( '' !== $a['title'] && 'all' !== $a['list'] ) {
-		$out .= '<h2 class="hhv-display hhv-h2">' . esc_html( $a['title'] ) . '</h2>';
+	if ( 'all' !== $a['list'] && ( '' !== $a['title'] || '' !== $a['tagline'] ) ) {
+		$out .= '<div class="hhv-blog__head">';
+		$out .= '' !== $a['title'] ? '<h2 class="hhv-display hhv-h2">' . esc_html( $a['title'] ) . '</h2>' : '';
+		$out .= '' !== $a['tagline'] ? '<p class="hhv-blog__tagline">' . esc_html( $a['tagline'] ) . '</p>' : '';
+		$out .= '</div>';
 	}
 	$out .= '<div class="hhv-cards hhv-blog__cards">' . implode( '', array_map( 'hhv_blog_card', $ids ) ) . '</div>';
 	$out .= $pager;

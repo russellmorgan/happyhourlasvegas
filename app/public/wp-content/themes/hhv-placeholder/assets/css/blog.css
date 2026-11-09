@@ -1,7 +1,13 @@
 /* Blog cards: [hhv_blog_posts] shortcode (inc/blog.php). Same card look as "Our recommendations" (.hhv-card in style.css). */
 
 .hhv-blog { padding-block: 28px 34px; }
-.hhv-blog .hhv-h2 { margin-bottom: 18px; }
+.hhv-blog__head { margin-bottom: 20px; }
+.hhv-blog__head .hhv-h2 { margin: 0; }
+
+/* Tagline under the heading (homepage section, and the Blog page's title band). Brand font + brand light #F5F5F5. */
+.hhv-blog__tagline,
+body:has(.hhv-blog--all) .hhv-pagehead__dek { margin: 8px 0 0; max-width: 640px; font-family: Urbanist, Arial, sans-serif; font-weight: 400; font-size: 18px; line-height: 1.35; letter-spacing: .01em; color: #F5F5F5; opacity: .9; }
+body:has(.hhv-blog--all) .hhv-pagehead__dek { margin: 0; }
 .hhv-blog__cards { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px 16px; }
 .hhv-blog__card { gap: 5px; }
 .hhv-blog__card .hhv-card__title { font-size: 24px; }
@@ -22,6 +28,8 @@
 /* Phones: one card per row, small photo on the left, like "Our recommendations" */
 @media (max-width: 700px) {
 	.hhv-blog { padding-block: 18px 24px; }
+	.hhv-blog__head { margin-bottom: 16px; }
+	.hhv-blog__tagline, body:has(.hhv-blog--all) .hhv-pagehead__dek { font-size: 15px; }
 	.hhv-blog__cards, .hhv-blog--all .hhv-blog__cards { grid-template-columns: 1fr; gap: 16px; }
 	.hhv-blog__card { display: grid; grid-template-columns: 120px minmax(0, 1fr); column-gap: 12px; align-items: center; }
 	.hhv-blog__card .hhv-img { margin: 0; }
