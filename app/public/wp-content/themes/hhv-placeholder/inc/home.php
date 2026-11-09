@@ -1,6 +1,7 @@
 <?php
 /**
- * Homepage (templates/front-page.html): blocks hhv/home-picks, hhv/browse, hhv/home-video, hhv/home-newsletter-link. Data: tools/home-setup.php.
+ * Homepage (templates/front-page.html): blocks hhv/home-picks, hhv/browse, then the blog cards ([hhv_blog_posts], inc/blog.php). Data: tools/home-setup.php.
+ * hhv/home-video and hhv/home-newsletter-link are no longer on the homepage (kept for reuse; see notes/foodie-friday-video.md).
  */
 
 /** The front page's ID (the block's post context, else the page set in Settings > Reading). */
