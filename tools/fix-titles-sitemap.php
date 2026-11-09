@@ -4,15 +4,15 @@ global $wpdb;
 $do = $args ?: array( 'titles', 'sitemap' );
 
 if ( in_array( 'titles', $do, true ) ) {
-	// post ID => array( Rank Math SEO title expected now ('' = none, uses the default template), new SEO title )
+	// post ID => array( Rank Math SEO title expected now (or a list of accepted values; '' = none, uses the default template), new SEO title )
 	$titles = array(
 		4628 => array( 'A Sous Chef and Barista Walk into a Bar', 'A Sous Chef and Barista Walk Into a Bar' ),
 		3254 => array( '%title% %page% %sep% Restaurants, menus, hours', '%title% %page% %sep% Restaurants, Menus, Hours' ),
-		4292 => array( 'Durango Casino Anniversary: A year of Southwest Sizzle Vegas', 'Durango Casino Anniversary: A Year of Southwest Sizzle Vegas' ),
+		4292 => array( array( 'Durango Casino Anniversary: A year of Southwest Sizzle Vegas', 'Durango Casino Anniversary: A Year of Southwest Sizzle Vegas' ), 'Durango Casino Anniversary: A Year of Southwest Sizzle' ),
 		8811 => array( '', 'Happy Hour by Menu %currentmonth% %currentyear%' ),
 		8810 => array( '', 'Happy Hour by Vibe %currentmonth% %currentyear%' ),
 		4499 => array( 'Everything you need to know about the Best Las Vegas Wine', 'Everything You Need to Know About the Best Las Vegas Wine' ),
-		6631 => array( '', 'Mexican Happy Hours in Las Vegas - 45 Verified %currentmonth% %currentyear%' ),
+		6631 => array( array( '', 'Mexican Happy Hours in Las Vegas - 45 Verified %currentmonth% %currentyear%' ), 'Mexican Happy Hours in Las Vegas %sep% 45 Verified %currentmonth% %currentyear%' ),
 		7928 => array( '', 'Ai Pazzi Pizza %currentmonth% %currentyear%' ),
 		6608 => array( '%title% %sep% Las Vegas happy hours with a view', '%title% %sep% Las Vegas Happy Hours with a View' ),
 		4768 => array( '%title% %page% %sep% Four Vegas Locations', 'Yard House Las Vegas Happy Hour %page% %sep% Four Vegas Locations' ),
@@ -22,7 +22,7 @@ if ( in_array( 'titles', $do, true ) ) {
 		$now = (string) get_post_meta( $id, 'rank_math_title', true );
 		if ( $now === $new ) {
 			WP_CLI::log( "$id already done" );
-		} elseif ( $now === $old ) {
+		} elseif ( in_array( $now, (array) $old, true ) ) {
 			update_post_meta( $id, 'rank_math_title', $new );
 			WP_CLI::log( "$id set: $new" );
 		} else {
