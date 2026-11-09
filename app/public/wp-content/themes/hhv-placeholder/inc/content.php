@@ -79,6 +79,8 @@ function hhv_content_crumbs( $title, $post = null ) {
 		foreach ( array_reverse( get_post_ancestors( $post ) ) as $id ) {
 			$trail[] = array( get_the_title( $id ), get_permalink( $id ) );
 		}
+	} elseif ( $post && 'post' === $post->post_type && ( $shelf = hhv_top_shelf() ) ) {
+		$trail[] = $shelf; // Home > Top Shelf > Post (same trail as the schema, inc/post.php).
 	}
 	$trail[] = array( $title, null );
 	return $trail;

@@ -22,11 +22,6 @@ function hhv_home_picks() {
 	) );
 }
 
-/** YouTube video ID from a watch / youtu.be / embed URL, else ''. */
-function hhv_youtube_id( $url ) {
-	return preg_match( '#(?:[?&]v=|youtu\.be/|/embed/)([\w-]{11})#', (string) $url, $m ) ? $m[1] : '';
-}
-
 /** Image URL for a landing's big tile: its tile/featured image, else the photo of its featured or first venue. */
 function hhv_landing_image_url( $l ) {
 	if ( $l['image'] && ( $url = wp_get_attachment_image_url( $l['image'], 'large' ) ) ) {

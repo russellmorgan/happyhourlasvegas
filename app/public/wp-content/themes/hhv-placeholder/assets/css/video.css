@@ -1,0 +1,24 @@
+/* Click-to-play YouTube player (inc/video.php hhv_video_player) and the post video block (blocks/video).
+   The thumbnail is a link to YouTube; assets/js/video.js swaps in the player on click. */
+.hhv-yt { position: relative; aspect-ratio: 16 / 9; border-radius: var(--radius-md); overflow: hidden; background: var(--hhv-teal-ink); }
+.hhv-yt__play, .hhv-yt iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; }
+.hhv-yt__play::before { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(rgba(21, 41, 45, .5), rgba(21, 41, 45, 0) 30%, rgba(21, 41, 45, 0) 60%, rgba(21, 41, 45, .8)); }
+.hhv-yt__play img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.hhv-yt__btn { position: absolute; z-index: 2; left: 50%; top: 50%; width: 64px; height: 44px; transform: translate(-50%, -50%); display: flex; align-items: center; justify-content: center; background: #f00; border-radius: 12px; }
+.hhv-yt__play:hover .hhv-yt__btn { background: #d00; }
+.hhv-yt__pill { position: absolute; z-index: 2; right: 12px; bottom: 10px; padding: 4px 12px; border-radius: 999px; background: rgba(21, 41, 45, .85); color: var(--hhv-cream); font-size: 13px; }
+.hhv-yt__pill b { color: #fff; }
+
+/* Vertical (Shorts): 9:16, centered, at most 400px wide and never taller than most of the screen. */
+.hhv-yt--vertical { aspect-ratio: 9 / 16; width: min(100%, 400px, calc(88svh * 9 / 16)); margin-inline: auto; }
+
+/* Post video (blocks/video): above the post text, credit line underneath. */
+.hhv-video { margin: 0; display: flex; flex-direction: column; gap: 10px; }
+.hhv-video__credit { margin: 0; font-family: var(--font-eyebrow); font-size: 14px; letter-spacing: .02em; color: var(--hhv-gold); }
+.hhv-video--vertical .hhv-video__credit { text-align: center; }
+/* Desktop with the "On this page" rail: rail on the left spanning both rows, video then text on the right. */
+@media (min-width: 900px) {
+	.hhv-content:has(> .hhv-toc):has(> .hhv-video) > .hhv-video { grid-column: 2; grid-row: 1; }
+	.hhv-content:has(> .hhv-toc):has(> .hhv-video) > .hhv-toc { grid-column: 1; grid-row: 1 / span 2; }
+	.hhv-content:has(> .hhv-toc):has(> .hhv-video) > .hhv-prose { grid-column: 2; grid-row: 2; }
+}
