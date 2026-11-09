@@ -15,6 +15,7 @@
  *   button    button text under the cards (default "See All Top Shelf"; button="" for none)
  * On the Blog page the heading and tagline come from the page itself (its title and excerpt), styled to match.
  *   list      "all": every post, newest first, 12 per page with page numbers (for the Blog page)
+ *   exclude   "current": leave out the post being viewed ("More from Top Shelf" at the end of each post, templates/single.html)
  */
 
 const HHV_SHOW_ON = 'hhv_show_on';
@@ -67,7 +68,8 @@ add_filter( 'rank_math/sitemap/exclude_taxonomy', function ( $exclude, $taxonomy
  * Post IDs for a blog card section: "Everywhere" first, then the page's own terms, then (fallback "latest") the newest
  * posts. Each step newest first, no repeats.
  */
-function hhv_blog_post_ids( $terms, $count, $fallback = 'latest' ) {
+function hhv_blog_post_ids( $terms, $count, $fallback = 'latest', $exclude = array() ) {
+	$skip = array_map( 'intval', (array) $exclude );
 	$ids  = array();
 	$base = array(
 		'post_type'           => 'post',
@@ -89,7 +91,7 @@ function hhv_blog_post_ids( $terms, $count, $fallback = 'latest' ) {
 		if ( array() === $step ) {
 			continue;
 		}
-		$args = $base + array( 'posts_per_page' => $count - count( $ids ), 'post__not_in' => $ids );
+		$args = $base + array( 'posts_per_page' => $count - count( $ids ), 'post__not_in' => array_merge( $ids, $skip ) );
 		if ( $step ) {
 			$args['tax_query'] = array( array( 'taxonomy' => HHV_SHOW_ON, 'field' => 'slug', 'terms' => $step ) );
 		}
@@ -129,7 +131,12 @@ add_shortcode( 'hhv_blog_posts', function ( $atts ) {
 		'tagline'  => 'Happy hour news, events and local finds.',
 		'button'   => 'See All Top Shelf',
 		'list'     => '',
+		'exclude'  => '',
 	), $atts, 'hhv_blog_posts' );
+
+	if ( 'current' === $a['exclude'] && ! is_singular( 'post' ) ) {
+		return ''; // "More from Top Shelf" is for blog posts only (single.html is also used by other post types).
+	}
 
 	$pager = '';
 	if ( 'all' === $a['list'] ) {
@@ -155,7 +162,8 @@ add_shortcode( 'hhv_blog_posts', function ( $atts ) {
 		$a['button'] = '';
 	} else {
 		$terms = array_filter( array_map( 'sanitize_title', explode( ',', $a['show_on'] ) ) );
-		$ids   = hhv_blog_post_ids( $terms, max( 1, (int) $a['count'] ), $a['fallback'] );
+		$skip  = 'current' === $a['exclude'] && is_singular() ? array( get_queried_object_id() ) : array();
+		$ids   = hhv_blog_post_ids( $terms, max( 1, (int) $a['count'] ), $a['fallback'], $skip );
 	}
 	if ( ! $ids ) {
 		return ''; // never an empty section

@@ -10,6 +10,9 @@
 .hhv-pagehead__dek { margin: 0; max-width: 640px; font-family: var(--font-eyebrow); font-size: 16px; letter-spacing: .02em; color: var(--hhv-gold); }
 .hhv-pagehead__meta { margin: 0; display: flex; gap: 10px; font-size: 13px; color: rgba(239, 227, 196, .7); }
 .hhv-pagehead__dot { color: var(--hhv-gold); }
+.hhv-pagehead__meta { flex-wrap: wrap; row-gap: 2px; }
+.hhv-pagehead__author { color: inherit; text-decoration: none; }
+.hhv-pagehead__author:hover { color: var(--hhv-gold); text-decoration: underline; text-underline-offset: 3px; }
 
 /* ---- Body: rail + prose ---- */
 .hhv-content { padding-block: 36px 56px; display: grid; grid-template-columns: minmax(0, 1fr); gap: 24px; }
@@ -51,6 +54,9 @@
 .hhv-prose.hhv-prose > h2 { display: flex; align-items: center; gap: 14px; margin-block-start: 44px; font-size: clamp(26px, 4vw, 34px); color: var(--hhv-cream); scroll-margin-top: 20px; }
 .hhv-prose.hhv-prose > h2::after { content: ""; flex: 1; min-width: 24px; height: 3px; background: var(--hhv-gold); }
 .hhv-prose.hhv-prose > h2:first-child { margin-block-start: 0; }
+/* Blog posts only: a short gold bar under each H2 instead of the long line beside it (pages keep the long line). */
+.single-post .hhv-prose.hhv-prose > h2 { display: block; }
+.single-post .hhv-prose.hhv-prose > h2::after { display: block; flex: none; width: 48px; min-width: 0; height: 3px; margin-top: 12px; }
 .hhv-prose h3 { font-size: 26px; margin-block-start: 28px; color: var(--hhv-cream); }
 .hhv-prose h4 { font-family: var(--font-label); font-size: 15px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; margin-block-start: 22px; color: var(--hhv-gold); }
 .hhv-prose h2, .hhv-prose h3, .hhv-prose h4 { overflow-wrap: anywhere; }
@@ -199,6 +205,9 @@
 .hhv-prose .wp-block-query-pagination .current, .hhv-prose .wp-block-query-pagination a:hover { background: var(--hhv-gold); border-color: var(--hhv-gold); color: var(--hhv-teal); }
 .hhv-post-nav { display: flex; justify-content: space-between; gap: 16px; padding-bottom: 56px; font-family: var(--font-label); font-weight: 600; letter-spacing: .08em; text-transform: uppercase; font-size: 14px; }
 .hhv-post-nav > * { margin: 0; max-width: 48%; }
+/* End of a blog post (after "More from Top Shelf", before the footer): same gold rule as under the title band. */
+.hhv-main .hhv-post-end { margin: 0; width: 100%; max-width: none; border: 0; border-top: 1px solid var(--rule-gold); background: none; opacity: 1; }
+body:not(.single-post) .hhv-post-end { display: none; }
 
 @media (max-width: 600px) {
 	.hhv-prose { font-size: 14.5px; }
