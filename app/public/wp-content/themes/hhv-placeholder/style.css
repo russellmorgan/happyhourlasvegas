@@ -2,7 +2,7 @@
 Theme Name: HHV Placeholder
 Template: twentytwentyfive
 Description: Happy Hour Vegas teal + gold theme (design system in /design). Page-specific CSS lives in assets/css/*.css.
-Version: 0.2.0
+Version: 0.2.2
 */
 
 /* Tokens: mirror design/design-system/tokens.css */
@@ -118,10 +118,8 @@ main.hhv-main > * { margin-block: 0; } /* flow-layout block gap would show the t
 .hhv-header { position: relative; z-index: 100; border-bottom: 1px solid var(--rule-gold); background: var(--hhv-teal); }
 .hhv-header__inner { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding-block: 14px; }
 .hhv-wordmark { display: inline-flex; align-items: center; gap: 10px; margin: 0; font-family: var(--font-display); font-size: 26px; line-height: 1; letter-spacing: .06em; text-transform: uppercase; }
-.hhv-wordmark a { color: var(--hhv-gold); text-decoration: none; display: inline-flex; align-items: center; gap: 10px; }
-.hhv-wordmark a::before { content: ""; width: 33px; height: 28px; background: url(assets/olive.svg) center/contain no-repeat; animation: hhvOlive .9s var(--ease-pop) .1s both; }
-@keyframes hhvOlive { 0% { opacity: 0; transform: translateY(-14px) rotate(-35deg) scale(.6); } 100% { opacity: 1; transform: none; } }
-@media (prefers-reduced-motion: reduce) { .hhv-wordmark a::before { animation: none; } }
+/* Logo image; the site name stays in the link (hidden) for screen readers and Google. */
+.hhv-wordmark a { display: block; width: 250px; height: 29px; background: url(assets/hhv-logo.svg) center/contain no-repeat content-box; overflow: hidden; white-space: nowrap; text-indent: 100%; color: transparent; text-decoration: none; }
 .hhv-header__nav { display: flex; align-items: center; gap: 18px; }
 .hhv-header .wp-block-navigation { font-family: var(--font-label); font-weight: 600; letter-spacing: .08em; text-transform: uppercase; font-size: 15px; gap: 18px; }
 .hhv-header .wp-block-navigation a { color: var(--hhv-cream); }
@@ -165,7 +163,7 @@ main.hhv-main > * { margin-block: 0; } /* flow-layout block gap would show the t
 .hhv-footer__cols a:hover { color: var(--hhv-gold); }
 .hhv-footer__bottom { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; border-top: 1px solid var(--rule-gold); margin-top: 32px; padding-top: 18px; }
 .hhv-footer__bottom .hhv-wordmark { font-size: 22px; }
-.hhv-footer__bottom .hhv-wordmark a::before { animation: none; }
+.hhv-footer__bottom .hhv-wordmark a { width: 200px; height: 23px; }
 .hhv-footer__credit { font-size: 13px; color: var(--text-on-dark-muted); margin: 0; }
 .hhv-heart { color: var(--hhv-heart); }
 
@@ -176,7 +174,7 @@ main.hhv-main > * { margin-block: 0; } /* flow-layout block gap would show the t
 
 @media (max-width: 600px) {
 	.hhv-wordmark { font-size: 20px; }
-	.hhv-wordmark a::before { width: 26px; height: 22px; }
+	.hhv-wordmark a { width: 195px; height: 23px; }
 	.hhv-header .hhv-social { display: none; }
 	.hhv-footer__cols { gap: 28px; }
 	.hhv-tiles { grid-template-columns: 1fr 1fr; }

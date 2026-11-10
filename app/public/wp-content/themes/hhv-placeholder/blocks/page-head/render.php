@@ -24,12 +24,17 @@ if ( $post ) {
 	$bits = array();
 	// ponytail: edits made during the Gutenberg migration (to 2026-10-25) don't count as updates; show the original date until a real edit.
 	$updated = $post->post_modified > '2026-10-25' ? get_the_modified_date( 'F Y', $post ) : get_the_date( 'F Y', $post );
-	$bits[]  = 'post' === $post->post_type ? get_the_date( 'F j, Y', $post ) : 'Last updated ' . $updated;
+	// Posts: "By Andrew Morgan · November 3, 2026 · 3 min read" (byline links to the author page, same person as the schema).
+	$author = 'post' === $post->post_type ? get_the_author_meta( 'display_name', $post->post_author ) : '';
+	if ( $author ) {
+		$bits[] = 'By <a class="hhv-pagehead__author" href="' . esc_url( get_author_posts_url( $post->post_author ) ) . '" rel="author">' . esc_html( $author ) . '</a>';
+	}
+	$bits[] = esc_html( 'post' === $post->post_type ? get_the_date( 'F j, Y', $post ) : 'Last updated ' . $updated );
 	$mins   = hhv_content_read_minutes( $post->ID );
 	if ( $mins >= 3 ) {
-		$bits[] = $mins . ' min read';
+		$bits[] = esc_html( $mins . ' min read' );
 	}
-	$meta = implode( '<span class="hhv-pagehead__dot">&middot;</span>', array_map( 'esc_html', $bits ) );
+	$meta = implode( '<span class="hhv-pagehead__dot">&middot;</span>', $bits );
 } elseif ( is_search() ) {
 	$title = 'Search: ' . get_search_query();
 } elseif ( is_404() ) {

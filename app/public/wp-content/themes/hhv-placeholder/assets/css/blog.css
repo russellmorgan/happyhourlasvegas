@@ -1,0 +1,39 @@
+/* Blog cards: [hhv_blog_posts] shortcode (inc/blog.php). Same card look as "Our recommendations" (.hhv-card in style.css). */
+
+.hhv-blog { padding-block: 28px 34px; }
+.hhv-blog__head { margin-bottom: 20px; }
+.hhv-blog__head .hhv-h2 { margin: 0; }
+
+/* Tagline under the heading (homepage section, and the Blog page's title band). Brand font + brand light #F5F5F5. */
+.hhv-blog__tagline,
+body:has(.hhv-blog--all) .hhv-pagehead__dek { margin: 8px 0 0; max-width: 640px; font-family: Urbanist, Arial, sans-serif; font-weight: 400; font-size: 18px; line-height: 1.35; letter-spacing: .01em; color: #F5F5F5; opacity: .9; }
+body:has(.hhv-blog--all) .hhv-pagehead__dek { margin: 0; }
+.hhv-blog__cards { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px 16px; }
+.hhv-blog__card { gap: 5px; }
+.hhv-blog__card .hhv-card__title { font-size: 24px; }
+.hhv-blog__card .hhv-img img { height: 100%; border-radius: 0; }
+.hhv-blog__more { margin: 26px 0 0; text-align: center; }
+
+/* Blog page (/blog/): cards span the full width inside the page content, not the narrow text column */
+.hhv-content:has(.hhv-blog) { grid-template-columns: minmax(0, 1fr); }
+.hhv-prose > .hhv-blog { max-width: none; padding: 0; }
+.hhv-prose > .hhv-blog > .hhv-wrap { padding: 0; }
+.hhv-prose .hhv-blog__card, .hhv-prose .hhv-blog__card:hover { color: var(--hhv-cream); text-decoration: none; }
+.hhv-blog .hhv-pager { margin-top: 32px; }
+
+@media (max-width: 900px) {
+	.hhv-blog--all .hhv-blog__cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* Phones: one card per row, small photo on the left, like "Our recommendations" */
+@media (max-width: 700px) {
+	.hhv-blog { padding-block: 18px 24px; }
+	.hhv-blog__head { margin-bottom: 16px; }
+	.hhv-blog__tagline, body:has(.hhv-blog--all) .hhv-pagehead__dek { font-size: 15px; }
+	.hhv-blog__cards, .hhv-blog--all .hhv-blog__cards { grid-template-columns: 1fr; gap: 16px; }
+	.hhv-blog__card { display: grid; grid-template-columns: 120px minmax(0, 1fr); column-gap: 12px; align-items: center; }
+	.hhv-blog__card .hhv-img { margin: 0; }
+	.hhv-blog__card .hhv-card__title { font-size: 21px; }
+	.hhv-blog .hhv-pager .page-numbers { min-width: 44px; min-height: 44px; display: inline-flex; align-items: center; justify-content: center; }
+	.hhv-blog__more .hhv-btn { display: block; }
+}
