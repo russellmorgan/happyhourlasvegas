@@ -1,0 +1,27 @@
+{
+  "name": "D'Agostino's Trattoria",
+  "place": "Southwest Las Vegas",
+  "address": "4155 S Buffalo Dr, Las Vegas",
+  "days": [0,1,1,1,1,1,1],
+  "when": "Tue–Sun 4–6pm",
+  "photos": {"hook": null, "hero": null, "bites": null, "room": null},
+  "pos": {},
+  "hook": ["$10 pizza.", "Real Neapolitan."],
+  "swipe": "Swipe for the menu",
+  "hero": {"price": "$10", "item": "12 inch Neapolitan Margherita", "line": "Classic Neapolitan style, with a house draft brewed just for the restaurant at $6."},
+  "bites": {"eyebrow": "The happy hour menu", "head": "$10 Italian bites",
+    "items": [["Sterner the Burner shrimp scampi","$10"],["Pancetta wrapped dates","$10"],["Fried zucchini","$10"],["Bruschetta","$10"],["Sausage & peppers","$10"],["Board & Bottle","$35"]]},
+  "room": {"eyebrow": "The vibe", "head": "Hidden<br>gem", "line": "An off Strip trattoria that locals keep coming back to. The bar fills fast on weekends."},
+  "storyDeals": "$10 pizza, $6 house draft",
+  "reel": {"hook": "$10<br>pizza", "pill": "Tue–Sun · 4–6pm", "tagLine": "Tag the friend who never shares their pizza!"},
+  "caption": {
+    "area": "Southwest Las Vegas",
+    "items": "a $10 Neapolitan Margherita, $10 Sterner the Burner shrimp scampi and a $6 house draft",
+    "when": "Tue–Sun, 4–6pm",
+    "disc": "A family run, off Strip trattoria with real Neapolitan pizza and a house beer brewed just for them. Plus $10 cocktails and wine.",
+    "hooks": ["Southwest Vegas has a Neapolitan pizza secret.", "The trattoria locals keep to themselves.", "A house draft brewed just for this pizza."],
+    "tagline": "Tag the friend who never shares their pizza 🍕",
+    "tags": "#summerlin #southwestlasvegas #lasvegaslocals #lasvegashappyhour #vegashappyhour #vegasfoodie #vegasitalian #vegaspizza #neapolitanpizza #vegashiddengems",
+    "location": "D'Agostino's Trattoria"
+  }
+}
