@@ -1,0 +1,14 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="brand.css">
+<!-- Instagram Highlight cover, 1080 x 1920. Instagram shows a circle from the center, so everything sits in a 640px circle in the middle. -->
+<style>
+#hl{width:1080px;height:1920px;background:var(--teal);display:flex;flex-direction:column;align-items:center;justify-content:center}
+#hl img{width:var(--olive,250px);display:block}
+#lbl{font-family:var(--bebas);color:var(--gold);letter-spacing:.04em;line-height:.9;margin-top:22px;white-space:nowrap;text-shadow:0 8px 0 rgba(0,0,0,.55)}
+</style></head><body>
+<div class="frame" id="hl"><img src="../assets/hhv-olive-mark.svg"><div id="lbl"></div></div>
+<script>
+const H=window.HL||{};
+const l=document.getElementById('lbl');
+if(H.label){l.textContent=H.label;}else{l.remove();document.getElementById('hl').style.setProperty('--olive','430px');}
+document.fonts.ready.then(()=>{if(H.label){let fs=210;l.style.fontSize=fs+'px';while(l.scrollWidth>520&&fs>60){fs-=4;l.style.fontSize=fs+'px'}}window.FITTED=true});
+</script></body></html>
