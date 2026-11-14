@@ -1,0 +1,30 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="brand.css">
+<!-- Instagram/Facebook Story, 1080 x 1920. Empty space under the plate is left for the link sticker. -->
+<style>
+#st{width:1080px;height:1920px}
+.z{position:absolute;left:64px;right:140px}
+.plate{display:flex;align-items:stretch;border-radius:16px;overflow:hidden}
+.plate .bar{width:18px;background:var(--gold)}
+.plate .body{background:var(--teal-deep);padding:26px 34px;flex:1}
+</style></head><body>
+<div class="frame" id="st"></div>
+<script>
+const L=window.LISTING, P=L.photos, POS=L.pos||{};
+document.getElementById('st').innerHTML=`
+<img src="../assets/hhv-olive-mark.svg" style="position:absolute;left:64px;top:236px;height:72px">
+<div class="z" style="top:340px">
+  <div class="pill" style="font-size:36px;padding:14px 32px">${L.when}</div>
+  <div class="head" style="font-size:220px;margin-top:34px">${L.hook.map(h=>`<div class="fit" data-w="876">${h}</div>`).join('')}</div>
+</div>
+<div class="well z" style="top:900px;height:440px"><img src="${P.hook}" style="object-position:${POS.hook||'center'}"></div>
+<div class="plate z" style="top:1280px">
+  <div class="bar"></div>
+  <div class="body">
+    <div class="eyebrow" style="font-size:32px">${L.place}</div>
+    <div class="fit" data-w="760" style="font-family:var(--bebas);font-size:88px;line-height:1;margin-top:6px">${L.name}</div>
+    <div class="label" style="font-size:32px;color:var(--gold);margin-top:6px">${L.storyDeals}</div>
+  </div>
+</div>`;
+function fitAll(){document.querySelectorAll('.fit').forEach(el=>{const w=+el.dataset.w;let fs=parseFloat(getComputedStyle(el).fontSize);el.style.display='inline-block';while(el.scrollWidth>w&&fs>40){fs-=2;el.style.fontSize=fs+'px'}el.style.display='block'})}
+document.fonts.ready.then(()=>{fitAll();window.FITTED=true});
+</script></body></html>
