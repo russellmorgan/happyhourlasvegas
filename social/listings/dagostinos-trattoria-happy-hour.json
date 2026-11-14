@@ -2,26 +2,117 @@
   "name": "D'Agostino's Trattoria",
   "place": "Southwest Las Vegas",
   "address": "4155 S Buffalo Dr, Las Vegas",
-  "days": [0,1,1,1,1,1,1],
+  "days": [
+    0,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+  ],
   "when": "Tue–Sun 4–6pm",
-  "photos": {"hook": null, "hero": null, "bites": null, "room": null},
-  "pos": {},
-  "hook": ["$10 pizza.", "Real Neapolitan."],
+  "photos": {
+    "hook": "bar-spread.jpg",
+    "hero": "baked-clams.png",
+    "bites": "sausage-calamari.webp",
+    "room": "burrata-room.jpg"
+  },
+  "pos": {
+    "hook": "35% 70%",
+    "hero": "50% 50%",
+    "bites": "50% 60%",
+    "room": "50% 30%"
+  },
+  "hook": [
+    "$10 baked clams.",
+    "$10 dirty martini."
+  ],
   "swipe": "Swipe for the menu",
-  "hero": {"price": "$10", "item": "12 inch Neapolitan Margherita", "line": "Classic Neapolitan style, with a house draft brewed just for the restaurant at $6."},
-  "bites": {"eyebrow": "The happy hour menu", "head": "$10 Italian bites",
-    "items": [["Sterner the Burner shrimp scampi","$10"],["Pancetta wrapped dates","$10"],["Fried zucchini","$10"],["Bruschetta","$10"],["Sausage & peppers","$10"],["Board & Bottle","$35"]]},
-  "room": {"eyebrow": "The vibe", "head": "Hidden<br>gem", "line": "An off Strip trattoria that locals keep coming back to. The bar fills fast on weekends."},
-  "storyDeals": "$10 pizza, $6 house draft",
-  "reel": {"hook": "$10<br>pizza", "pill": "Tue–Sun · 4–6pm", "tagLine": "Tag the friend who never shares their pizza!"},
+  "hero": {
+    "price": "$10",
+    "item": "Baked clams oreganata",
+    "line": "Stuffed with garlic breadcrumbs and oregano, baked golden and finished scampi style. Pair it with D's Dirty Martini, also $10."
+  },
+  "bites": {
+    "eyebrow": "Everything's $10",
+    "head": "$10 Italian bites",
+    "items": [
+      [
+        "Neapolitan Margherita pizza",
+        "$10"
+      ],
+      [
+        "Sterner the Burner shrimp scampi",
+        "$10"
+      ],
+      [
+        "Pancetta wrapped dates",
+        "$10"
+      ],
+      [
+        "Fried zucchini",
+        "$10"
+      ],
+      [
+        "Bruschetta",
+        "$10"
+      ],
+      [
+        "Sausage & peppers",
+        "$10"
+      ]
+    ]
+  },
+  "room": {
+    "eyebrow": "The vibe",
+    "head": "Hidden<br>gem",
+    "line": "An off Strip, family run trattoria that locals keep coming back to. The bar fills fast on weekends."
+  },
+  "storyDeals": "$10 baked clams, $10 dirty martini",
+  "reel": {
+    "hook": "$10<br>baked clams",
+    "pill": "+ $10 dirty martini",
+    "tagLine": "Tag your dirty martini partner!",
+    "bites": [
+      [
+        "Margherita pizza",
+        "$10"
+      ],
+      [
+        "Shrimp scampi",
+        "$10"
+      ],
+      [
+        "Pancetta wrapped dates",
+        "$10"
+      ],
+      [
+        "Fried zucchini",
+        "$10"
+      ],
+      [
+        "Bruschetta",
+        "$10"
+      ],
+      [
+        "Sausage & peppers",
+        "$10"
+      ]
+    ]
+  },
   "caption": {
     "area": "Southwest Las Vegas",
-    "items": "a $10 Neapolitan Margherita, $10 Sterner the Burner shrimp scampi and a $6 house draft",
+    "items": "$10 baked clams oreganata, a $10 D's Dirty Martini and a $10 Neapolitan Margherita",
     "when": "Tue–Sun, 4–6pm",
-    "disc": "A family run, off Strip trattoria with real Neapolitan pizza and a house beer brewed just for them. Plus $10 cocktails and wine.",
-    "hooks": ["Southwest Vegas has a Neapolitan pizza secret.", "The trattoria locals keep to themselves.", "A house draft brewed just for this pizza."],
-    "tagline": "Tag the friend who never shares their pizza 🍕",
-    "tags": "#summerlin #southwestlasvegas #lasvegaslocals #lasvegashappyhour #vegashappyhour #vegasfoodie #vegasitalian #vegaspizza #neapolitanpizza #vegashiddengems",
+    "disc": "The clams are stuffed with garlic breadcrumbs and fresh oregano, baked golden, then finished scampi style with white wine, lemon and butter. A family run, off Strip trattoria worth the drive.",
+    "hooks": [
+      "Baked clams and a dirty martini. Southwest Vegas knows.",
+      "The happy hour pairing nobody's talking about yet.",
+      "Clams oreganata, finished scampi style. Tue–Sun."
+    ],
+    "tagline": "Tag your dirty martini partner 🍸",
+    "tags": "#summerlin #southwestlasvegas #lasvegaslocals #lasvegashappyhour #vegashappyhour #vegasfoodie #vegasitalian #vegasseafood #dirtymartini #vegashiddengems",
     "location": "D'Agostino's Trattoria"
   }
 }
