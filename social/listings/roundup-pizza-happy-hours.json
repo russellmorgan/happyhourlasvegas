@@ -1,17 +1,17 @@
 {
   "slug": "roundup-pizza-happy-hours",
-  "timing": {"intro": 4.6, "card": 3.2, "outro": 3.6},
-  "clip": {"intro_start": 0, "outro_from_end": true},
+  "timing": {"intro": 4.2, "card": 3.4, "outro": 3.6},
+  "clip": {"intro_start": 0},
   "intro": [
     {"text": "I'm at the Las Vegas Pizza Festival", "at": 0.2},
-    {"text": "Can't wait a year for pizza this good?", "at": 1.5},
-    {"text": "4 pizza happy hours to hit any week", "at": 2.8, "gold": true}
+    {"text": "Can't wait a year for pizza this good?", "at": 1.4},
+    {"text": "4 pizza happy hours to hit any week", "at": 2.6, "gold": true}
   ],
   "items": [
-    {"name": "Double Zero Pie & Pub", "area": "Chinatown", "big": "$12", "what": "2 slices + a beer or craft soda", "when": "Daily 3–5pm & 9pm late night", "slug": "double-zero-pie-and-pub-happy-hour"},
-    {"name": "Good Pie", "area": "Arts District", "big": "50% OFF", "what": "Every slice, Detroit & Grandma style", "when": "Mon–Fri 4–6pm", "slug": "good-pie-happy-hour"},
-    {"name": "Dom DeMarco's", "area": "Summerlin", "big": "50% OFF", "what": "All pizzas, 2–4pm", "when": "Mon–Fri 2–4pm", "note": "Plus half off wells and wine until 6pm", "slug": "dom-demarcos-happy-hour"},
-    {"name": "Al Solito Posto", "area": "Tivoli Village, Summerlin", "big": "$13", "what": "Margherita pizza + $3 oysters", "when": "Daily 4–6pm, bar only", "slug": "al-solito-posto-happy-hour"}
+    {"name": "Double Zero Pie & Pub", "area": "Chinatown", "big": "$12", "what": "2 slices + a beer or craft soda", "when": "Daily 3–5pm & 9pm late night", "photo": "double-zero-3-happy-hour.jpg", "pos": "50% 45%", "slug": "double-zero-pie-and-pub-happy-hour"},
+    {"name": "Good Pie", "area": "Arts District", "big": "50% OFF", "what": "Every slice, Detroit & Grandma style", "when": "Mon–Fri 4–6pm", "photo": "good-pie.webp", "pos": "50% 70%", "slug": "good-pie-happy-hour"},
+    {"name": "Pizza Rock", "area": "Downtown Grand, Downtown", "big": "FROM $8", "what": "Pizzas + $9 cocktails", "when": "Mon–Thu 3–6pm", "photo": "pizza-rock.webp", "pos": "50% 50%", "slug": "pizza-rock-happy-hour"},
+    {"name": "Dom DeMarco's", "area": "Summerlin", "big": "50% OFF", "what": "All pizzas, 2–4pm", "when": "Mon–Fri 2–4pm", "note": "Plus half off wells and wine until 6pm", "photo": "dom-demarcos.jpg", "pos": "30% 50%", "slug": "dom-demarcos-happy-hour"}
   ],
-  "outro": {"save": "Save this for your next pizza night", "tag": "Tag your pizza crew!", "follow": "Follow @happyhourvegas for new happy hours every week"}
+  "outro": {"head": "See all 33 pizza happy hours", "pill": "Link in bio", "small": "Tag your pizza crew & follow @happyhourvegas"}
 }

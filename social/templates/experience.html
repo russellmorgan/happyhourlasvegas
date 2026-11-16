@@ -20,7 +20,13 @@ html,body{background:transparent!important}
 .card .what{font-family:var(--cond);font-weight:600;font-size:46px;text-transform:uppercase;letter-spacing:.06em;margin-top:12px;line-height:1.15}
 .card .when{position:absolute;left:64px;top:1270px;font-size:40px;padding:16px 34px}
 .card .note{position:absolute;left:64px;right:140px;top:1360px;font-size:32px;color:var(--cream);opacity:.85}
-.photo{position:absolute;left:64px;right:140px;top:640px;height:200px}
+
+.card .photo{position:absolute;left:64px;right:140px;top:610px;height:420px}
+.card.ph .deal{top:950px;left:110px;right:186px;padding:30px 40px}
+.card.ph .big{font-size:170px}
+.card.ph .what{font-size:40px}
+.card.ph .when{top:1255px}
+.card.ph .note{top:1345px}
 </style></head><body>
 <div id="x"></div>
 <script>
@@ -30,20 +36,21 @@ const bug=`<img src="../assets/hhv-olive-mark.svg" style="position:absolute;left
 let html=`<div class="sc" id="intro">${bug}
   <div class="cap" style="top:1000px">${E.intro.map((c,i)=>`<span id="c${i}" class="${c.gold?'gold':''}">${c.text}</span>`).join('')}</div>
 </div>`;
-items.forEach((v,i)=>{html+=`<div class="sc card" id="v${i}">
+items.forEach((v,i)=>{html+=`<div class="sc card${v.photo?' ph':''}" id="v${i}">
+  ${v.photo?`<div class="well photo"><img id="p${i}" src="${v.photo}" style="object-position:${v.pos||'center'}"></div>`:''}
   <div class="num">${i+1} OF ${items.length}</div>
   <div class="area">${v.area}</div>
   <div class="name fit" data-w="876">${v.name}</div>
-  <div class="deal halftone" id="d${i}"><div class="big fit" data-w="770">${v.big}</div><div class="what">${v.what}</div></div>
+  <div class="deal halftone" id="d${i}"><div class="big fit" data-w="${v.photo?690:770}">${v.big}</div><div class="what">${v.what}</div></div>
   <div class="pill when" id="w${i}">${v.when}</div>
   ${v.note?`<div class="note">${v.note}</div>`:''}
 </div>`});
 html+=`<div class="sc" id="outro"><div class="scrim-b"></div>
   <div style="position:absolute;left:64px;right:140px;top:760px">
     <img id="ologo" src="../assets/hhv-logo-cream.svg" style="height:84px;display:block">
-    <div class="head" id="o1" style="font-size:104px;margin-top:40px">${E.outro.save}</div>
-    <div class="pill" id="o2" style="font-size:46px;padding:22px 44px;margin-top:40px;border-radius:12px">${E.outro.tag}</div>
-    <div class="label" id="o3" style="font-size:40px;margin-top:40px;color:var(--cream);line-height:1.25">${E.outro.follow}</div>
+    <div class="head" id="o1" style="font-size:118px;margin-top:40px">${E.outro.head}</div>
+    <div class="pill" id="o2" style="font-size:46px;padding:22px 44px;margin-top:40px;border-radius:12px">${E.outro.pill}</div>
+    <div class="label" id="o3" style="font-size:40px;margin-top:40px;color:var(--cream);line-height:1.25">${E.outro.small}</div>
   </div></div>`;
 document.getElementById('x').innerHTML=html;
 const $=id=>document.getElementById(id);
@@ -58,6 +65,7 @@ window.renderAt=function(t){
   $('intro').style.opacity=t<T.intro?1:0;
   E.intro.forEach((c,i)=>{const k=out(seg(t,c.at,c.at+.3));const el=$('c'+i);el.style.opacity=k;el.style.transform=`translateY(${(1-k)*40}px)`});
   items.forEach((v,i)=>{const a=cardStart(i);$('v'+i).style.opacity=(t>=a&&t<a+T.card)?1:0;
+    if($('p'+i))$('p'+i).style.transform=`scale(${1+.06*seg(t,a,a+T.card)})`;
     const k=back(seg(t,a+.15,a+.5));$('d'+i).style.transform=`scale(${.75+.25*k})`;$('d'+i).style.opacity=seg(t,a+.15,a+.3);
     const w=out(seg(t,a+.45,a+.75));$('w'+i).style.opacity=w;$('w'+i).style.transform=`translateX(${(1-w)*-120}px)`});
   const o=outroStart;$('outro').style.opacity=t>=o?1:0;
