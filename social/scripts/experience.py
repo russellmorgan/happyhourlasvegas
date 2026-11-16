@@ -99,9 +99,11 @@ def main():
         lst.write_text(''.join(f"file '{p}'\n" for p in parts))
         bg = frames / 'bg.mp4'
         subprocess.run(['ffmpeg', '-y', '-loglevel', 'error', '-f', 'concat', '-safe', '0', '-i', str(lst), '-c', 'copy', str(bg)], check=True)
+        kbps = min(6000, int(9.0 * 8000 / dur))  # stay under 9 MB so Google Drive uploads from here work (10 MB limit)
         subprocess.run(['ffmpeg', '-y', '-loglevel', 'error', '-i', str(bg), '-framerate', str(FPS), '-i', str(frames / 'f%04d.png'),
                         '-filter_complex', '[0:v][1:v]overlay=0:0,format=yuv420p[v]', '-map', '[v]', '-t', str(dur),
-                        '-an', '-c:v', 'libx264', '-crf', '19', '-preset', 'veryfast', '-pix_fmt', 'yuv420p', '-movflags', '+faststart',
+                        '-an', '-c:v', 'libx264', '-preset', 'slow', '-b:v', f'{kbps}k', '-maxrate', f'{int(kbps * 1.1)}k',
+                        '-bufsize', f'{kbps * 2}k', '-pix_fmt', 'yuv420p', '-movflags', '+faststart',
                         str(out / f'{slug}-reel.mp4')], check=True)
         print(f'done {slug}: {dur:.1f}s, clip {cd:.1f}s')
     shutil.rmtree(frames, ignore_errors=True)
