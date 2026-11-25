@@ -1,0 +1,12 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "hhv/video",
+	"title": "Post video",
+	"category": "hhv",
+	"icon": "video-alt3",
+	"description": "The video from this post's Video box (click to play), with its credit line. Shows nothing when the Video URL is empty.",
+	"usesContext": [ "postId" ],
+	"supports": { "html": false },
+	"render": "file:./render.php"
+}
