@@ -1,0 +1,30 @@
+/* HHV design system tokens and type, for social assets. Fonts are the theme's self-hosted files. */
+@font-face{font-family:'Bebas Neue';src:url(../fonts/bebas-neue-400.woff2) format('woff2')}
+@font-face{font-family:'Barlow';font-weight:400;src:url(../fonts/barlow-400.woff2) format('woff2')}
+@font-face{font-family:'Barlow';font-weight:500;src:url(../fonts/barlow-500.woff2) format('woff2')}
+@font-face{font-family:'Barlow';font-weight:600;src:url(../fonts/barlow-600.woff2) format('woff2')}
+@font-face{font-family:'Barlow Condensed';font-weight:500;src:url(../fonts/barlow-condensed-500.woff2) format('woff2')}
+@font-face{font-family:'Barlow Condensed';font-weight:600;src:url(../fonts/barlow-condensed-600.woff2) format('woff2')}
+@font-face{font-family:'Libre Caslon Text';font-weight:400;src:url(../fonts/libre-caslon-text-400.woff2) format('woff2')}
+@font-face{font-family:'Libre Caslon Text';font-style:italic;src:url(../fonts/libre-caslon-text-400-italic.woff2) format('woff2')}
+
+:root{
+  --teal:#1C363B; --teal-deep:#132529; --teal-ink:#15292D;
+  --cream:#EFE3C4; --gold:#C9A034; --gold-deep:#A27E1F; --olive:#585B38;
+  --bebas:'Bebas Neue',Impact,sans-serif; --barlow:'Barlow',sans-serif;
+  --cond:'Barlow Condensed',sans-serif; --caslon:'Libre Caslon Text',serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#000;font-family:var(--barlow);color:var(--cream)}
+.frame{position:relative;overflow:hidden;background:var(--teal)}
+.eyebrow{font-family:var(--caslon);font-style:italic;color:var(--gold)}
+.head{font-family:var(--bebas);color:var(--cream);line-height:.88;text-shadow:0 12px 0 #000;text-transform:uppercase}
+.label{font-family:var(--cond);font-weight:600;text-transform:uppercase;letter-spacing:.08em}
+.well{background:var(--teal-ink);border-radius:24px;overflow:hidden;position:relative}
+.well img{width:100%;height:100%;object-fit:cover;display:block}
+.pill{display:inline-block;background:var(--gold);color:var(--teal);border-radius:999px;font-family:var(--cond);font-weight:600;text-transform:uppercase;letter-spacing:.08em}
+.halftone{background-color:var(--gold);background-image:radial-gradient(rgba(162,126,31,.6) 3px,transparent 3.6px);background-size:16px 16px;color:var(--teal);border-radius:20px}
+.foot{position:absolute;left:80px;right:80px;bottom:64px;border-top:3px solid var(--gold);padding-top:26px;display:flex;align-items:center;justify-content:space-between}
+.foot img{height:44px;display:block}
+.foot span{font-family:var(--cond);font-weight:600;font-size:28px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold)}
+.fit{white-space:nowrap}

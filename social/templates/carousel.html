@@ -1,0 +1,77 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="brand.css">
+<!-- Instagram/Facebook feed carousel, 1080 x 1350 per slide. Data: window.LISTING (see social/README.md). -->
+<style>
+.slide{width:1080px;height:1350px;margin-bottom:20px}
+.s-pad{position:absolute;left:80px;right:80px}
+.daygrid{display:flex;gap:14px}
+.day{width:110px;height:110px;border-radius:18px;display:flex;align-items:center;justify-content:center;font-family:var(--bebas);font-size:64px}
+.day.on{background:var(--gold);color:var(--teal)}
+.day.off{border:3px solid var(--olive);color:var(--olive)}
+.bite{display:flex;justify-content:space-between;align-items:baseline;border-bottom:2px solid rgba(239,227,196,.18);padding:14px 0}
+.bite b{font-family:var(--bebas);font-weight:400;font-size:var(--bs,64px);color:var(--cream);line-height:1}
+.bite i{font-style:normal;font-family:var(--bebas);font-size:var(--bs,64px);color:var(--gold);line-height:1}
+.scrim{position:absolute;left:0;right:0;top:0;height:820px}
+.scrim img{width:100%;height:100%;object-fit:cover}
+.scrim:after{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,rgba(28,54,59,0) 45%,var(--teal) 100%)}
+</style></head><body><div id="root"></div>
+<script>
+const L = window.LISTING, P = L.photos, POS = L.pos || {};
+const fitLines = (arr, w) => arr.map(h => `<div class="fit" data-w="${w}">${h}</div>`).join('');
+const foot = `<div class="foot"><img src="../assets/hhv-logo-cream.svg"><span>happyhourvegas.com</span></div>`;
+const days = ['M','T','W','T','F','S','S'].map((d,i)=>`<div class="day ${L.days[i]?'on':'off'}">${d}</div>`).join('');
+const many = L.bites.items.length > 5;
+const slides = [
+// 1 hook
+`<div class="s-pad" style="top:84px">
+  <div class="eyebrow" style="font-size:40px">${L.place}</div>
+  <div class="head" style="font-size:196px;margin-top:22px">${fitLines(L.hook,920)}</div>
+</div>
+<div class="well s-pad" style="top:560px;height:530px">
+  <img src="${P.hook}" style="object-position:${POS.hook||'center'}">
+  <div class="pill" style="position:absolute;left:28px;bottom:28px;font-size:34px;padding:14px 30px">${L.when}</div>
+</div>
+<div class="label s-pad" style="top:1124px;font-size:30px;color:var(--cream);text-align:right">${L.swipe||'Swipe for the menu'}</div>
+${foot}`,
+// 2 hero deal
+`${P.hero?`<div class="well s-pad" style="top:84px;height:560px"><img src="${P.hero}" style="object-position:${POS.hero||'center'}"></div>`
+ :`<div class="s-pad" style="top:120px"><div class="eyebrow" style="font-size:40px">${L.name}</div><div class="head" style="font-size:150px;margin-top:14px">The deal</div></div>`}
+<div class="halftone s-pad" style="top:${P.hero?600:440}px;height:420px;left:120px;right:120px;display:flex;flex-direction:column;justify-content:center;padding:0 56px">
+  <div style="font-family:var(--bebas);font-size:250px;line-height:.85">${L.hero.price}</div>
+  <div class="label" style="font-size:40px;margin-top:10px;line-height:1.2">${L.hero.item}</div>
+</div>
+<div class="s-pad" style="top:${P.hero?1060:900}px;font-size:36px;line-height:1.35;max-width:880px">${L.hero.line||''}</div>
+${foot}`,
+// 3 bites
+`<div class="s-pad" style="top:84px">
+  <div class="eyebrow" style="font-size:40px">${L.bites.eyebrow}</div>
+  <div class="head fit" data-w="920" style="font-size:150px;margin-top:14px">${L.bites.head}</div>
+</div>
+${P.bites?`<div class="well s-pad" style="top:330px;height:${many?340:400}px"><img src="${P.bites}" style="object-position:${POS.bites||'center'}"></div>`:''}
+<div class="s-pad" style="top:${P.bites?(many?696:752):360}px;--bs:${many?58:64}px">${L.bites.items.slice(0,6).map(b=>`<div class="bite"><b>${b[0]}</b><i>${b[1]}</i></div>`).join('')}${L.bites.note?`<div style="font-size:34px;line-height:1.35;margin-top:28px">${L.bites.note}</div>`:''}</div>
+${foot}`,
+// 4 room
+`<div class="scrim"><img src="${P.room}" style="object-position:${POS.room||'center'}"></div>
+<div class="s-pad" style="top:700px">
+  <div class="eyebrow" style="font-size:40px">${L.room?.eyebrow||''}</div>
+  <div class="head" style="font-size:170px;margin-top:14px">${fitLines((L.room?.head||'').split('<br>'),920)}</div>
+  <div style="font-size:36px;line-height:1.35;margin-top:30px;max-width:860px">${L.room?.line||''}</div>
+</div>
+${foot}`,
+// 5 when + CTA (event CTA when L.event is set)
+`<div class="s-pad" style="top:84px">
+  <div class="eyebrow" style="font-size:40px">${L.name}</div>
+  <div class="head fit" data-w="920" style="font-size:170px;margin-top:14px">${L.whenBig||L.when}</div>
+  <div class="daygrid" style="margin-top:40px">${days}</div>
+  <div class="eyebrow" style="font-size:36px;margin-top:36px;font-style:normal;color:var(--cream)">${L.address}</div>
+</div>
+<div class="s-pad" style="top:760px;border-top:3px solid var(--gold);padding-top:56px">
+  ${L.event?`<div class="eyebrow" style="font-size:40px">${L.event.eyebrow}</div><div class="head" style="font-size:110px;margin-top:14px">${L.event.head}</div><div class="pill" style="font-size:44px;padding:24px 52px;margin-top:40px;border-radius:12px">${L.event.button}</div>`
+  :`<div class="head" style="font-size:110px">3 spots like this<br>every Tuesday</div><div class="pill" style="font-size:44px;padding:24px 52px;margin-top:44px;border-radius:12px">Join the club</div>`}
+</div>
+${foot}`
+];
+const use = (L.noRoom || !P.room) ? slides.filter((_,i)=>i!==3) : slides;
+document.getElementById('root').innerHTML = use.map((s,i)=>`<div class="frame slide" id="s${i+1}">${s}</div>`).join('');
+function fitAll(){document.querySelectorAll('.fit').forEach(el=>{const w=+el.dataset.w;let fs=parseFloat(getComputedStyle(el).fontSize);el.style.display='inline-block';while(el.scrollWidth>w&&fs>40){fs-=2;el.style.fontSize=fs+'px'}el.style.display='block'})}
+document.fonts.ready.then(()=>{fitAll();window.FITTED=true});
+</script></body></html>

@@ -1,0 +1,79 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="brand.css">
+<!-- Experience + roundup Reel overlay, 1080 x 1920, rendered frame by frame with a transparent background
+     and laid over real footage by social/scripts/experience.py.
+     Timeline: intro over footage, one design system card per venue, outro over footage.
+     Everything stays inside Instagram's safe area (y 300 to 1420, clear of the right 140px). -->
+<style>
+html,body{background:transparent!important}
+#x{position:relative;width:1080px;height:1920px;overflow:hidden;background:transparent}
+.sc{position:absolute;inset:0;opacity:0}
+.cap{position:absolute;left:64px;right:140px;display:flex;flex-direction:column;align-items:flex-start;gap:14px}
+.cap span{display:inline-block;background:var(--teal);color:var(--cream);font-family:var(--bebas);font-size:96px;line-height:1;padding:14px 26px 8px;border-radius:14px;box-shadow:0 10px 0 #000}
+.cap span.gold{background:var(--gold);color:var(--teal)}
+.scrim-b{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(19,37,41,0) 0%,rgba(19,37,41,.55) 40%,rgba(19,37,41,.92) 100%)}
+.card{position:absolute;inset:0;background:var(--teal)}
+.card .num{position:absolute;left:64px;top:320px;font-family:var(--cond);font-weight:600;font-size:40px;letter-spacing:.1em;color:var(--gold)}
+.card .area{position:absolute;left:64px;right:140px;top:380px;font-family:var(--caslon);font-style:italic;font-size:46px;color:var(--gold)}
+.card .name{position:absolute;left:64px;right:140px;top:440px;font-family:var(--bebas);font-size:150px;line-height:.9;color:var(--cream);text-shadow:0 12px 0 #000}
+.card .deal{position:absolute;left:64px;right:140px;top:820px;padding:44px 52px}
+.card .big{font-family:var(--bebas);font-size:230px;line-height:.82}
+.card .what{font-family:var(--cond);font-weight:600;font-size:46px;text-transform:uppercase;letter-spacing:.06em;margin-top:12px;line-height:1.15}
+.card .when{position:absolute;left:64px;top:1270px;font-size:40px;padding:16px 34px}
+.card .note{position:absolute;left:64px;right:140px;top:1360px;font-size:32px;color:var(--cream);opacity:.85}
+
+.card .photo{position:absolute;left:64px;right:140px;top:610px;height:420px}
+.card.ph .deal{top:950px;left:110px;right:186px;padding:30px 40px}
+.card.ph .big{font-size:170px}
+.card.ph .what{font-size:40px}
+.card.ph .when{top:1255px}
+.card.ph .note{top:1345px}
+</style></head><body>
+<div id="x"></div>
+<script>
+const E=window.EXP;
+const items=E.items;
+const bug=`<img src="../assets/hhv-olive-mark.svg" style="position:absolute;left:64px;top:300px;height:64px">`;
+let html=`<div class="sc" id="intro">${bug}
+  <div class="cap" style="top:1000px">${E.intro.map((c,i)=>`<span id="c${i}" class="${c.gold?'gold':''}">${c.text}</span>`).join('')}</div>
+</div>`;
+items.forEach((v,i)=>{html+=`<div class="sc card${v.photo?' ph':''}" id="v${i}">
+  ${v.photo?`<div class="well photo"><img id="p${i}" src="${v.photo}" style="object-position:${v.pos||'center'}"></div>`:''}
+  <div class="num">${i+1} OF ${items.length}</div>
+  <div class="area">${v.area}</div>
+  <div class="name fit" data-w="876">${v.name}</div>
+  <div class="deal halftone" id="d${i}"><div class="big fit" data-w="${v.photo?690:770}">${v.big}</div><div class="what">${v.what}</div></div>
+  <div class="pill when" id="w${i}">${v.when}</div>
+  ${v.note?`<div class="note">${v.note}</div>`:''}
+</div>`});
+html+=`<div class="sc" id="outro"><div class="scrim-b"></div>
+  <div style="position:absolute;left:64px;right:140px;top:760px">
+    <img id="ologo" src="../assets/hhv-logo-cream.svg" style="height:84px;display:block">
+    <div class="head" id="o1" style="font-size:118px;margin-top:40px">${E.outro.head}</div>
+    <div class="pill" id="o2" style="font-size:46px;padding:22px 44px;margin-top:40px;border-radius:12px">${E.outro.pill}</div>
+    <div class="label" id="o3" style="font-size:40px;margin-top:40px;color:var(--cream);line-height:1.25">${E.outro.small}</div>
+  </div></div>`;
+document.getElementById('x').innerHTML=html;
+const $=id=>document.getElementById(id);
+const seg=(t,a,b)=>Math.max(0,Math.min(1,(t-a)/(b-a)));
+const out=x=>1-Math.pow(1-x,3);
+const back=x=>{const c=1.7;return 1+(c+1)*Math.pow(x-1,3)+c*Math.pow(x-1,2)};
+const T=E.timing; // {intro, card, outro}
+const cardStart=i=>T.intro+i*T.card, outroStart=T.intro+items.length*T.card;
+window.DURATION=outroStart+T.outro;
+window.SEGMENTS={intro:[0,T.intro],cards:[T.intro,outroStart],outro:[outroStart,window.DURATION]};
+window.renderAt=function(t){
+  $('intro').style.opacity=t<T.intro?1:0;
+  E.intro.forEach((c,i)=>{const k=out(seg(t,c.at,c.at+.3));const el=$('c'+i);el.style.opacity=k;el.style.transform=`translateY(${(1-k)*40}px)`});
+  items.forEach((v,i)=>{const a=cardStart(i);$('v'+i).style.opacity=(t>=a&&t<a+T.card)?1:0;
+    if($('p'+i))$('p'+i).style.transform=`scale(${1+.06*seg(t,a,a+T.card)})`;
+    const k=back(seg(t,a+.15,a+.5));$('d'+i).style.transform=`scale(${.75+.25*k})`;$('d'+i).style.opacity=seg(t,a+.15,a+.3);
+    const w=out(seg(t,a+.45,a+.75));$('w'+i).style.opacity=w;$('w'+i).style.transform=`translateX(${(1-w)*-120}px)`});
+  const o=outroStart;$('outro').style.opacity=t>=o?1:0;
+  $('ologo').style.opacity=seg(t,o+.1,o+.4);
+  const a1=out(seg(t,o+.3,o+.7));$('o1').style.opacity=a1;$('o1').style.transform=`translateY(${(1-a1)*50}px)`;
+  const a2=back(seg(t,o+.9,o+1.3));$('o2').style.opacity=seg(t,o+.9,o+1);$('o2').style.transform=`scale(${.7+.3*a2})`;$('o2').style.transformOrigin='left center';
+  $('o3').style.opacity=seg(t,o+1.4,o+1.8);
+};
+function fitAll(){document.querySelectorAll('.fit').forEach(el=>{const w=+el.dataset.w;let fs=parseFloat(getComputedStyle(el).fontSize);el.style.whiteSpace='nowrap';el.style.display='inline-block';while(el.scrollWidth>w&&fs>40){fs-=2;el.style.fontSize=fs+'px'}el.style.display='block'})}
+document.fonts.ready.then(()=>{fitAll();window.renderAt(0);window.FITTED=true});
+</script></body></html>

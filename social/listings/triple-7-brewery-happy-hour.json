@@ -1,0 +1,33 @@
+{
+  "name": "Triple 7 Brewery",
+  "place": "Main Street Station, Downtown",
+  "address": "200 N Main St, inside Main Street Station",
+  "days": [1,1,1,1,1,1,1],
+  "when": "Daily 4–6pm",
+  "photos": {
+    "hook": "triple-7-happy-hour-las-vegas.webp",
+    "hero": "triple-7-happy-hour.webp",
+    "bites": "triple-7-happy-hour-menu-prices.webp",
+    "room": "777-happy-hour-mainstreet-station.webp"
+  },
+  "pos": {"hook": "80% 0%", "hero": "60% 50%", "bites": "50% 60%", "room": "50% 50%"},
+  "hook": ["$3 beer.", "In Vegas."],
+  "swipe": "Swipe for $7 bites",
+  "hero": {"price": "$3", "item": "Draft beer, brewed right here", "line": "Rotating craft pours from the brewery behind the glass."},
+  "bites": {"eyebrow": "Hungry? Same deal.", "head": "$7 bar bites",
+    "items": [["Cheese pizza","$7"],["5 piece wings","$7"],["Two sliders","$7"],["Cheese curds","$7"],["Pub nachos","$7"]]},
+  "room": {"eyebrow": "The room", "head": "Room to<br>breathe", "line": "High ceilings, a clear view of the brewery and bars on both sides. Nobody gets stuck in a tight pub corner."},
+  "storyDeals": "House brewed drafts, $7 bites",
+  "reel": {"hook": "$3<br>beer", "pill": "Downtown. Every day.", "tagLine": "Tag a friend that likes $3 beer!"},
+  "caption": {
+    "area": "Downtown Las Vegas",
+    "casino": "Main Street Station",
+    "items": "$3 house brewed drafts, $7 cheese curds and $7 sliders",
+    "when": "Daily, 4–6pm",
+    "disc": "Beer brewed right behind the glass, in one of Downtown's most underrated rooms.",
+    "hooks": ["Downtown's brewery hiding inside a casino.", "The beer is brewed 20 feet from your stool.", "Downtown regulars already know this one."],
+    "tagline": "Tag the friend who always orders the house beer 🍺",
+    "tags": "#downtownlasvegas #fremontstreet #mainstreetstation #lasvegashappyhour #vegashappyhour #vegasfoodie #lasvegaslocals #vegasbeer #craftbeer #vegasbars",
+    "location": "Triple 7 Brewery (Main Street Station)"
+  }
+}

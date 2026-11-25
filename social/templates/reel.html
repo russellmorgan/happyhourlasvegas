@@ -1,0 +1,100 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="brand.css">
+<!-- Reel / Story video, 1080 x 1920, rendered frame by frame through window.renderAt(t).
+     Scenes (design timeline, seconds): hook 0-1.8, venue 1.8-4.2, hero 4.2-6.8, menu 6.8-9.2, end 9.2-12.
+     reel.length 16 (or a custom reel.timeline) stretches the scenes; the animation keys stay the same.
+     Everything sits inside #safe, scaled into Instagram's center 4:5 area so nothing is cropped in the feed or grid. -->
+<style>
+#rl{width:1080px;height:1920px}
+.l{position:absolute;left:64px;right:140px}
+.sc{position:absolute;inset:0;opacity:0}
+.plate{display:flex;border-radius:16px;overflow:hidden}
+.plate .bar{width:18px;background:var(--gold)}
+.plate .body{background:var(--teal-deep);padding:24px 32px;flex:1}
+.day{width:104px;height:104px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-family:var(--bebas);font-size:60px}
+.bite{display:flex;justify-content:space-between;align-items:baseline;border-bottom:2px solid rgba(239,227,196,.18);padding:12px 0}
+.bite b{font-family:var(--bebas);font-weight:400;font-size:var(--rb,78px);line-height:1}
+.bite i{font-style:normal;font-family:var(--bebas);font-size:var(--rb,78px);color:var(--gold);line-height:1}
+</style></head><body>
+<div class="frame" id="rl"></div>
+<script>
+const L=window.LISTING, R=L.reel, P=L.photos, POS=L.pos||{};
+const ph=r=>P[r]||P.hook;
+const days=['M','T','W','T','F','S','S'];
+const bites=(R.bites||L.bites.items).slice(0,6);
+const partners=R.partners||[];
+document.getElementById('rl').innerHTML=`<div id="safe" style="position:absolute;inset:0;transform-origin:540px 236px;transform:translateY(70px) scale(.9)">
+<div id="bug" class="eyebrow fit" data-w="876" style="position:absolute;left:64px;top:236px;font-size:46px;z-index:5">${L.name}</div>
+<!-- 1 hook -->
+<div class="sc" id="a">
+  <div class="well l" style="top:900px;height:560px"><img id="aimg" src="${ph('hook')}" style="object-position:${POS.hook||'center'}"></div>
+  <div class="l" style="top:360px"><div class="head" id="ah" style="font-size:250px">${R.hook.split('<br>').map(h=>`<div class="fit" data-w="876">${h}</div>`).join('')}</div>
+  <div class="pill" id="ap" style="font-size:40px;padding:16px 34px;margin-top:30px">${R.pill||L.place.split(',')[0]}</div></div>
+</div>
+<!-- 2 venue -->
+<div class="sc" id="b">
+  <div class="well l" style="top:330px;height:960px"><img id="bimg" src="${ph('room')}" style="object-position:${POS.room||'center'}"></div>
+  <div class="plate l" id="bp" style="top:1180px"><div class="bar"></div><div class="body">
+    <div class="eyebrow" style="font-size:32px">${L.place}</div>
+    <div class="fit" data-w="760" style="font-family:var(--bebas);font-size:96px;line-height:1;margin-top:6px">${L.name}</div>
+    <div class="label" style="font-size:32px;color:var(--gold);margin-top:6px">${L.storyDeals}</div></div></div>
+</div>
+<!-- 3 hero -->
+<div class="sc" id="c">
+  <div class="well l" style="top:330px;height:620px"><img id="cimg" src="${ph('hero')}" style="object-position:${POS.hero||'center'}"></div>
+  <div class="halftone l" id="cb" style="top:880px;height:520px;left:110px;right:186px;display:flex;flex-direction:column;justify-content:center;padding:0 56px">
+    <div id="cn" style="font-family:var(--bebas);font-size:330px;line-height:.85">${L.hero.price}</div>
+    <div class="label" style="font-size:40px;margin-top:8px;line-height:1.2">${L.hero.item}</div></div>
+</div>
+<!-- 4 menu (price list, or lineup: item over venue) -->
+<div class="sc" id="d">
+  <div class="well l" style="top:330px;height:${R.lineup?300:470}px"><img id="dimg" src="${ph('bites')}" style="object-position:${POS.bites||'center'}"></div>
+  ${R.lineup
+   ?`<div class="l" style="top:660px">${bites.map((b,i)=>`<div id="d${i}" style="border-bottom:2px solid rgba(239,227,196,.18);padding:9px 0"><div class="fit" data-w="876" style="font-family:var(--bebas);font-size:66px;line-height:1">${b[0]}</div><div class="label" style="font-size:34px;color:var(--gold);margin-top:6px">${b[1]}</div></div>`).join('')}</div>`
+   :`<div class="l" style="top:830px;--rb:${bites.length>5?70:78}px">${bites.map((b,i)=>`<div class="bite" id="d${i}"><b>${b[0]}</b><i>${b[1]}</i></div>`).join('')}</div>`}
+</div>
+<!-- 5 when + end card -->
+<div class="sc" id="e">
+  <div class="l" style="top:330px">
+    <div class="head fit" data-w="876" style="font-size:190px" id="eh">${L.whenBig||L.when}</div>
+    <div style="display:flex;gap:12px;margin-top:40px">${days.map((d,i)=>`<div class="day" id="e${i}">${d}</div>`).join('')}</div>
+  </div>
+  <div class="l" style="top:${partners.length?740:900}px;border-top:3px solid var(--gold);padding-top:${partners.length?44:56}px">
+    <img id="elogo" src="../assets/hhv-logo-cream.svg" style="height:80px;display:block">
+    <div class="head" id="ecta" style="font-size:88px;margin-top:44px;text-shadow:0 8px 0 #000">${R.followLine||'Follow us for more happy hours like this every week'}</div>
+    <div class="pill" id="epill" style="font-size:42px;padding:22px 44px;margin-top:48px;border-radius:12px">${R.tagLine}</div>
+    ${partners.length?`<div id="epart" style="margin-top:40px;opacity:0"><div class="label" style="font-size:30px;color:var(--gold)">${R.partnersLabel||'With'}</div>${partners.map(h=>`<div class="label" style="font-size:50px;color:var(--cream);text-transform:none;letter-spacing:.02em;margin-top:6px">${h}</div>`).join('')}</div>`:''}
+  </div>
+</div></div>`;
+const $=id=>document.getElementById(id);
+const seg=(t,a,b)=>Math.max(0,Math.min(1,(t-a)/(b-a)));
+const out=x=>1-Math.pow(1-x,3);
+const back=x=>{const c=1.7;return 1+(c+1)*Math.pow(x-1,3)+c*Math.pow(x-1,2)};
+const show=(id,t,a,b)=>{$(id).style.opacity=(t>=a&&t<b)?1:0};
+window.renderCore=function(t){
+  show('a',t,0,1.8); show('b',t,1.8,4.2); show('c',t,4.2,6.8); show('d',t,6.8,9.2); show('e',t,9.2,99);
+  let p=out(seg(t,-0.2,.3)); $('ah').style.transform=`translateY(${(1-p)*80}px)`; $('ah').style.opacity=p;
+  let q=back(seg(t,.35,.7)); $('ap').style.transform=`scale(${.6+.4*q})`; $('ap').style.opacity=seg(t,.35,.5);
+  $('aimg').style.transform=`scale(${1.05+.05*seg(t,0,1.8)})`; $('aimg').parentNode.style.opacity=seg(t,-0.1,.4);
+  $('bimg').style.transform=`scale(${1+.08*seg(t,1.8,4.2)})`;
+  let r=out(seg(t,2.1,2.45)); $('bp').style.transform=`translateX(${(1-r)*-200}px)`; $('bp').style.opacity=r;
+  $('cimg').style.transform=`scale(${1+.06*seg(t,4.2,6.8)})`;
+  let s=back(seg(t,4.35,4.75)); $('cb').style.transform=`scale(${.7+.3*s})`; $('cb').style.opacity=seg(t,4.35,4.5);
+  const PR=String(L.hero.price), N=parseInt(PR.replace(/\D/g,''))||0;
+  if(N){const n=Math.max(1,Math.min(N,Math.ceil(seg(t,4.6,5.3)*N))); $('cn').textContent=PR.replace(/\d+/,n);}
+  $('dimg').style.transform=`scale(${1+.06*seg(t,6.8,9.2)})`;
+  bites.forEach((b,i)=>{const k=out(seg(t,7.0+i*.22,7.3+i*.22));$('d'+i).style.opacity=k;$('d'+i).style.transform=`translateX(${(1-k)*120}px)`});
+  let e=out(seg(t,9.2,9.5)); $('eh').style.opacity=e; $('eh').style.transform=`translateY(${(1-e)*60}px)`;
+  days.forEach((d,i)=>{const on=L.days[i]&&t>=9.5+i*.09, el=$('e'+i); el.style.background=on?'var(--gold)':'transparent'; el.style.color=on?'var(--teal)':'var(--olive)'; el.style.border=on?'3px solid var(--gold)':'3px solid var(--olive)'});
+  let g=back(seg(t,10.3,10.75)); $('elogo').style.opacity=seg(t,10.3,10.45); $('elogo').style.transform=`scale(${.7+.3*g})`; $('elogo').style.transformOrigin='left center';
+  $('ecta').style.opacity=seg(t,10.9,11.2);
+  let h=back(seg(t,11.2,11.55)); $('epill').style.opacity=seg(t,11.2,11.3); $('epill').style.transform=`scale(${.7+.3*h})`; $('epill').style.transformOrigin='left center';
+  if($('epart')) $('epart').style.opacity=seg(t,11.4,11.7);
+};
+const SRC=[0,1.8,4.2,6.8,9.2,12];
+const DST=R.timeline||(R.length==16?[0,2.4,5.4,8.4,12.4,16]:SRC);
+window.DURATION=DST[DST.length-1];
+window.renderAt=function(t){let i=0;while(i<DST.length-2&&t>DST[i+1])i++;const f=(t-DST[i])/(DST[i+1]-DST[i]);window.renderCore(SRC[i]+Math.max(0,Math.min(1,f))*(SRC[i+1]-SRC[i]))};
+function fitAll(){document.querySelectorAll('.fit').forEach(el=>{const w=+el.dataset.w;let fs=parseFloat(getComputedStyle(el).fontSize);el.style.display='inline-block';while(el.scrollWidth>w&&fs>30){fs-=2;el.style.fontSize=fs+'px'}el.style.display='block'})}
+document.fonts.ready.then(()=>{fitAll();window.FITTED=true});
+window.renderAt(0);
+</script></body></html>
